@@ -10,20 +10,25 @@ interface getAllFarmers {
 }
 
 const App = () => {
-    // const FirstFunction = async () => {
     const { data, error, loading } = useQuery<getAllFarmers>(GET_ALL_FARMERS);
     if (error) return <h1>Error : </h1>;
     if (loading || !data) return <h1>...loading</h1>;
     console.log(data);
-    // };
-    // useEffect(() => {
-    //     FirstFunction();
-    // }, []);
+    // setting localstorage
+    const setData = async () => {
+        localStorage.setItem(
+            'name',
+            `${data.getAllFarmers.map((farmer) => farmer.name)}`
+        );
+    };
+    setData();
     return (
         <div>
             {data.getAllFarmers.map((farmer: farmer) => (
                 <h1>{farmer.name}</h1>
             ))}
+            <h1>from local storage</h1>
+            {localStorage.getItem('name')}
         </div>
     );
 };

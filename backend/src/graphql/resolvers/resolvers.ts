@@ -10,10 +10,14 @@ class HelloResolver {
     }
     @Mutation(() => Farmer)
     async createUser(@Args() { name }: farmerArgs): Promise<{}> {
+        // if (Farmers.findOne({ name: name })) {
+        //     return 'farmer data already exists';
+        // }
         const newFarmer = Farmers({
             name: name
         });
         newFarmer.save();
+        console.log(newFarmer);
         return { name };
     }
 }

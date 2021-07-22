@@ -4,7 +4,6 @@ const logger = require('morgan');
 const cors = require('cors');
 const MongoStore = require('connect-mongo');
 const session = require('express-session');
-// const helmet = require('helmet');
 require('dotenv').config();
 import * as Express from 'express';
 import { buildSchema } from 'type-graphql';
@@ -17,8 +16,6 @@ app.use(cors());
 app.use(logger('dev'));
 app.use(Express.json());
 app.use(Express.urlencoded({ extended: true }));
-// app.set('trust proxy', 1); //trust proxy
-// app.use(helmet());
 // express session
 app.use(
     session({
