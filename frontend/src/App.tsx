@@ -1,26 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import { useQuery } from '@apollo/client';
+import { GET_ALL_FARMERS } from './graphql/queries';
+import Farmers from '../../interface';
+const App = () => {
+    // const FirstFunction = async () => {
+    const { data, error, loading } = useQuery<Farmers>(GET_ALL_FARMERS);
+    if (error) return <h1>Error : </h1>;
+    if (loading || !data) return <h1>...loading</h1>;
+    // };
+    // useEffect(() => {
+    //     FirstFunction();
+    // }, []);
+    return (
+        <div>
+            {data.getAllFarmers.map((farmer) => (
+                <h1>{farmer.name}</h1>
+            ))}
+        </div>
+    );
+};
 
 export default App;

@@ -1,9 +1,11 @@
-import {Resolver , Query} from 'type-graphql'
+import { Resolver, Query } from 'type-graphql';
+import { Farmer } from '../queries/queries';
+const Farmers = require('../../Models/farmer');
 @Resolver()
-class HelloResolver{
-	@Query(() =>String , {nullable : true})
-	async helloWorld(){
-		return 'start it quick'
-	}
+class HelloResolver {
+    @Query(() => [Farmer], { nullable: true })
+    async getAllFarmers(): Promise<Farmer> {
+        return Farmers.find({});
+    }
 }
-export {HelloResolver}
+export { HelloResolver };
