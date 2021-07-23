@@ -10,7 +10,7 @@
 .banner_content {
     position: absolute;
     color: white;
-    bottom: 10em;
+    bottom: 8em;
     left: 10em;
 }
 .banner_content h1 {
@@ -18,6 +18,9 @@
 }
 .banner_content h2 {
     font-size: 5em;
+}
+.banner_content h3 {
+    font-size: 3em;
 }
 .banner_content a {
     padding: 1em;
