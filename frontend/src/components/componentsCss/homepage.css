@@ -1,5 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@1&display=swap');
+.banner {
+    font-family: 'Baskervville', serif;
+}
 .banner img {
-    position: unset;
+    position: relative;
     width: 100%;
     height: 45em;
+}
+.banner_content {
+    position: absolute;
+    color: white;
+    bottom: 10em;
+    left: 10em;
+}
+.banner_content h1 {
+    font-size: 10em;
+}
+.banner_content h2 {
+    font-size: 5em;
+}
+.banner_content a {
+    padding: 1em;
+    background-color: rgb(21, 226, 38);
+    border-radius: 25px;
+    font-weight: bold;
+}
+
+.banner_content a:hover {
+    background-color: rgb(12, 121, 21);
 }
