@@ -9,6 +9,10 @@
     justify-content: space-around;
     font-family: 'Roboto', sans-serif;
 }
+.nav_body img {
+    width: 10em;
+    margin-bottom: 1em;
+}
 .nav_body a {
     color: white;
     text-decoration: none;
@@ -57,6 +61,7 @@
     flex-direction: row;
     text-align: center;
     padding: 1em;
+    gap: 2em;
 }
 .nav_options a {
     display: flex;
@@ -75,4 +80,18 @@
     display: flex;
     align-items: flex-end;
     margin-left: 3px;
+}
+.nav_icon {
+    display: flex;
+    align-items: center;
+    gap: 2em;
+}
+.search {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    width: 15em;
+}
+.font {
+    font-size: 1.4em;
 }
