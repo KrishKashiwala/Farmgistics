@@ -1,6 +1,6 @@
 import { Link, Avatar } from '@material-ui/core';
 import farmgistic_logo from './assests/farmgistic_logo.png';
-import './componentsCss/homepage.css';
+import './componentsCss/navbar.css';
 const Navbar = () => {
     return (
         <div className="nav_body">
@@ -16,16 +16,6 @@ const Navbar = () => {
                         <a href="google.com">Spices</a>
                     </div>
                 </div>
-                {/* <div className="dropdown">
-                    <Link className="dropbtn">
-                        Category <i className="fa fa-chevron-down down"></i>
-                    </Link>
-                    <div className="dropdown-content">
-                        <a href="google.com">Vegetables</a>
-                        <a href="google.com">Fruits</a>
-                        <a href="google.com">Spices</a>
-                    </div>
-                </div> */}
                 <a href="google.com" className="nav_a">
                     Contact Us
                 </a>
@@ -43,9 +33,15 @@ const Navbar = () => {
                     <i className="fa fa-search font"></i>
                     {/* <i className="fas fa-shopping-bag"></i> */}
                 </div>
-                <i className="fas fa-shopping-bag font"></i>
-                <i className="fa fa-cog font"></i>
-                <Avatar alt="profile_pic" src={farmgistic_logo} />
+                <a href="google.com">
+                    <i className="fas fa-shopping-bag font"></i>
+                </a>
+                <a href="google.com">
+                    <i className="fas fa-sliders-h font"></i>
+                </a>
+                <a href="google.com">
+                    <Avatar alt="profile_pic" src={farmgistic_logo} />
+                </a>
             </div>
         </div>
     );
