@@ -36,7 +36,6 @@
     "@types/morgan": "^1.9.3",
     "@types/node": "^16.4.0",
     "@types/nodemon": "^1.19.1",
-    "helmet": "^4.6.0",
     "ts-node": "^10.1.0",
     "typescript": "^4.3.5"
   }
