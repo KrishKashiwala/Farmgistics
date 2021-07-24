@@ -1,6 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@1&display=swap');
-.banner {
+body {
     font-family: 'Baskervville', serif;
+}
+.section_title {
+    text-align: center;
+    margin: 2em;
+}
+.section_title h1 {
+    font-weight: bold;
+}
+body i {
+    color: rgb(21, 226, 38);
+    font-size: 2em;
 }
 .banner img {
     position: relative;
