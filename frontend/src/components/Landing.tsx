@@ -1,0 +1,38 @@
+import './componentsCss/landing.css';
+const Landing = () => {
+    return (
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <div
+                style={{ display: 'flex', flexDirection: 'row', margin: '1em' }}
+            >
+                <img
+                    src="https://images.unsplash.com/photo-1579113800032-c38bd7635818?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80"
+                    alt="login_logo"
+                />
+                <div className="half">
+                    <h1>Welcome to Farmgistic</h1>
+                    <h2>A Place to Sell Crops</h2>
+                    <div
+                        style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            marginTop: '4em'
+                        }}
+                    >
+                        <button className="btn" id="sign_up">
+                            Sign up
+                        </button>
+                        <button className="btn" id="login">
+                            Log in
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div className="landing_footer">
+                <a href="google.com">Contact us</a>
+                <a href="google.com">&copy;2021 Farmgistic</a>
+            </div>
+        </div>
+    );
+};
+export default Landing;

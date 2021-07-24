@@ -52,7 +52,7 @@ body {
     position: absolute;
     left: 0;
     right: 16em;
-    bottom: 14em;
+    bottom: 3em;
     top: 72em;
     margin: auto;
     font-weight: bold;
@@ -64,7 +64,7 @@ body {
     position: absolute;
     left: 16em;
     right: 0;
-    bottom: 14em;
+    bottom: 3em;
     top: 72em;
     margin: auto;
     font-weight: bold;

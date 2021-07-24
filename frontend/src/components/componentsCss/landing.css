@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+img {
+    height: 42em;
+    width: 70em;
+}
+.half {
+    font-family: 'Oswald', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 3em;
+}
+.half h1 {
+    font-size: 7em;
+}
+#sign_up {
+    color: black;
+    background-color: rgb(21, 226, 38);
+    padding: 0.3em;
+    width: 12em;
+    border-radius: 20px;
+    font-size: 2em;
+}
+
+#sign_up:hover {
+    background-color: rgb(11, 187, 26);
+}
+
+#login {
+    color: black;
+    background-color: white;
+    border: 2px solid rgb(21, 226, 38);
+    padding: 0.3em;
+    width: 12em;
+    border-radius: 20px;
+    font-size: 2em;
+    margin-top: 1em;
+}
+#login:hover {
+    background: rgba(21, 226, 38, 0.3);
+}
+.landing_footer {
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI',
+        Roboto, 'Helvetica Neue', Arial, sans-serif;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.landing_footer a {
+    color: black;
+}
+.landing_footer a:hover {
+    color: rgba(11, 121, 21, 0.733);
+}
