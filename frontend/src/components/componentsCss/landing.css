@@ -1,7 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+body {
+    background: black;
+}
 img {
-    height: 42em;
+    height: 43em;
     width: 70em;
+    border-radius: 20px;
 }
 .half {
     font-family: 'Oswald', sans-serif;
@@ -12,6 +16,7 @@ img {
 }
 .half h1 {
     font-size: 7em;
+    color: white;
 }
 #sign_up {
     color: black;
@@ -48,7 +53,7 @@ img {
     justify-content: space-evenly;
 }
 .landing_footer a {
-    color: black;
+    color: rgb(21, 226, 38);
 }
 .landing_footer a:hover {
     color: rgba(11, 121, 21, 0.733);
