@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
-body {
-    background: black;
-}
-img {
+
+.landing img {
     height: 43em;
     width: 70em;
     border-radius: 20px;
@@ -42,7 +40,7 @@ img {
     margin-top: 1em;
 }
 #login:hover {
-    background: rgba(21, 226, 38, 0.3);
+    background: rgba(21, 226, 38, 0.4);
 }
 .landing_footer {
     font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI',
@@ -53,7 +51,7 @@ img {
     justify-content: space-evenly;
 }
 .landing_footer a {
-    color: rgb(21, 226, 38);
+    color: rgba(21, 226, 38, 0.7);
 }
 .landing_footer a:hover {
     color: rgba(11, 121, 21, 0.733);
