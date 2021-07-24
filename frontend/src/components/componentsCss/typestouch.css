@@ -1,8 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Fanwood+Text:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Basic&display=swap');
+
 .types {
     display: flex;
     flex-direction: row;
-    align-items: stretch;
-    justify-content: space-around;
-    /* width: 100%; */
-    margin: 2em;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5em;
+}
+.type_content {
+    font-size: 1.7em;
+    font-weight: bold;
+}
+
+.type_content_1 {
+    font-size: 1.7em;
+    font-weight: bold;
+}
+span {
+    font-family: 'Fanwood Text', serif;
+}
+.types_a {
+    font-family: 'Basic', sans-serif;
+    background: rgb(6, 248, 26);
+    color: black;
+    font-weight: lighter;
+    border-radius: 25px;
 }

@@ -1,6 +1,6 @@
 import Navbar from './Navbar';
 import './componentsCss/homepage.css';
-import { Typography } from '@material-ui/core';
+import './componentsCss/typestouch.css';
 import TypesTouch from './TypesTouch';
 const Homepage = () => {
     return (
@@ -23,36 +23,51 @@ const Homepage = () => {
                     </a>
                 </div>
             </div>
-            <div className = "section_title">
+            <div className="section_title">
                 <h1>Types</h1>
-                <i className="fas fa-carrot"></i>
+                <div className="section_icons" style={{ marginTop: '1em' }}>
+                    <i
+                        className="fas fa-carrot"
+                        style={{ color: 'orange' }}
+                    ></i>
+
+                    <i
+                        className="fas fa-apple-alt"
+                        style={{ marginLeft: '1em', color: 'red' }}
+                    ></i>
+                    <i
+                        className="fas fa-mortar-pestle"
+                        style={{ marginLeft: '1em', color: 'brown' }}
+                    ></i>
+                </div>
             </div>
             <div className="types">
-                <div>
-                    <TypesTouch
-                        className="typestouch"
-                        wid="75%"
-                        high="100%"
-                        imglink="https://image.freepik.com/free-photo/top-view-vegetables-fruits-bag_23-2148949707.jpg"
-                    />
-                </div>
+                <TypesTouch
+                    className="typestouch"
+                    wid="75%"
+                    high="100%"
+                    content="Fresh Vegetables"
+                    secondContent="Best Quality"
+                    imglink="https://image.freepik.com/free-photo/top-view-vegetables-fruits-bag_23-2148949707.jpg"
+                />
 
-                <div>
-                    <TypesTouch
-                        className="typestouch"
-                        wid="75%"
-                        high="100%"
-                        imglink="https://image.freepik.com/free-photo/mixed-fruits-with-apple-banana-orange-other_74190-6927.jpg"
-                    />
-                </div>
-                <div>
-                    <TypesTouch
-                        className="typestouch"
-                        wid="75%"
-                        high="100%"
-                        imglink="https://image.freepik.com/free-photo/indian-spices-collection-vintage-background_55610-2835.jpg"
-                    />
-                </div>
+                <TypesTouch
+                    className="typestouch"
+                    wid="75%"
+                    high="100%"
+                    content="Handpicked Fruits"
+                    secondContent="Juicy Flavours"
+                    imglink="https://image.freepik.com/free-photo/mixed-fruits-with-apple-banana-orange-other_74190-6927.jpg"
+                />
+
+                <TypesTouch
+                    className="typestouch"
+                    wid="75%"
+                    high="100%"
+                    content="Tasty Spices"
+                    secondContent="Tangy and Bulgy"
+                    imglink="https://image.freepik.com/free-photo/indian-spices-collection-vintage-background_55610-2835.jpg"
+                />
             </div>
         </div>
     );

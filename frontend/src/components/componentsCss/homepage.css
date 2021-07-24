@@ -4,17 +4,19 @@ body {
 }
 .section_title {
     text-align: center;
+    display: flex;
+    flex-direction: column;
     margin: 2em;
 }
 .section_title h1 {
     font-weight: bold;
 }
-body i {
+.section_title i {
     color: rgb(21, 226, 38);
     font-size: 2em;
 }
+
 .banner img {
-    position: relative;
     width: 100%;
     height: 45em;
 }
@@ -42,4 +44,39 @@ body i {
 
 .banner_content a:hover {
     background-color: rgb(12, 121, 21);
+}
+.section_icons:before {
+    content: '';
+    width: 5em;
+    border-bottom: 1px solid rgb(21, 226, 38);
+    position: absolute;
+    left: 0;
+    right: 16em;
+    bottom: 14em;
+    top: 72em;
+    margin: auto;
+    font-weight: bold;
+}
+.section_icons:after {
+    content: '';
+    width: 5em;
+    border-bottom: 1px solid rgb(21, 226, 38);
+    position: absolute;
+    left: 16em;
+    right: 0;
+    bottom: 14em;
+    top: 72em;
+    margin: auto;
+    font-weight: bold;
+}
+
+.typestouch {
+    cursor: pointer;
+    box-sizing: border-box;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+        rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+.typestouch:hover {
+    border: 1px solid red;
+    cursor: pointer;
 }
