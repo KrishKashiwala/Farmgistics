@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Ctx } from 'type-graphql';
+import { Resolver, Query, Mutation, Args } from 'type-graphql';
 import { Farmer } from '../queries/queries';
 const Farmers = require('../../Models/farmer');
 import { farmerArgs } from '../argsTypes';
@@ -10,22 +10,21 @@ class HelloResolver {
         return Farmers.find({});
     }
     @Mutation(() => Farmer)
-    async createUser(
-        @Args() { name }: farmerArgs,
-        @Ctx() { req }: any
-    ): Promise<{}> {
+    async createFarmer(@Args() { name, phone, city }: farmerArgs): Promise<{}> {
         // if (Farmers.findOne({ name: name })) {
         //     return 'farmer data already exists';
         // }
-        if (req.session.userId) {
-            console.log('working without intellisense');
-        }
+        // if (req.session.userId) {
+        //     console.log('working without intellisense');
+        // }
         const newFarmer = Farmers({
-            name: name
+            name: name,
+            phone: phone,
+            city: city
         });
         newFarmer.save();
         console.log(newFarmer);
-        return { name };
+        return { name, phone, city };
     }
 }
 export { HelloResolver };

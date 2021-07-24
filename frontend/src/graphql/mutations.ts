@@ -1,8 +1,10 @@
 import { gql } from '@apollo/client';
 const CREATE_FARMER = gql`
-    mutation createFarmer($name: string) {
-        createFarmer(name: $name) {
+    mutation createFarmer($name: String, $phone: String, $city: String) {
+        createFarmer(name: $name, phone: $phone, city: $city) {
             name
+            phone
+            city
         }
     }
 `;

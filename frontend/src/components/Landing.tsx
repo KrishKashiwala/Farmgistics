@@ -1,7 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import './componentsCss/landing.css';
+import SignUp from './SignUp';
+// import SignUp from './SignUp';
 
 const Landing = () => {
+    const [modalBool, setModalBool] = useState(false);
+
     return (
         <div>
             <div
@@ -34,9 +38,17 @@ const Landing = () => {
                                 marginTop: '4em'
                             }}
                         >
-                            <button className="btn" id="sign_up">
+                            <button
+                                className="btn"
+                                onClick={() => setModalBool(true)}
+                                id="sign_up"
+                            >
                                 Sign up
                             </button>
+                            <SignUp
+                                show={modalBool}
+                                onClose={() => setModalBool(false)}
+                            />
                             <button className="btn" id="login">
                                 Log in
                             </button>

@@ -5,5 +5,11 @@ class farmerArgs {
     @Field({ nullable: true })
     @MaxLength(30)
     name: string;
+    @Field({ nullable: true })
+    @MaxLength(30)
+    phone: string;
+    @Field({ nullable: true })
+    @MaxLength(30)
+    city: string;
 }
 export { farmerArgs };
