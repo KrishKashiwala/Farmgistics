@@ -2,7 +2,7 @@ import { gql } from '@apollo/client';
 const CREATE_FARMER = gql`
     mutation createFarmer(
         $name: String
-        $phone: Float
+        $phone: String
         $city: String
         $email: String
         $password: String

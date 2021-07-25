@@ -23,7 +23,7 @@ const SignUp = ({ show, onClose }: any) => {
         createFarmer({
             variables: {
                 name: name,
-                phone: parseInt(phone),
+                phone: phone,
                 city: city,
                 email: email,
                 password: password,
@@ -131,7 +131,7 @@ const SignUp = ({ show, onClose }: any) => {
                                 >
                                     password
                                 </TextField>
-                                        
+                                &nbsp;&nbsp;&nbsp;
                                 <TextField
                                     label="Confirm Password"
                                     name="confirmPassword"
@@ -142,7 +142,8 @@ const SignUp = ({ show, onClose }: any) => {
                                 >
                                     confirm password
                                 </TextField>
-<br /><br />                   
+                                <br />
+                                <br />
                                 <Button
                                     fullWidth
                                     variant="contained"

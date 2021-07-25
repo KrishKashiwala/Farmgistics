@@ -5,7 +5,7 @@ abstract class farmer {
     @Field({ nullable: true })
     name: String;
     @Field({ nullable: true })
-    phone: Number;
+    phone: String;
     @Field({ nullable: true })
     email: String;
     @Field({ nullable: true })
@@ -19,7 +19,7 @@ abstract class farmer {
 @ObjectType({ implements: farmer })
 class Farmer implements farmer {
     name: String;
-    phone: Number;
+    phone: String;
     city: String;
     email: String;
     password: String;
