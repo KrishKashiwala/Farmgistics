@@ -5,15 +5,24 @@ abstract class farmer {
     @Field({ nullable: true })
     name: String;
     @Field({ nullable: true })
-    phone: String;
+    phone: Number;
+    @Field({ nullable: true })
+    email: String;
     @Field({ nullable: true })
     city: String;
+    @Field({ nullable: true })
+    password: String;
+    @Field({ nullable: true })
+    confirmPassword: String;
 }
 
 @ObjectType({ implements: farmer })
 class Farmer implements farmer {
     name: String;
-    phone: String;
+    phone: Number;
     city: String;
+    email: String;
+    password: String;
+    confirmPassword: String;
 }
 export { Farmer };

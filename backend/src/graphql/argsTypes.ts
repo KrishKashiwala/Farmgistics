@@ -11,5 +11,14 @@ class farmerArgs {
     @Field({ nullable: true })
     @MaxLength(30)
     city: string;
+    @Field({ nullable: true })
+    @MaxLength(30)
+    email: string;
+    @Field({ nullable: true })
+    @MaxLength(30)
+    password: string;
+    @Field({ nullable: true })
+    @MaxLength(30)
+    confirmPassword: string;
 }
 export { farmerArgs };

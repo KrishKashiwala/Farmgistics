@@ -2,7 +2,7 @@
     position: fixed;
     left: 0;
     right: 0;
-    top: 0;
+    top: -2em;
     bottom: 0;
     background: rgba(0, 0, 0, 0.5);
     display: flex;
@@ -11,7 +11,7 @@
 }
 .modal-content {
     width: 50em;
-    height: 35em;
+    height: 39em;
     padding: 1em;
     border-radius: 25px;
 }
@@ -27,6 +27,6 @@
 }
 .modal-footer {
     display: flex;
-    top: 3em;
+    top: 2em;
     justify-content: space-between;
 }

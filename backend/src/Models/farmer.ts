@@ -4,9 +4,18 @@ const authorSchema = new mon.Schema({
         type: String
     },
     phone: {
-        type: String
+        type: Number
     },
     city: {
+        type: String
+    },
+    email: {
+        type: String
+    },
+    password: {
+        type: String
+    },
+    confirmPassword: {
         type: String
     }
 });

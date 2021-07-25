@@ -15,13 +15,19 @@ const SignUp = ({ show, onClose }: any) => {
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
     const [city, setCity] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const [createFarmer] = useMutation(CREATE_FARMER);
     const registered = () => {
         createFarmer({
             variables: {
                 name: name,
-                phone: phone,
-                city: city
+                phone: parseInt(phone),
+                city: city,
+                email: email,
+                password: password,
+                confirmPassword: confirmPassword
             }
         });
     };
@@ -42,7 +48,10 @@ const SignUp = ({ show, onClose }: any) => {
                         initialValues={{
                             name: '',
                             phone: '',
-                            city: ''
+                            city: '',
+                            email: '',
+                            password: '',
+                            confirmPassword: ''
                         }}
                     >
                         {({ values, errors, isSubmitting, handleChange }) => (
@@ -62,6 +71,19 @@ const SignUp = ({ show, onClose }: any) => {
                                     ) => setName(e.target.value)}
                                 >
                                     First Name
+                                </TextField>
+                                <br />
+                                <br />
+                                <TextField
+                                    fullWidth
+                                    variant="outlined"
+                                    label="Email"
+                                    name="email"
+                                    onChange={(
+                                        e: React.ChangeEvent<HTMLInputElement>
+                                    ) => setEmail(e.target.value)}
+                                >
+                                    email
                                 </TextField>
                                 <br />
                                 <br />
@@ -99,9 +121,28 @@ const SignUp = ({ show, onClose }: any) => {
                                 </TextField>
                                 <br />
                                 <br />
-                                <br />
-                                <br />
-                                <br />
+                                <TextField
+                                    label="Password"
+                                    name="password"
+                                    onChange={(
+                                        e: React.ChangeEvent<HTMLInputElement>
+                                    ) => setPassword(e.target.value)}
+                                    variant="outlined"
+                                >
+                                    password
+                                </TextField>
+                                        
+                                <TextField
+                                    label="Confirm Password"
+                                    name="confirmPassword"
+                                    onChange={(
+                                        e: React.ChangeEvent<HTMLInputElement>
+                                    ) => setConfirmPassword(e.target.value)}
+                                    variant="outlined"
+                                >
+                                    confirm password
+                                </TextField>
+<br /><br />                   
                                 <Button
                                     fullWidth
                                     variant="contained"
@@ -115,11 +156,11 @@ const SignUp = ({ show, onClose }: any) => {
                         )}
                     </Formik>
                 </div>
-                <div className="modal-footer">
+                {/* <div className="modal-footer">
                     <button className="btn" onClick={onClose}>
                         Close
                     </button>
-                </div>
+                </div> */}
             </div>
         </div>
     );
