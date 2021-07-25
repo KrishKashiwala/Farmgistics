@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import './componentsCss/landing.css';
+import Login from './Login';
 import SignUp from './SignUp';
 // import SignUp from './SignUp';
 
 const Landing = () => {
     const [modalBool, setModalBool] = useState(false);
+    const [loginBool, setLoginBool] = useState(false);
 
     return (
         <div>
@@ -45,13 +47,15 @@ const Landing = () => {
                             >
                                 Sign up
                             </button>
-                            <SignUp
-                                show={modalBool}
-                                onClose={() => setModalBool(false)}
-                            />
-                            <button className="btn" id="login">
+                            <SignUp show={modalBool} />
+                            <button
+                                onClick={() => setLoginBool(true)}
+                                className="btn"
+                                id="login"
+                            >
                                 Log in
                             </button>
+                            <Login show={loginBool} />
                         </div>
                     </div>
                 </div>

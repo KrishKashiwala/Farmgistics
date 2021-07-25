@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { TextField, Typography, Button } from '@material-ui/core';
+import {
+    TextField,
+    ThemeProvider,
+    createTheme,
+    Typography,
+    Button
+} from '@material-ui/core';
 import { Formik, Form } from 'formik';
 import { useMutation } from '@apollo/client';
 
@@ -8,10 +14,16 @@ import { CREATE_FARMER } from '../graphql/mutations';
 // css imports
 import './componentsCss/signup.css';
 
+import { green } from '@material-ui/core/colors';
 // fakedata import
 import { cities } from './data/FakeData';
+const theme = createTheme({
+    palette: {
+        primary: green
+    }
+});
 
-const SignUp = ({ show, onClose }: any) => {
+const SignUp = ({ show }: any) => {
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
     const [city, setCity] = useState('');
@@ -56,103 +68,105 @@ const SignUp = ({ show, onClose }: any) => {
                     >
                         {({ values, errors, isSubmitting, handleChange }) => (
                             <Form>
-                                <Typography variant="h5">
-                                    Create your account
-                                </Typography>
-                                <div className="modal-header"></div>
-                                <br />
-                                <TextField
-                                    fullWidth
-                                    variant="outlined"
-                                    label="Name"
-                                    name="name"
-                                    onChange={(
-                                        e: React.ChangeEvent<HTMLInputElement>
-                                    ) => setName(e.target.value)}
-                                >
-                                    First Name
-                                </TextField>
-                                <br />
-                                <br />
-                                <TextField
-                                    fullWidth
-                                    variant="outlined"
-                                    label="Email"
-                                    name="email"
-                                    onChange={(
-                                        e: React.ChangeEvent<HTMLInputElement>
-                                    ) => setEmail(e.target.value)}
-                                >
-                                    email
-                                </TextField>
-                                <br />
-                                <br />
-                                <TextField
-                                    fullWidth
-                                    variant="outlined"
-                                    label="Phone"
-                                    name="phone"
-                                    onChange={(
-                                        e: React.ChangeEvent<HTMLInputElement>
-                                    ) => setPhone(e.target.value)}
-                                >
-                                    phone number
-                                </TextField>
-                                <br />
-                                <br />
-                                <TextField
-                                    select
-                                    label="City"
-                                    name="city"
-                                    onChange={(
-                                        e: React.ChangeEvent<HTMLInputElement>
-                                    ) => setCity(e.target.value)}
-                                    helperText="Please select your city"
-                                    variant="outlined"
-                                >
-                                    {cities.map((option) => (
-                                        <option
-                                            key={option.label}
-                                            value={option.label}
-                                        >
-                                            {option.label}
-                                        </option>
-                                    ))}
-                                </TextField>
-                                <br />
-                                <br />
-                                <TextField
-                                    label="Password"
-                                    name="password"
-                                    onChange={(
-                                        e: React.ChangeEvent<HTMLInputElement>
-                                    ) => setPassword(e.target.value)}
-                                    variant="outlined"
-                                >
-                                    password
-                                </TextField>
-                                &nbsp;&nbsp;&nbsp;
-                                <TextField
-                                    label="Confirm Password"
-                                    name="confirmPassword"
-                                    onChange={(
-                                        e: React.ChangeEvent<HTMLInputElement>
-                                    ) => setConfirmPassword(e.target.value)}
-                                    variant="outlined"
-                                >
-                                    confirm password
-                                </TextField>
-                                <br />
-                                <br />
-                                <Button
-                                    fullWidth
-                                    variant="contained"
-                                    color="secondary"
-                                    disabled={isSubmitting}
-                                    onClick={registered}
-                                >
-                                    Submit
-                                </Button>
+                                <ThemeProvider theme={theme}>
+                                    <Typography variant="h5">
+                                        Create your account
+                                    </Typography>
+                                    <div className="modal-header"></div>
+                                    <br />
+                                    <TextField
+                                        fullWidth
+                                        variant="outlined"
+                                        label="Name"
+                                        name="name"
+                                        onChange={(
+                                            e: React.ChangeEvent<HTMLInputElement>
+                                        ) => setName(e.target.value)}
+                                    >
+                                        First Name
+                                    </TextField>
+                                    <br />
+                                    <br />
+                                    <TextField
+                                        fullWidth
+                                        variant="outlined"
+                                        label="Email"
+                                        name="email"
+                                        onChange={(
+                                            e: React.ChangeEvent<HTMLInputElement>
+                                        ) => setEmail(e.target.value)}
+                                    >
+                                        email
+                                    </TextField>
+                                    <br />
+                                    <br />
+                                    <TextField
+                                        fullWidth
+                                        variant="outlined"
+                                        label="Phone"
+                                        name="phone"
+                                        onChange={(
+                                            e: React.ChangeEvent<HTMLInputElement>
+                                        ) => setPhone(e.target.value)}
+                                    >
+                                        phone number
+                                    </TextField>
+                                    <br />
+                                    <br />
+                                    <TextField
+                                        select
+                                        label="City"
+                                        name="city"
+                                        onChange={(
+                                            e: React.ChangeEvent<HTMLInputElement>
+                                        ) => setCity(e.target.value)}
+                                        helperText="Please select your city"
+                                        variant="outlined"
+                                    >
+                                        {cities.map((option) => (
+                                            <option
+                                                key={option.label}
+                                                value={option.label}
+                                            >
+                                                {option.label}
+                                            </option>
+                                        ))}
+                                    </TextField>
+                                    <br />
+                                    <br />
+                                    <TextField
+                                        label="Password"
+                                        name="password"
+                                        onChange={(
+                                            e: React.ChangeEvent<HTMLInputElement>
+                                        ) => setPassword(e.target.value)}
+                                        variant="outlined"
+                                    >
+                                        password
+                                    </TextField>
+                                    &nbsp;&nbsp;&nbsp;
+                                    <TextField
+                                        label="Confirm Password"
+                                        name="confirmPassword"
+                                        onChange={(
+                                            e: React.ChangeEvent<HTMLInputElement>
+                                        ) => setConfirmPassword(e.target.value)}
+                                        variant="outlined"
+                                    >
+                                        confirm password
+                                    </TextField>
+                                    <br />
+                                    <br />
+                                    <Button
+                                        fullWidth
+                                        variant="contained"
+                                        color="secondary"
+                                        disabled={isSubmitting}
+                                        onClick={registered}
+                                    >
+                                        Submit
+                                    </Button>
+                                </ThemeProvider>
                             </Form>
                         )}
                     </Formik>
