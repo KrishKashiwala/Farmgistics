@@ -37,7 +37,9 @@ const main = async () => {
         resolvers: [HelloResolver]
     });
     const server = new ApolloServer({
-        schema
+        schema,
+        context: (req: any) => ({ req }),
+        
     });
     await server.start();
     server.applyMiddleware({ app });

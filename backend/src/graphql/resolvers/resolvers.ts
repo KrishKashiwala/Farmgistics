@@ -1,10 +1,14 @@
-import { Resolver, Query, Mutation, Args, Arg } from 'type-graphql';
+import { Resolver, Query, Mutation, Args, Arg, Ctx } from 'type-graphql';
 const bcrypt = require('bcrypt');
 import { Farmer } from '../queries/queries';
 const Farmers = require('../../Models/farmer');
 import { farmerArgs, loginArgs } from '../argsTypes';
+
 const jwt = require('jsonwebtoken');
 const { UserInputError } = require('apollo-server-express');
+
+// middleware
+// const checkAuth = require('../../utils/checkAuth');
 
 @Resolver()
 class HelloResolver {
@@ -23,7 +27,8 @@ class HelloResolver {
         }
     }
     @Query(() => [Farmer], { nullable: true })
-    async getAllFarmers(): Promise<[Farmer]> {
+    async getAllFarmers(@Ctx() ctx: any): Promise<[Farmer]> {
+        console.log(ctx.req);
         return Farmers.find({});
     }
     @Mutation(() => Farmer)
@@ -115,6 +120,25 @@ class HelloResolver {
         }
         return errors.error;
     }
+    // @Mutation()
+    // async createPost(
+    //     @Arg('body', { nullable: true }) body: string,
+    //     @Ctx() ctx: any
+    // ) {
+    //     const user = checkAuth(ctx);
+    //     console.log(user);
+    //     console.log('body : ', body);
+    //     const newPost = new Farmers({
+    //         body,
+    //         user: user.id,
+    //         username: user.username,
+    //         createdAt: new Date().toISOString()
+    //     });
+
+    //     const post = await newPost.save();
+
+    //     return post;
+    // }
 }
 
 const errors = {
