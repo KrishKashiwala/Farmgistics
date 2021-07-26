@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args } from 'type-graphql';
+import { Resolver, Query, Mutation, Args, Arg } from 'type-graphql';
 const bcrypt = require('bcrypt');
 import { Farmer } from '../queries/queries';
 const Farmers = require('../../Models/farmer');
@@ -8,14 +8,24 @@ const { UserInputError } = require('apollo-server-express');
 
 @Resolver()
 class HelloResolver {
+    @Query(() => Farmer)
+    async getByEmailFarmers(
+        @Arg('email', { nullable: true }) email: String
+    ): Promise<Farmer | {}> {
+        try {
+            const farmer = await Farmers.findOne({ email });
+            if (farmer) {
+                return farmer;
+            }
+            return {};
+        } catch (e: any) {
+            throw new Error(e);
+        }
+    }
     @Query(() => [Farmer], { nullable: true })
-    async getAllFarmers(): Promise<Farmer> {
+    async getAllFarmers(): Promise<[Farmer]> {
         return Farmers.find({});
     }
-    // @Query(() => Farmer, { nullable: true })
-    // async login(): Promise<Farmer> {
-    //     return { name, phone, city };
-    // }
     @Mutation(() => Farmer)
     async createFarmer(
         @Args()
@@ -73,8 +83,14 @@ class HelloResolver {
     }
     @Mutation(() => Farmer)
     async login(@Args() { email, password }: loginArgs): Promise<{}> {
-        const oneFarmer = await Farmers.findOne({ email });
-        console.log(oneFarmer.email);
+        const oneFarmer: Farmer = await Farmers.findOne({ email });
+        const returnData = {
+            name: oneFarmer.name,
+            email: oneFarmer.email,
+            password: oneFarmer.password,
+            city: oneFarmer.city,
+            id: oneFarmer.id
+        };
         if (oneFarmer) {
             if (await bcrypt.compare(password, oneFarmer.password)) {
                 // jwt token
@@ -87,8 +103,9 @@ class HelloResolver {
                 );
                 console.log('successfully logged in ', oneFarmer);
                 return {
-                    token,
-                    auth: 'success AUTH'
+                    ...returnData,
+                    email,
+                    token
                 };
             } else
                 return {

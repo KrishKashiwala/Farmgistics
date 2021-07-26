@@ -1,7 +1,9 @@
-import { ObjectType, Field, InterfaceType } from 'type-graphql';
+import { ObjectType, Field, InterfaceType} from 'type-graphql';
 
 @InterfaceType()
 abstract class farmer {
+    @Field({ nullable: true })
+    id: String;
     @Field({ nullable: true })
     name: String;
     @Field({ nullable: true })
@@ -20,6 +22,7 @@ abstract class farmer {
 
 @ObjectType({ implements: farmer })
 class Farmer implements farmer {
+    id: String;
     name: String;
     phone: String;
     city: String;

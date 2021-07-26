@@ -4,30 +4,30 @@ import { MaxLength } from 'class-validator';
 class farmerArgs {
     @Field({ nullable: true })
     @MaxLength(30)
-    name: string;
+    name?: string;
     @Field({ nullable: true })
     @MaxLength(30)
-    phone: string;
+    phone?: string;
     @Field({ nullable: true })
     @MaxLength(30)
-    city: string;
+    city?: string;
     @Field({ nullable: true })
     @MaxLength(30)
-    email: string;
+    email?: string;
     @Field({ nullable: true })
     @MaxLength(30)
-    password: string;
+    password?: string;
     @Field({ nullable: true })
     @MaxLength(30)
-    confirmPassword: string;
+    confirmPassword?: string;
 }
 @ArgsType()
 class loginArgs {
     @Field({ nullable: true })
     @MaxLength(30)
-    email: string;
+    email?: string;
     @Field({ nullable: true })
     @MaxLength(30)
-    password: string;
+    password?: string;
 }
-export { farmerArgs , loginArgs };
+export { farmerArgs, loginArgs };
