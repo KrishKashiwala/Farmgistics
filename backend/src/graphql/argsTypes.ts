@@ -21,4 +21,13 @@ class farmerArgs {
     @MaxLength(30)
     confirmPassword: string;
 }
-export { farmerArgs };
+@ArgsType()
+class loginArgs {
+    @Field({ nullable: true })
+    @MaxLength(30)
+    email: string;
+    @Field({ nullable: true })
+    @MaxLength(30)
+    password: string;
+}
+export { farmerArgs , loginArgs };

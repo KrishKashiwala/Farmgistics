@@ -2,7 +2,7 @@ import React from 'react';
 import Homepage from './components/Homepage';
 import Landing from './components/Landing';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Login from './components/Login';
+// import Login from './components/Login';
 
 const App = () => {
     return (

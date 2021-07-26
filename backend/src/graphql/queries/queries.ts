@@ -14,6 +14,8 @@ abstract class farmer {
     password: String;
     @Field({ nullable: true })
     confirmPassword: String;
+    @Field({ nullable: true })
+    token: String;
 }
 
 @ObjectType({ implements: farmer })
@@ -24,5 +26,6 @@ class Farmer implements farmer {
     email: String;
     password: String;
     confirmPassword: String;
+    token: String;
 }
 export { Farmer };
