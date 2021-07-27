@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
 require('./Models/farmer');
+require('./Models/post');
 const connection = mongoose
     .connect(process.env.DATABASE, {
         useNewUrlParser: true,

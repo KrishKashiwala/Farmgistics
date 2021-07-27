@@ -8,10 +8,12 @@ import {
     Theme,
     Button
 } from '@material-ui/core';
+import React, { useState } from 'react';
 import { green } from '@material-ui/core/colors';
-
+import { useMutation } from '@apollo/client';
 // import farmgistic_logo from './assests/farmgistic_logo.png';
 
+import { LOGIN_FARMER } from '../graphql/mutations';
 import './componentsCss/login.css';
 import './componentsCss/signup.css';
 
@@ -29,16 +31,29 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const Login = ({ show }: any) => {
+    const [login, { error }] = useMutation(LOGIN_FARMER);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const classes = useStyles();
     if (!show) {
         return null;
+    }
+    const loggedIn = () => {
+        login({
+            variables: {
+                email: email,
+                password: password
+            }
+        });
+    };
+    if (error) {
+        console.log(error);
     }
     return (
         <div className="modal">
             <div className="modal-content">
                 <div className="modal-body">
                     <ThemeProvider theme={theme}>
-                        {/* <img src={farmgistic_logo} alt="farmgistic_logo" /> */}
                         <Typography variant="h3">
                             Log in to Farmgistic
                         </Typography>
@@ -49,6 +64,9 @@ const Login = ({ show }: any) => {
                             label="Email"
                             fullWidth
                             variant="outlined"
+                            onChange={(
+                                e: React.ChangeEvent<HTMLInputElement>
+                            ) => setEmail(e.target.value)}
                         />
                         <TextField
                             className={classes.margin}
@@ -56,6 +74,9 @@ const Login = ({ show }: any) => {
                             fullWidth
                             type="password"
                             variant="outlined"
+                            onChange={(
+                                e: React.ChangeEvent<HTMLInputElement>
+                            ) => setPassword(e.target.value)}
                         />
                         <br />
                         <br />
@@ -64,6 +85,7 @@ const Login = ({ show }: any) => {
                             fullWidth
                             color="secondary"
                             variant="contained"
+                            onClick={loggedIn}
                         >
                             Submit
                         </Button>

@@ -1,14 +1,15 @@
 import { Resolver, Query, Mutation, Args, Arg, Ctx } from 'type-graphql';
 const bcrypt = require('bcrypt');
-import { Farmer } from '../queries/queries';
+import { Farmer, Post } from '../queries/queries';
 const Farmers = require('../../Models/farmer');
+const Posts = require('../../Models/post');
 import { farmerArgs, loginArgs } from '../argsTypes';
 
 const jwt = require('jsonwebtoken');
 const { UserInputError } = require('apollo-server-express');
 
 // middleware
-// const checkAuth = require('../../utils/checkAuth');
+const { Auth } = require('../../utils/checkAuth.ts');
 
 @Resolver()
 class HelloResolver {
@@ -68,6 +69,7 @@ class HelloResolver {
                 process.env.SECRET,
                 { expiresIn: '1h' }
             );
+            localStorage.setItem('jwt-token', `${token}`);
 
             console.log(newFarmer);
             console.log(
@@ -120,25 +122,25 @@ class HelloResolver {
         }
         return errors.error;
     }
-    // @Mutation()
-    // async createPost(
-    //     @Arg('body', { nullable: true }) body: string,
-    //     @Ctx() ctx: any
-    // ) {
-    //     const user = checkAuth(ctx);
-    //     console.log(user);
-    //     console.log('body : ', body);
-    //     const newPost = new Farmers({
-    //         body,
-    //         user: user.id,
-    //         username: user.username,
-    //         createdAt: new Date().toISOString()
-    //     });
+    @Mutation(() => Post)
+    async createPost(
+        @Arg('body', { nullable: true }) body: string,
+        @Ctx() ctx: any
+    ): Promise<Post> {
+        const user = Auth(ctx);
+        console.log(user);
+        console.log('body : ', body);
+        const newPost = new Posts({
+            body,
+            user: user.id,
+            username: user.username,
+            createdAt: new Date().toISOString()
+        });
 
-    //     const post = await newPost.save();
+        const post = await newPost.save();
 
-    //     return post;
-    // }
+        return post;
+    }
 }
 
 const errors = {

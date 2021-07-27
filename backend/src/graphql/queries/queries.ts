@@ -1,4 +1,4 @@
-import { ObjectType, Field, InterfaceType} from 'type-graphql';
+import { ObjectType, Field, InterfaceType } from 'type-graphql';
 
 @InterfaceType()
 abstract class farmer {
@@ -31,4 +31,22 @@ class Farmer implements farmer {
     confirmPassword: String;
     token: String;
 }
-export { Farmer };
+
+// posts
+@InterfaceType()
+abstract class post {
+    @Field({ nullable: true })
+    body: String;
+    @Field({ nullable: true })
+    name: String;
+    @Field({ nullable: true })
+    createdAt: String;
+}
+
+@ObjectType({ implements: post })
+class Post implements post {
+    body: String;
+    name: String;
+    createdAt: String;
+}
+export { Farmer, Post };
