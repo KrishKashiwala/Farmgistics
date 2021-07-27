@@ -69,7 +69,8 @@ class HelloResolver {
                 process.env.SECRET,
                 { expiresIn: '1h' }
             );
-            localStorage.setItem('jwt-token', `${token}`);
+            // if (typeof window !== 'undefined')
+            //     localStorage.setItem('jwt-token', `${token}`);
 
             console.log(newFarmer);
             console.log(
@@ -108,6 +109,10 @@ class HelloResolver {
                     process.env.SECRET,
                     { expiresIn: '1h' }
                 );
+                // if (typeof window !== 'undefined') {
+                //     localStorage.setItem('jwt-token', `${token}`);
+                //     console.log(localStorage.getItem('jwt-token'));
+                // }
                 console.log('successfully logged in ', oneFarmer);
                 return {
                     ...returnData,

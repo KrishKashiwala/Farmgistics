@@ -3,6 +3,8 @@ import './componentsCss/homepage.css';
 import './componentsCss/typestouch.css';
 import TypesTouch from './TypesTouch';
 const Homepage = () => {
+    const tokenStep: any = localStorage.getItem('jwt-token');
+
     return (
         <div>
             <Navbar />
