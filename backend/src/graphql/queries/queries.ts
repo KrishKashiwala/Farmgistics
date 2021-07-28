@@ -18,6 +18,8 @@ abstract class farmer {
     confirmPassword: String;
     @Field({ nullable: true })
     token: String;
+    @Field({ nullable: true })
+    redirect: String;
 }
 
 @ObjectType({ implements: farmer })
@@ -30,6 +32,7 @@ class Farmer implements farmer {
     password: String;
     confirmPassword: String;
     token: String;
+    redirect: String;
 }
 
 // posts

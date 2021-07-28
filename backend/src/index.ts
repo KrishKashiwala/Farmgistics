@@ -13,7 +13,10 @@ import { HelloResolver } from './graphql/resolvers/resolvers';
 require('./server');
 //  express setup
 const app = Express();
-app.use(cors());
+app.use(cors({
+	credentials: true,
+	origin: true
+}));
 app.use(logger('dev'));
 app.use(Express.json());
 app.use(Express.urlencoded({ extended: true }));

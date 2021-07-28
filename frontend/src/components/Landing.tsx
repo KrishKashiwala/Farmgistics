@@ -7,7 +7,8 @@ import SignUp from './SignUp';
 const Landing = () => {
     const [modalBool, setModalBool] = useState(false);
     const [loginBool, setLoginBool] = useState(false);
-
+    let check = false;
+    if (localStorage.getItem('jwt-token')) check = true;
     return (
         <div>
             <div

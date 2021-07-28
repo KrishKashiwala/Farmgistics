@@ -17,8 +17,6 @@ import { LOGIN_FARMER } from '../graphql/mutations';
 import './componentsCss/login.css';
 import './componentsCss/signup.css';
 
-import {useHistory} from 'react-router-dom'
-
 const theme = createTheme({
     palette: {
         primary: green
@@ -34,8 +32,8 @@ const useStyles = makeStyles((theme: Theme) =>
 // interface login {
 //     token: String;
 // }
+// let check: boolean = false;
 const Login = ({ show }: any) => {
-    const history = useHistory()
     const [login, { data, error }] = useMutation(LOGIN_FARMER);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -48,14 +46,17 @@ const Login = ({ show }: any) => {
             variables: {
                 email: email,
                 password: password
-            },
-             
+            }
         });
+        nextWork();
     };
     if (error) {
         console.log(error);
     }
-    console.log(localStorage.setItem('jwt-token', `${data?.login.token}`));
+    const nextWork = () => {
+        localStorage.setItem('jwt-token', `${data?.login.token}`);
+        // console.log(data?.login.redirect);
+    };
 
     return (
         <div className="modal">
