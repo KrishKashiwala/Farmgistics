@@ -11,8 +11,7 @@ import {
 import React, { useState } from 'react';
 import { green } from '@material-ui/core/colors';
 import { useMutation } from '@apollo/client';
-// import farmgistic_logo from './assests/farmgistic_logo.png';
-
+// import { Link } from 'react-router-dom';
 import { LOGIN_FARMER } from '../graphql/mutations';
 import './componentsCss/login.css';
 import './componentsCss/signup.css';
@@ -47,16 +46,25 @@ const Login = ({ show }: any) => {
                 email: email,
                 password: password
             }
-        });
-        nextWork();
+        })
+            .then(function (response) {
+                // eslint-disable-next-line eqeqeq
+                if (data?.login.redirect === '/home') {
+                    window.location.href = `/home/${data?.login.id}`;
+                    // eslint-disable-next-line eqeqeq
+                } else if (data?.login.redirect === '/notfound') {
+                    window.location.href = '/notfound';
+                }
+            })
+            .catch(function (error) {
+                document.write(error);
+            });
     };
     if (error) {
         console.log(error);
     }
-    const nextWork = () => {
-        localStorage.setItem('jwt-token', `${data?.login.token}`);
-        // console.log(data?.login.redirect);
-    };
+    console.log(`${data?.login.id}`)
+    localStorage.setItem('jwt-token', `${data?.login.token}`);
 
     return (
         <div className="modal">
@@ -89,6 +97,7 @@ const Login = ({ show }: any) => {
                         />
                         <br />
                         <br />
+                        {/* <Link to= `${/home/{data.login.id}}`> */}
                         <Button
                             className={classes.margin}
                             fullWidth
@@ -98,6 +107,7 @@ const Login = ({ show }: any) => {
                         >
                             Submit
                         </Button>
+                        {/* </Link> */}
                     </ThemeProvider>
                 </div>
             </div>
