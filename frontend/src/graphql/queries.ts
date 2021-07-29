@@ -6,15 +6,4 @@ const GET_ALL_FARMERS = gql`
         }
     }
 `;
-const SELECT_FARMER = gql`
-    query getByEmailFarmers($id: String) {
-        getByEmailFarmers(id: $id) {
-            id
-            name
-            city
-            email
-        }
-    }
-`;
-export { GET_ALL_FARMERS, SELECT_FARMER };
- 
+export { GET_ALL_FARMERS };

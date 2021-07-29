@@ -13,6 +13,7 @@ import { green } from '@material-ui/core/colors';
 import { useMutation } from '@apollo/client';
 import { Link } from 'react-router-dom';
 import { LOGIN_FARMER } from '../graphql/mutations';
+
 import './componentsCss/login.css';
 import './componentsCss/signup.css';
 
@@ -31,6 +32,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Login = ({ show }: any) => {
     const [login, { data, error }] = useMutation(LOGIN_FARMER);
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const classes = useStyles();
@@ -48,6 +50,7 @@ const Login = ({ show }: any) => {
     if (error) {
         console.log(error);
     }
+
     console.log(`${data?.login.id}`);
     console.log(`${data?.login.name}`);
 
@@ -84,17 +87,17 @@ const Login = ({ show }: any) => {
                         />
                         <br />
                         <br />
-                        {/* <Link to={`/home/${data?.login.id}`}> */}
-                        <Button
-                            className={classes.margin}
-                            fullWidth
-                            color="secondary"
-                            variant="contained"
-                            onClick={loggedIn}
-                        >
-                            Submit
-                        </Button>
-                        {/* </Link> */}
+                        <Link to={`/home/${data?.login.id}`}>
+                            <Button
+                                className={classes.margin}
+                                fullWidth
+                                color="secondary"
+                                variant="contained"
+                                onClick={loggedIn}
+                            >
+                                Submit
+                            </Button>
+                        </Link>
                     </ThemeProvider>
                 </div>
             </div>
