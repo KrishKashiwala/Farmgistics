@@ -1,10 +1,9 @@
+// import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
 import './componentsCss/homepage.css';
 import './componentsCss/typestouch.css';
 import TypesTouch from './TypesTouch';
-const Homepage = () => {
-    // const tokenStep: any = localStorage.getItem('jwt-token');
-
+const Homepage = ({ match }: any) => {
     return (
         <div>
             <Navbar />
@@ -14,7 +13,7 @@ const Homepage = () => {
                     alt="banner"
                 />
                 <div className="banner_content">
-                    <h1>New! Vegetables</h1>
+                    <h1>{match.params.id}</h1>
                     <br />
                     <h2>Fresh Fruits and spices</h2>
                     <br />

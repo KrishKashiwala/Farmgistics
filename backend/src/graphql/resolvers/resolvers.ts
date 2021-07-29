@@ -15,10 +15,10 @@ const { Auth } = require('../../utils/checkAuth.ts');
 class HelloResolver {
     @Query(() => Farmer)
     async getByEmailFarmers(
-        @Arg('email', { nullable: true }) email: String
+        @Arg('id', { nullable: true }) id: String
     ): Promise<Farmer | {}> {
         try {
-            const farmer = await Farmers.findOne({ email });
+            const farmer = await Farmers.findOne({ id });
             if (farmer) {
                 return farmer;
             }
