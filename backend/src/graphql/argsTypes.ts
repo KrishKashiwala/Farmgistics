@@ -20,6 +20,9 @@ class farmerArgs {
     @Field({ nullable: true })
     @MaxLength(30)
     confirmPassword?: string;
+    @Field({ nullable: true })
+    @MaxLength(30)
+    image?: string;
 }
 @ArgsType()
 class loginArgs {

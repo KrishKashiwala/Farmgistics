@@ -1,15 +1,23 @@
 import { Resolver, Query, Mutation, Args, Arg, Ctx } from 'type-graphql';
 const bcrypt = require('bcrypt');
-import { Farmer, Post } from '../queries/queries';
+import { Farmer } from '../queries/queries';
 const Farmers = require('../../Models/farmer');
-const Posts = require('../../Models/post');
+// const Posts = require('../../Models/post');
 import { farmerArgs, loginArgs } from '../argsTypes';
 
 const jwt = require('jsonwebtoken');
 const { UserInputError } = require('apollo-server-express');
 
 // middleware
-const { Auth } = require('../../utils/checkAuth.ts');
+// const { Auth } = require('../../utils/checkAuth.ts');
+interface farmer {
+    name: String;
+    id: String;
+    email: String;
+    token?: String;
+    password: String;
+    city: String;
+}
 
 @Resolver()
 class HelloResolver {
@@ -19,7 +27,7 @@ class HelloResolver {
     ): Promise<Farmer | {}> {
         try {
             console.log(id);
-            const farmer = await Farmers.findById(id, () => {
+            const farmer: farmer = await Farmers.findById(id, () => {
                 console.log('not found');
             });
             console.log('this is farmer', farmer);
@@ -49,7 +57,15 @@ class HelloResolver {
     @Mutation(() => Farmer)
     async createFarmer(
         @Args()
-        { name, phone, city, email, password, confirmPassword }: farmerArgs
+        {
+            name,
+            phone,
+            city,
+            email,
+            password,
+            confirmPassword,
+            image
+        }: farmerArgs
     ): Promise<{}> {
         const hashedPassword = await bcrypt.hash(password, 12);
         // check for existing user's data.
@@ -71,7 +87,8 @@ class HelloResolver {
                 city: city,
                 email: email,
                 password: hashedPassword,
-                confirmPassword: confirmPassword
+                confirmPassword: confirmPassword,
+                image: image
             });
             newFarmer.save();
 
@@ -97,11 +114,11 @@ class HelloResolver {
                 email,
                 password,
                 confirmPassword,
-
-                token
+                token,
+                image
             };
         }
-        return { name, phone, city, email, password, confirmPassword };
+        return { name, phone, city, email, password, confirmPassword, image };
     }
     @Mutation(() => Farmer)
     async login(@Args() { email, password }: loginArgs): Promise<{}> {
@@ -111,7 +128,8 @@ class HelloResolver {
             email: oneFarmer.email,
             password: oneFarmer.password,
             city: oneFarmer.city,
-            id: oneFarmer.id
+            id: oneFarmer.id,
+            image: oneFarmer.image
         };
         if (oneFarmer) {
             if (await bcrypt.compare(password, oneFarmer.password)) {
@@ -139,25 +157,25 @@ class HelloResolver {
         }
         return errors.error;
     }
-    @Mutation(() => Post)
-    async createPost(
-        @Arg('body', { nullable: true }) body: string,
-        @Ctx() ctx: any
-    ): Promise<Post> {
-        const user = Auth(ctx);
-        console.log(user);
-        console.log('body : ', body);
-        const newPost = new Posts({
-            body,
-            user: user.id,
-            username: user.username,
-            createdAt: new Date().toISOString()
-        });
+    // @Mutation(() => Post)
+    // async createPost(
+    //     @Arg('body', { nullable: true }) body: string,
+    //     @Ctx() ctx: any
+    // ): Promise<Post> {
+    //     const user = Auth(ctx);
+    //     console.log(user);
+    //     console.log('body : ', body);
+    //     const newPost = new Posts({
+    //         body,
+    //         user: user.id,
+    //         username: user.username,
+    //         createdAt: new Date().toISOString()
+    //     });
 
-        const post = await newPost.save();
+    //     const post = await newPost.save();
 
-        return post;
-    }
+    //     return post;
+    // }
 }
 
 const errors = {
