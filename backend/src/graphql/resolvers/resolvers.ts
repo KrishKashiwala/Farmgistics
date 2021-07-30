@@ -8,19 +8,21 @@ import { farmerArgs, loginArgs } from '../argsTypes';
 const jwt = require('jsonwebtoken');
 const { UserInputError } = require('apollo-server-express');
 
-
 // middleware
 const { Auth } = require('../../utils/checkAuth.ts');
 
 @Resolver()
 class HelloResolver {
-    @Query(() => Farmer)
+    @Mutation(() => Farmer)
     async getByIdFarmers(
         @Arg('id', { nullable: true }) id: String
     ): Promise<Farmer | {}> {
         try {
-            
-            const farmer = await Farmers.findOne({ _id: id });
+            console.log(id);
+            const farmer = await Farmers.findById(id, () => {
+                console.log('not found');
+            });
+            console.log('this is farmer', farmer);
             let returnData = {
                 name: farmer.name,
                 email: farmer.email,

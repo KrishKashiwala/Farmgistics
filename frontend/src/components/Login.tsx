@@ -11,11 +11,19 @@ import {
 import React, { useState } from 'react';
 import { green } from '@material-ui/core/colors';
 import { useMutation } from '@apollo/client';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { LOGIN_FARMER } from '../graphql/mutations';
 
 import './componentsCss/login.css';
 import './componentsCss/signup.css';
+interface logged {
+    login: {
+        name: String;
+        id: String;
+        email: String;
+        token?: String;
+    };
+}
 
 const theme = createTheme({
     palette: {
@@ -31,7 +39,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const Login = ({ show }: any) => {
-    const [login, { data, error }] = useMutation(LOGIN_FARMER);
+    const [login, { data, error }] = useMutation<logged>(LOGIN_FARMER);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -51,8 +59,8 @@ const Login = ({ show }: any) => {
         console.log(error);
     }
 
+    console.log(`${data?.login}`);
     console.log(`${data?.login.id}`);
-    console.log(`${data?.login.name}`);
 
     localStorage.setItem('jwt-token', `${data?.login.token}`);
 
@@ -87,20 +95,21 @@ const Login = ({ show }: any) => {
                         />
                         <br />
                         <br />
-                        <Link to={`/home/${data?.login.id}`}>
-                            <Button
-                                className={classes.margin}
-                                fullWidth
-                                color="secondary"
-                                variant="contained"
-                                onClick={loggedIn}
-                            >
-                                Submit
-                            </Button>
-                        </Link>
+                        <Button
+                            className={classes.margin}
+                            fullWidth
+                            color="secondary"
+                            variant="contained"
+                            onClick={loggedIn}
+                        >
+                            Submit
+                        </Button>
                     </ThemeProvider>
                 </div>
             </div>
+            {data?.login && (
+                <Redirect to={`/home/${data?.login.id}`}></Redirect>
+            )}
         </div>
     );
 };

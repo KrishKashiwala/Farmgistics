@@ -1,9 +1,34 @@
-// import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Navbar from './Navbar';
 import './componentsCss/homepage.css';
 import './componentsCss/typestouch.css';
 import TypesTouch from './TypesTouch';
+import { FIND_FARMER } from '../graphql/mutations';
+import { useMutation } from '@apollo/client';
+
+interface farmer {
+    getByIdFarmers: {
+        name: String;
+        id: String;
+        email: String;
+    };
+}
+
 const Homepage = ({ match }: any) => {
+    const [getByIdFarmers, { data, error }] = useMutation<farmer>(FIND_FARMER);
+    const farmerRequest = () => {
+        getByIdFarmers({
+            variables: {
+                id: match?.params.id
+            }
+        });
+    };
+    if (error || !data) console.log(error);
+    useEffect(() => {
+        farmerRequest();
+        console.log(data?.getByIdFarmers?.id);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
     return (
         <div>
             <Navbar />
@@ -13,7 +38,7 @@ const Homepage = ({ match }: any) => {
                     alt="banner"
                 />
                 <div className="banner_content">
-                    <h1>{match.params.id}</h1>
+                    <h1>{data?.getByIdFarmers.name}</h1>
                     <br />
                     <h2>Fresh Fruits and spices</h2>
                     <br />

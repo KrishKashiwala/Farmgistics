@@ -37,4 +37,13 @@ const LOGIN_FARMER = gql`
         }
     }
 `;
-export { CREATE_FARMER, LOGIN_FARMER };
+const FIND_FARMER = gql`
+    mutation getByIdFarmers($id: String!) {
+        getByIdFarmers(id: $id) {
+            name
+            id
+            email
+        }
+    }
+`;
+export { CREATE_FARMER, LOGIN_FARMER, FIND_FARMER };
