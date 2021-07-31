@@ -9,7 +9,6 @@ import {
 import { Formik, Form } from 'formik';
 import { useMutation } from '@apollo/client';
 //@ts-ignore
-import FileBase64 from 'react-file-base64';
 import { CREATE_FARMER } from '../graphql/mutations';
 
 // css imports
@@ -27,7 +26,7 @@ const theme = createTheme({
 const SignUp = ({ show }: any) => {
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
-    const [image, setImage] = useState('');
+    // const [image, setImage] = useState('');
     const [city, setCity] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -42,7 +41,7 @@ const SignUp = ({ show }: any) => {
                 email: email,
                 password: password,
                 confirmPassword: confirmPassword,
-                image: image
+                // image: image
             }
         });
     };
@@ -102,16 +101,6 @@ const SignUp = ({ show }: any) => {
                                     >
                                         email
                                     </TextField>
-                                    <br />
-                                    <br />
-                                    <FileBase64
-                                        type="file"
-                                        name="image"
-                                        multiple={false}
-                                        onDone={({ base64 }: any) =>
-                                            setImage(base64)
-                                        }
-                                    />
                                     <br />
                                     <br />
                                     <TextField

@@ -1,6 +1,7 @@
 import Homepage from './components/Homepage';
 import Landing from './components/Landing';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Profile from './components/Profile';
 
 const App = () => {
     return (
@@ -8,6 +9,7 @@ const App = () => {
             <BrowserRouter>
                 <Switch>
                     <Route exact path="/home/:id" component={Homepage} />
+                    <Route exact path="/home/profile/:id" component={Profile} />
                     <Route exact path="/" component={Landing} />
                     <Route path="/" render={() => <div>404</div>} />
                 </Switch>

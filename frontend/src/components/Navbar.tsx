@@ -1,16 +1,17 @@
-import { Link, Avatar } from '@material-ui/core';
+import { Avatar } from '@material-ui/core';
 import farmgistic_logo from './assests/farmgistic_logo.png';
+import { Link } from 'react-router-dom';
 import './componentsCss/navbar.css';
-const Navbar = () => {
+const Navbar = ({ id }: any) => {
     return (
         <div style={{ position: 'relative' }}>
             <div className="nav_body">
                 <img src={farmgistic_logo} alt="logo" />
                 <div className="nav_options">
                     <div className="dropdown">
-                        <Link className="dropbtn">
+                        <a href="google.com" className="dropbtn">
                             Category <i className="fa fa-chevron-down down"></i>
-                        </Link>
+                        </a>
                         <div className="dropdown-content">
                             <a href="google.com">Vegetables</a>
                             <a href="google.com">Fruits</a>
@@ -40,9 +41,9 @@ const Navbar = () => {
                     <a href="google.com">
                         <i className="fas fa-sliders-h font"></i>
                     </a>
-                    <a href="google.com">
+                    <Link to={`/home/profile/${id}`}>
                         <Avatar alt="profile_pic" src={farmgistic_logo} />
-                    </a>
+                    </Link>
                 </div>
             </div>
         </div>

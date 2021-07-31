@@ -100,8 +100,6 @@ class HelloResolver {
                 process.env.SECRET,
                 { expiresIn: '1h' }
             );
-            // if (typeof window !== 'undefined')
-            //     localStorage.setItem('jwt-token', `${token}`);
 
             console.log(newFarmer);
             console.log(
