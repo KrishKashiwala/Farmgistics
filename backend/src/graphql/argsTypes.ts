@@ -33,4 +33,16 @@ class loginArgs {
     @MaxLength(30)
     password?: string;
 }
-export { farmerArgs, loginArgs };
+@ArgsType()
+class userTypes {
+    @Field({ nullable: true })
+    @MaxLength(30)
+    farmerId: String;
+    @Field({ nullable: true })
+    @MaxLength(30)
+    title: string;
+    @Field({ nullable: true })
+    @MaxLength(30)
+    des: string;
+}
+export { farmerArgs, loginArgs, userTypes };

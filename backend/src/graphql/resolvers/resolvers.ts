@@ -1,9 +1,10 @@
 import { Resolver, Query, Mutation, Args, Arg, Ctx } from 'type-graphql';
 const bcrypt = require('bcrypt');
-import { Farmer } from '../queries/queries';
+import { Farmer, Post, User } from '../queries/queries';
 const Farmers = require('../../Models/farmer');
+const Posts = require('../../Models/post');
 // const Posts = require('../../Models/post');
-import { farmerArgs, loginArgs } from '../argsTypes';
+import { farmerArgs, loginArgs, userTypes } from '../argsTypes';
 
 const jwt = require('jsonwebtoken');
 const { UserInputError } = require('apollo-server-express');
@@ -49,23 +50,18 @@ class HelloResolver {
             throw new Error(e);
         }
     }
-    @Query(() => [Farmer], { nullable: true })
-    async getAllFarmers(@Ctx() ctx: any): Promise<[Farmer]> {
+    @Query(() => User, { nullable: true })
+    async getAllFarmers(
+        @Ctx() ctx: any,
+        @Args() { farmerId }: userTypes
+    ): Promise<[User]> {
         console.log(ctx.req);
-        return Farmers.find({});
+        return await Farmers.findById(farmerId);
     }
-    @Mutation(() => Farmer)
+    @Mutation(() => User)
     async createFarmer(
         @Args()
-        {
-            name,
-            phone,
-            city,
-            email,
-            password,
-            confirmPassword,
-            image
-        }: farmerArgs
+        { name, phone, city, email, password, confirmPassword }: farmerArgs
     ): Promise<{}> {
         const hashedPassword = await bcrypt.hash(password, 12);
         // check for existing user's data.
@@ -87,8 +83,7 @@ class HelloResolver {
                 city: city,
                 email: email,
                 password: hashedPassword,
-                confirmPassword: confirmPassword,
-                image: image
+                confirmPassword: confirmPassword
             });
             newFarmer.save();
 
@@ -112,11 +107,10 @@ class HelloResolver {
                 email,
                 password,
                 confirmPassword,
-                token,
-                image
+                token
             };
         }
-        return { name, phone, city, email, password, confirmPassword, image };
+        return { name, phone, city, email, password, confirmPassword };
     }
     @Mutation(() => Farmer)
     async login(@Args() { email, password }: loginArgs): Promise<{}> {
@@ -155,25 +149,17 @@ class HelloResolver {
         }
         return errors.error;
     }
-    // @Mutation(() => Post)
-    // async createPost(
-    //     @Arg('body', { nullable: true }) body: string,
-    //     @Ctx() ctx: any
-    // ): Promise<Post> {
-    //     const user = Auth(ctx);
-    //     console.log(user);
-    //     console.log('body : ', body);
-    //     const newPost = new Posts({
-    //         body,
-    //         user: user.id,
-    //         username: user.username,
-    //         createdAt: new Date().toISOString()
-    //     });
-
-    //     const post = await newPost.save();
-
-    //     return post;
-    // }
+    @Mutation(() => Post)
+    async User(@Args() { farmerId, title, des }: userTypes): Promise<Post> {
+        await Farmers.findById(farmerId);
+        const newPost = new Posts({
+            farmerId: farmerId,
+            title: title,
+            des: des
+        });
+        newPost.save();
+        return { farmerId, title, des };
+    }
 }
 
 const errors = {

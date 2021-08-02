@@ -2,25 +2,25 @@ import { ObjectType, Field, InterfaceType } from 'type-graphql';
 
 @InterfaceType()
 abstract class farmer {
-    @Field({ nullable: true })
+    @Field(() => String, { nullable: true })
     id: String;
-    @Field({ nullable: true })
+    @Field(() => String, { nullable: true })
     name: String;
-    @Field({ nullable: true })
+    @Field(() => String, { nullable: true })
     phone: String;
-    @Field({ nullable: true })
+    @Field(() => String, { nullable: true })
     email: String;
-    @Field({ nullable: true })
+    @Field(() => String, { nullable: true })
     city: String;
-    @Field({ nullable: true })
+    @Field(() => String, { nullable: true })
     password: String;
-    @Field({ nullable: true })
+    @Field(() => String, { nullable: true })
     confirmPassword: String;
-    @Field({ nullable: true })
+    @Field(() => String, { nullable: true })
     token: String;
-    @Field({ nullable: true })
+    @Field(() => String, { nullable: true })
     redirect: String;
-    @Field({ nullable: true })
+    @Field(() => String, { nullable: true })
     image: String;
 }
 
@@ -41,18 +41,59 @@ class Farmer implements farmer {
 // posts
 @InterfaceType()
 abstract class post {
-    @Field({ nullable: true })
-    body: String;
-    @Field({ nullable: true })
-    name: String;
-    @Field({ nullable: true })
-    createdAt: String;
+    @Field(() => String, { nullable: true })
+    farmerId: String;
+    @Field(() => String, { nullable: true })
+    title: String;
+    @Field(() => String, { nullable: true })
+    des: String;
 }
 
-@ObjectType({ implements: post })
+@ObjectType({ implements: post, description: 'nothing here' })
 class Post implements post {
-    body: String;
-    name: String;
-    createdAt: String;
+    title: String;
+    farmerId: String;
+    des: String;
 }
-export { Farmer, Post };
+
+//
+@InterfaceType()
+abstract class user {
+    @Field(() => String, { nullable: true })
+    id: String;
+    @Field(() => String, { nullable: true })
+    name: String;
+    @Field(() => String, { nullable: true })
+    phone: String;
+    @Field(() => String, { nullable: true })
+    email: String;
+    @Field(() => String, { nullable: true })
+    city: String;
+    @Field(() => String, { nullable: true })
+    password: String;
+    @Field(() => String, { nullable: true })
+    confirmPassword: String;
+    @Field(() => String, { nullable: true })
+    token: String;
+    @Field(() => String, { nullable: true })
+    redirect: String;
+    @Field(() => String, { nullable: true })
+    image: String;
+    @Field(() => post, { nullable: true })
+    post: Post[];
+}
+@ObjectType({ implements: user })
+class User extends Post {
+    id: String;
+    name: String;
+    phone: String;
+    email: String;
+    city: String;
+    password: String;
+    confirmPassword: String;
+    token: String;
+    redirect: String;
+    image: String;
+    post: Post[];
+}
+export { Farmer, Post, User };

@@ -1,4 +1,5 @@
 const mon = require('mongoose');
+
 const authorSchema = new mon.Schema({
     name: {
         type: String
@@ -18,8 +19,12 @@ const authorSchema = new mon.Schema({
     confirmPassword: {
         type: String
     },
-    image: {
-        type: String
-    }
+    post: [
+        {
+            farmerId: String,
+            title: String,
+            des: String
+        }
+    ]
 });
 module.exports = mon.model('farmerdata', authorSchema);
