@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Arg, Ctx } from 'type-graphql';
+import { Resolver, Query, Mutation, Args, Arg } from 'type-graphql';
 const bcrypt = require('bcrypt');
 import { Farmer, Post, User } from '../queries/queries';
 const Farmers = require('../../Models/farmer');
@@ -50,13 +50,10 @@ class HelloResolver {
             throw new Error(e);
         }
     }
-    @Query(() => User, { nullable: true })
-    async getAllFarmers(
-        @Ctx() ctx: any,
-        @Args() { farmerId }: userTypes
-    ): Promise<[User]> {
-        console.log(ctx.req);
-        return await Farmers.findById(farmerId);
+    @Query(() => Post, { nullable: true })
+    async getAllFarmers(@Args() { farmerId }: userTypes): Promise<Post> {
+        
+        return Posts.findOne({ farmerId });
     }
     @Mutation(() => User)
     async createFarmer(
