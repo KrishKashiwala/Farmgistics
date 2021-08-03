@@ -45,4 +45,10 @@ class userTypes {
     @MaxLength(30)
     des: string;
 }
-export { farmerArgs, loginArgs, userTypes };
+@ArgsType()
+class simpleId {
+    @Field({ nullable: true })
+    @MaxLength(30)
+    farmerId: String;
+}
+export { farmerArgs, loginArgs, userTypes, simpleId };

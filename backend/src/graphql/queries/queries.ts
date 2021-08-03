@@ -58,7 +58,7 @@ class Post implements post {
 
 //
 @InterfaceType()
-abstract class user {
+abstract class user extends post {
     @Field(() => String, { nullable: true })
     id: String;
     @Field(() => String, { nullable: true })
@@ -79,8 +79,6 @@ abstract class user {
     redirect: String;
     @Field(() => String, { nullable: true })
     image: String;
-    @Field(() => post, { nullable: true })
-    post: Post[];
 }
 @ObjectType({ implements: user })
 class User extends Post {
@@ -94,6 +92,5 @@ class User extends Post {
     token: String;
     redirect: String;
     image: String;
-    post: Post[];
 }
 export { Farmer, Post, User };

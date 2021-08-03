@@ -19,12 +19,10 @@ const authorSchema = new mon.Schema({
     confirmPassword: {
         type: String
     },
-    post: [
-        {
-            farmerId: String,
-            title: String,
-            des: String
-        }
-    ]
+    post: {
+        farmerId: String,
+        title: String,
+        des: String
+    }
 });
 module.exports = mon.model('farmerdata', authorSchema);

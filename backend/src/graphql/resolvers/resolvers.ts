@@ -3,8 +3,7 @@ const bcrypt = require('bcrypt');
 import { Farmer, Post, User } from '../queries/queries';
 const Farmers = require('../../Models/farmer');
 const Posts = require('../../Models/post');
-// const Posts = require('../../Models/post');
-import { farmerArgs, loginArgs, userTypes } from '../argsTypes';
+import { farmerArgs, loginArgs, userTypes, simpleId } from '../argsTypes';
 
 const jwt = require('jsonwebtoken');
 const { UserInputError } = require('apollo-server-express');
@@ -22,6 +21,14 @@ interface farmer {
 
 @Resolver()
 class HelloResolver {
+    @Query(() => [User])
+    async allFarmers(): Promise<[User]> {
+        return Farmers.find({});
+    }
+    @Mutation(() => Post)
+    async getPostByFarmer(@Args() { farmerId }: simpleId): Promise<Post> {
+        return Posts.findById(farmerId);
+    }
     @Mutation(() => Farmer)
     async getByIdFarmers(
         @Arg('id', { nullable: true }) id: String
@@ -50,10 +57,11 @@ class HelloResolver {
             throw new Error(e);
         }
     }
-    @Query(() => Post, { nullable: true })
-    async getAllFarmers(@Args() { farmerId }: userTypes): Promise<Post> {
-        
-        return Posts.findOne({ farmerId });
+    @Query(() => [User] || User, { nullable: true })
+    async getAllFarmers(
+        @Args() { farmerId }: userTypes
+    ): Promise<User | [User]> {
+        return Posts.find({ farmerId });
     }
     @Mutation(() => User)
     async createFarmer(

@@ -43,7 +43,16 @@ const FIND_FARMER = gql`
             name
             id
             email
+            city
         }
     }
 `;
-export { CREATE_FARMER, LOGIN_FARMER, FIND_FARMER };
+const FIND_FARMER_POST = gql`
+    mutation getPostByFarmer($farmerId: String!) {
+        getPostByFarmer(farmerId: $farmerId) {
+            title
+            des
+        }
+    }
+`;
+export { CREATE_FARMER, LOGIN_FARMER, FIND_FARMER, FIND_FARMER_POST };
