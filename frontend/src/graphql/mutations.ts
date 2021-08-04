@@ -48,7 +48,7 @@ const FIND_FARMER = gql`
     }
 `;
 const FIND_FARMER_POST = gql`
-    mutation getPostByFarmer($farmerId: String!) {
+    mutation getPostByFarmer($farmerId: String) {
         getPostByFarmer(farmerId: $farmerId) {
             title
             des

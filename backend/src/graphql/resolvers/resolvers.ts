@@ -27,7 +27,7 @@ class HelloResolver {
     }
     @Mutation(() => Post)
     async getPostByFarmer(@Args() { farmerId }: simpleId): Promise<Post> {
-        return Posts.findById(farmerId);
+        return Posts.findOne(farmerId);
     }
     @Mutation(() => Farmer)
     async getByIdFarmers(

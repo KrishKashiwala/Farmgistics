@@ -23,6 +23,7 @@ const OrderItem = ({ val }: any) => {
         firstOrders();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+    console.log(data?.getPostByFarmer);
     return (
         <div className="root">
             <img src={farmgistic_logo} alt="order pic"></img>

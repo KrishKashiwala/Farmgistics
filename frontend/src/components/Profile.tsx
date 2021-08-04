@@ -50,6 +50,7 @@ const Profile = ({ match }: any) => {
         firstProfileLoader();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+    localStorage.setItem('ids', `${match.params.id}`);
     return (
         <div>
             <Navbar style={{ width: '100%' }} />
