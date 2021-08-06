@@ -8,8 +8,6 @@ import { farmerArgs, loginArgs, userTypes, simpleId } from '../argsTypes';
 const jwt = require('jsonwebtoken');
 const { UserInputError } = require('apollo-server-express');
 
-// middleware
-// const { Auth } = require('../../utils/checkAuth.ts');
 interface farmer {
     name: String;
     id: String;
@@ -24,6 +22,12 @@ class HelloResolver {
     @Query(() => [User])
     async allFarmers(): Promise<[User]> {
         return Farmers.find({});
+    }
+    @Query(() => [User] || User, { nullable: true })
+    async getAllFarmers(
+        @Args() { farmerId }: userTypes
+    ): Promise<User | [User]> {
+        return Posts.find({ farmerId });
     }
     @Mutation(() => Post)
     async getPostByFarmer(@Args() { farmerId }: simpleId): Promise<Post> {
@@ -56,12 +60,6 @@ class HelloResolver {
             console.log('thrown error');
             throw new Error(e);
         }
-    }
-    @Query(() => [User] || User, { nullable: true })
-    async getAllFarmers(
-        @Args() { farmerId }: userTypes
-    ): Promise<User | [User]> {
-        return Posts.find({ farmerId });
     }
     @Mutation(() => User)
     async createFarmer(

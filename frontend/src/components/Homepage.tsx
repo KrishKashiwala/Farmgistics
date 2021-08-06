@@ -24,6 +24,7 @@ const Homepage = ({ match }: any) => {
         });
     };
     if (error || !data) console.log(error);
+
     useEffect(() => {
         farmerRequest();
         console.log(data?.getByIdFarmers?.id);
