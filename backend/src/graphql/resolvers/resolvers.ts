@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 import { Farmer, Post, User } from '../queries/queries';
 const Farmers = require('../../Models/farmer');
 const Posts = require('../../Models/post');
-import { farmerArgs, loginArgs, userTypes, simpleId } from '../argsTypes';
+import { farmerArgs, loginArgs, postTypes, simpleId } from '../argsTypes';
 
 const jwt = require('jsonwebtoken');
 const { UserInputError } = require('apollo-server-express');
@@ -25,7 +25,7 @@ class HelloResolver {
     }
     @Query(() => [User] || User, { nullable: true })
     async getAllFarmers(
-        @Args() { farmerId }: userTypes
+        @Args() { farmerId }: postTypes
     ): Promise<User | [User]> {
         return Posts.find({ farmerId });
     }
@@ -153,15 +153,20 @@ class HelloResolver {
         return errors.error;
     }
     @Mutation(() => Post)
-    async User(@Args() { farmerId, title, des }: userTypes): Promise<Post> {
+    async UserPost(
+        @Args() { farmerId, title, des, price, city }: postTypes
+    ): Promise<Post> {
         await Farmers.findById(farmerId);
         const newPost = new Posts({
             farmerId: farmerId,
             title: title,
-            des: des
+            des: des,
+            price: price,
+            city: city
         });
         newPost.save();
-        return { farmerId, title, des };
+        console.log(newPost)
+        return { farmerId, title, des, price, city };
     }
 }
 

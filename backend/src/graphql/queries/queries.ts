@@ -42,18 +42,24 @@ class Farmer implements farmer {
 @InterfaceType()
 abstract class post {
     @Field(() => String, { nullable: true })
-    farmerId: String;
+    farmerId?: String;
     @Field(() => String, { nullable: true })
     title: String;
     @Field(() => String, { nullable: true })
     des: String;
+    @Field(() => String, { nullable: true })
+    price: String;
+    @Field(() => String, { nullable: true })
+    city?: String;
 }
 
 @ObjectType({ implements: post, description: 'nothing here' })
 class Post implements post {
     title: String;
-    farmerId: String;
+    farmerId?: String;
     des: String;
+    price: String;
+    city?: String;
 }
 
 //

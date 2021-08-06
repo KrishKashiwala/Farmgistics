@@ -1,12 +1,20 @@
 import './componentsCss/profile.css';
-import { Avatar, makeStyles, createStyles, Theme } from '@material-ui/core';
+import {
+    Avatar,
+    makeStyles,
+    createStyles,
+    Theme,
+    Fab,
+    Tooltip
+} from '@material-ui/core';
 import farmgistic_logo from './assests/farmgistic_logo.png';
 import { useMutation } from '@apollo/client';
 import { FIND_FARMER } from '../graphql/mutations';
 import Navbar from './Navbar';
 import OrderItem from './OrderItem';
-import React from 'react';
-
+import React, { useState } from 'react';
+import Registerpost from './Registerpost';
+import AddIcon from '@material-ui/icons/Add';
 interface farmer {
     getByIdFarmers: {
         name?: string;
@@ -31,10 +39,19 @@ const useStyles = makeStyles((theme: Theme) =>
         large: {
             width: '10em',
             height: '10em'
+        },
+        fab: {
+            margin: theme.spacing(2)
+        },
+        absolute: {
+            position: 'absolute',
+            bottom: theme.spacing(2),
+            right: theme.spacing(3)
         }
     })
 );
 const Profile = ({ match }: any) => {
+    const [postBool, setPostBool] = useState(false);
     const classes = useStyles();
     const [getByIdFarmers, { data, error }] = useMutation<farmer>(FIND_FARMER);
     const firstProfileLoader = () => {
@@ -71,6 +88,16 @@ const Profile = ({ match }: any) => {
                     <OrderItem val={`${match.params.id}`} />
                 </div>
             </div>
+            <Tooltip title="Add Crop">
+                <Fab
+                    color="secondary"
+                    onClick={() => setPostBool(true)}
+                    className={classes.absolute}
+                >
+                    <AddIcon />
+                </Fab>
+            </Tooltip>
+            <Registerpost postBool={postBool} />
         </div>
     );
 };

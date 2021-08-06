@@ -40,7 +40,7 @@ const SignUp = ({ show }: any) => {
                 city: city,
                 email: email,
                 password: password,
-                confirmPassword: confirmPassword,
+                confirmPassword: confirmPassword
                 // image: image
             }
         });
@@ -140,6 +140,7 @@ const SignUp = ({ show }: any) => {
                                     <TextField
                                         label="Password"
                                         name="password"
+                                        type="password"
                                         onChange={(
                                             e: React.ChangeEvent<HTMLInputElement>
                                         ) => setPassword(e.target.value)}
@@ -151,6 +152,7 @@ const SignUp = ({ show }: any) => {
                                     <TextField
                                         label="Confirm Password"
                                         name="confirmPassword"
+                                        type="password"
                                         onChange={(
                                             e: React.ChangeEvent<HTMLInputElement>
                                         ) => setConfirmPassword(e.target.value)}

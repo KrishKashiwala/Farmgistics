@@ -12,8 +12,6 @@ import {
     Button,
     Theme,
     createStyles,
-    Fab,
-    Tooltip,
     CardActions
 } from '@material-ui/core';
 interface order {
@@ -24,13 +22,8 @@ interface order {
 }
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        fab: {
-            margin: theme.spacing(2)
-        },
-        absolute: {
-            position: 'absolute',
-            bottom: theme.spacing(2),
-            right: theme.spacing(3)
+        cardWidth: {
+            maxWidth: 345
         }
     })
 );
@@ -53,7 +46,7 @@ const OrderItem = ({ val }: any) => {
     const classes = useStyles();
     return (
         <div className="root">
-            <Card >
+            <Card className={classes.cardWidth}>
                 <CardActionArea>
                     <CardMedia
                         component="img"
@@ -86,11 +79,6 @@ const OrderItem = ({ val }: any) => {
                     </Button>
                 </CardActions>
             </Card>
-           <Tooltip title="Add" aria-label="add">
-        <Fab color="secondary" className={classes.absolute}>
-          {/* <AddIcon /> */}
-        </Fab>
-      </Tooltip>
         </div>
     );
 };

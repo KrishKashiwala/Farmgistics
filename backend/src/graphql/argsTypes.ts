@@ -34,16 +34,22 @@ class loginArgs {
     password?: string;
 }
 @ArgsType()
-class userTypes {
+class postTypes {
     @Field({ nullable: true })
     @MaxLength(30)
-    farmerId: String;
+    farmerId?: String;
     @Field({ nullable: true })
     @MaxLength(30)
     title: string;
     @Field({ nullable: true })
     @MaxLength(30)
     des: string;
+    @Field({ nullable: true })
+    @MaxLength(30)
+    price: string;
+    @Field({ nullable: true })
+    @MaxLength(30)
+    city: string;
 }
 @ArgsType()
 class simpleId {
@@ -51,4 +57,4 @@ class simpleId {
     @MaxLength(30)
     farmerId: String;
 }
-export { farmerArgs, loginArgs, userTypes, simpleId };
+export { farmerArgs, loginArgs, postTypes, simpleId };
