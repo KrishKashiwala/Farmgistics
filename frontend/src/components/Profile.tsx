@@ -21,6 +21,7 @@ interface farmer {
         city?: string;
         email?: string;
         phone?: string;
+        id?: String;
     };
 }
 
@@ -97,7 +98,10 @@ const Profile = ({ match }: any) => {
                     <AddIcon />
                 </Fab>
             </Tooltip>
-            <Registerpost postBool={postBool} />
+            <Registerpost
+                val={`${data?.getByIdFarmers.id}`}
+                postBool={postBool}
+            />
         </div>
     );
 };

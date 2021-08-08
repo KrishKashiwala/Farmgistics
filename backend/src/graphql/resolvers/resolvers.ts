@@ -29,6 +29,10 @@ class HelloResolver {
     ): Promise<User | [User]> {
         return Posts.find({ farmerId });
     }
+    @Query(() => [Post])
+    async getAllPosts(): Promise<Post[]> {
+        return await Posts.find({});
+    }
     @Mutation(() => Post)
     async getPostByFarmer(@Args() { farmerId }: simpleId): Promise<Post> {
         return Posts.findOne(farmerId);
@@ -165,7 +169,7 @@ class HelloResolver {
             city: city
         });
         newPost.save();
-        console.log(newPost)
+        console.log(newPost);
         return { farmerId, title, des, price, city };
     }
 }

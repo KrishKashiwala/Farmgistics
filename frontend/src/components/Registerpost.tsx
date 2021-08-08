@@ -9,7 +9,7 @@ import {
 import { Formik, Form } from 'formik';
 import { useMutation } from '@apollo/client';
 //@ts-ignore
-import { USER_POST, FIND_FARMER } from '../graphql/mutations';
+import { USER_POST } from '../graphql/mutations';
 
 // css imports
 import './componentsCss/registerpost.css';
@@ -21,15 +21,15 @@ const theme = createTheme({
         primary: green
     }
 });
-interface farmer {
-    getByIdFarmers: {
-        name?: string;
-        city?: string;
-        email?: string;
-        phone?: string;
-        id?: String;
-    };
-}
+// interface farmer {
+//     getByIdFarmers: {
+//         name?: string;
+//         city?: string;
+//         email?: string;
+//         phone?: string;
+//         id?: String;
+//     };
+// }
 interface UserPost {
     UserPost: {
         title?: String;
@@ -37,19 +37,20 @@ interface UserPost {
         city?: String;
         price?: String;
         farmerId?: String;
+        id?: String;
     };
 }
-const Registerpost = ({ postBool }: any) => {
-    const [title, setTitle] = useState('');
-    const [des, setDes] = useState('');
-    const [price, setPrice] = useState('');
-    const [UserPost] = useMutation<UserPost>(USER_POST);
-    const [getByIdFarmers, { data, error }] = useMutation<farmer>(FIND_FARMER);
+const Registerpost = ({ postBool, val }: any) => {
+    const [title, setTitle] = useState<String>();
+    const [des, setDes] = useState<String>();
+    const [price, setPrice] = useState<String>();
+    const [UserPost, { data, error, loading }] =
+        useMutation<UserPost>(USER_POST);
+
     const registered = () => {
         UserPost({
             variables: {
-                farmerId: data?.getByIdFarmers.id,
-                city: data?.getByIdFarmers.city,
+                farmerId: val,
                 title: title,
                 des: des,
                 price: price
@@ -57,7 +58,7 @@ const Registerpost = ({ postBool }: any) => {
         });
     };
     //     if (!datas || errors) console.log('post error');
-    if (!data || error) console.log('farmer fetch error');
+    if (!data || error || loading) console.log('farmer fetch error');
     if (!postBool) {
         return null;
     }
