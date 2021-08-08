@@ -1,21 +1,12 @@
 import { Resolver, Query, Mutation, Args, Arg } from 'type-graphql';
+import { Farmer, Post, User } from './queries';
+import { farmerArgs, loginArgs, postTypes, simpleId } from './argsTypes';
+import { farmer } from '../serverInterface';
 const bcrypt = require('bcrypt');
-import { Farmer, Post, User } from '../queries/queries';
-const Farmers = require('../../Models/farmer');
-const Posts = require('../../Models/post');
-import { farmerArgs, loginArgs, postTypes, simpleId } from '../argsTypes';
-
+const Farmers = require('../Models/farmer');
+const Posts = require('../Models/post');
 const jwt = require('jsonwebtoken');
 const { UserInputError } = require('apollo-server-express');
-
-interface farmer {
-    name: String;
-    id: String;
-    email: String;
-    token?: String;
-    password: String;
-    city: String;
-}
 
 @Resolver()
 class HelloResolver {
@@ -23,15 +14,13 @@ class HelloResolver {
     async allFarmers(): Promise<[User]> {
         return Farmers.find({});
     }
-    @Query(() => [User] || User, { nullable: true })
-    async getAllFarmers(
-        @Args() { farmerId }: postTypes
-    ): Promise<User | [User]> {
-        return Posts.find({ farmerId });
-    }
     @Query(() => [Post])
     async getAllPosts(): Promise<Post[]> {
         return await Posts.find({});
+    }
+    @Mutation(() => [Post], { nullable: true })
+    async getAllFarmers(@Args() { farmerId }: postTypes): Promise<[Post]> {
+        return await Posts.find({ farmerId });
     }
     @Mutation(() => Post)
     async getPostByFarmer(@Args() { farmerId }: simpleId): Promise<Post> {

@@ -7,7 +7,7 @@ const cors = require('cors');
 require('dotenv').config();
 import * as Express from 'express';
 import { buildSchema } from 'type-graphql';
-import { HelloResolver } from './graphql/resolvers/resolvers';
+import { HelloResolver } from './graphql/resolvers';
 // const expressJwt = require('express-jwt');
 
 require('./server');

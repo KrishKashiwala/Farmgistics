@@ -19,6 +19,5 @@ const authorSchema = new mon.Schema({
     confirmPassword: {
         type: String
     }
-   
 });
 module.exports = mon.model('farmerdata', authorSchema);
