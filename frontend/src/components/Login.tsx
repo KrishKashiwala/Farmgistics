@@ -13,18 +13,9 @@ import { green } from '@material-ui/core/colors';
 import { useMutation } from '@apollo/client';
 import { Redirect } from 'react-router-dom';
 import { LOGIN_FARMER } from '../graphql/mutations';
-
+import { logged } from '../../interface';
 import './componentsCss/login.css';
 import './componentsCss/signup.css';
-interface logged {
-    login: {
-        name: String;
-        id: String;
-        email: String;
-        token?: String;
-    };
-}
-
 const theme = createTheme({
     palette: {
         primary: green
@@ -41,8 +32,8 @@ const useStyles = makeStyles((theme: Theme) =>
 const Login = ({ show }: any) => {
     const [login, { data, error }] = useMutation<logged>(LOGIN_FARMER);
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState<String>();
+    const [password, setPassword] = useState<String>();
     const classes = useStyles();
     if (!show) {
         return null;

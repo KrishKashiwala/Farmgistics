@@ -10,40 +10,24 @@ import { Formik, Form } from 'formik';
 import { useMutation } from '@apollo/client';
 //@ts-ignore
 import { USER_POST } from '../graphql/mutations';
-
+import { UserPost } from '../../interface';
 // css imports
 import './componentsCss/registerpost.css';
 
 import { green } from '@material-ui/core/colors';
+import { Redirect } from 'react-router';
 
 const theme = createTheme({
     palette: {
         primary: green
     }
 });
-// interface farmer {
-//     getByIdFarmers: {
-//         name?: string;
-//         city?: string;
-//         email?: string;
-//         phone?: string;
-//         id?: String;
-//     };
-// }
-interface UserPost {
-    UserPost: {
-        title?: String;
-        des?: String;
-        city?: String;
-        price?: String;
-        farmerId?: String;
-        id?: String;
-    };
-}
+
 const Registerpost = ({ postBool, val }: any) => {
     const [title, setTitle] = useState<String>();
     const [des, setDes] = useState<String>();
     const [price, setPrice] = useState<String>();
+    const [postAdded, setPostAdded] = useState<Boolean>(false);
     const [UserPost, { data, error, loading }] =
         useMutation<UserPost>(USER_POST);
 
@@ -56,6 +40,7 @@ const Registerpost = ({ postBool, val }: any) => {
                 price: price
             }
         });
+        setPostAdded(true);
     };
     //     if (!datas || errors) console.log('post error');
     if (!data || error || loading) console.log('farmer fetch error');
@@ -136,6 +121,9 @@ const Registerpost = ({ postBool, val }: any) => {
                             </Form>
                         )}
                     </Formik>
+                    {postAdded && (
+                        <Redirect to={`/home/profile/${val}`}></Redirect>
+                    )}
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
-.root {
-    padding: 2em;
-    border-radius: 25px;
-    background : rgb(235, 217, 217)
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 200px);
+    grid-row-gap: 2em;
 }

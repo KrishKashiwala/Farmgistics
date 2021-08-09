@@ -5,14 +5,7 @@ import './componentsCss/typestouch.css';
 import TypesTouch from './TypesTouch';
 import { FIND_FARMER } from '../graphql/mutations';
 import { useMutation } from '@apollo/client';
-
-interface farmer {
-    getByIdFarmers: {
-        name: String;
-        id: String;
-        email: String;
-    };
-}
+import { farmer } from '../../interface';
 
 const Homepage = ({ match }: any) => {
     const [getByIdFarmers, { data, error }] = useMutation<farmer>(FIND_FARMER);

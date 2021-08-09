@@ -1,7 +1,4 @@
 import farmgistic_logo from './assests/farmgistic_logo.png';
-import { useMutation } from '@apollo/client';
-import { FIND_FARMER_POST } from '../graphql/mutations';
-import React, { useEffect } from 'react';
 import {
     Card,
     Typography,
@@ -14,12 +11,6 @@ import {
     createStyles,
     CardActions
 } from '@material-ui/core';
-interface order {
-    getPostByFarmer: {
-        title?: String;
-        des?: String;
-    };
-}
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         cardWidth: {
@@ -27,25 +18,10 @@ const useStyles = makeStyles((theme: Theme) =>
         }
     })
 );
-const OrderItem = ({ val }: any) => {
-    const [getPostByFarmer, { data, error }] =
-        useMutation<order>(FIND_FARMER_POST);
-    const firstOrders = () => {
-        getPostByFarmer({
-            variables: {
-                id: val
-            }
-        });
-    };
-    if (error || !data) console.log(error);
-    useEffect(() => {
-        firstOrders();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-    console.log(data?.getPostByFarmer);
+const OrderItem = ({ val, title, des }: any) => {
     const classes = useStyles();
     return (
-        <div className="root">
+        <div>
             <Card className={classes.cardWidth}>
                 <CardActionArea>
                     <CardMedia
@@ -53,29 +29,23 @@ const OrderItem = ({ val }: any) => {
                         alt="Contemplative Reptile"
                         height="140"
                         image={farmgistic_logo}
-                        title="Contemplative Reptile"
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">
-                            Lizard
+                            {title}
                         </Typography>
                         <Typography
                             variant="body2"
                             color="textSecondary"
                             component="p"
                         >
-                            Lizards are a widespread group of squamate reptiles,
-                            with over 6,000 species, ranging across all
-                            continents except Antarctica
+                            {des}
                         </Typography>
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
                     <Button color="secondary" variant="contained">
                         Share
-                    </Button>
-                    <Button size="small" color="primary">
-                        Learn More
                     </Button>
                 </CardActions>
             </Card>
