@@ -10,6 +10,13 @@ const { UserInputError } = require('apollo-server-express');
 
 @Resolver()
 class HelloResolver {
+    @Query(() => String)
+    async helloWorld(
+        @Args() { name }: farmerArgs
+    ): Promise<string | undefined> {
+        console.log(name);
+        return name;
+    }
     @Query(() => [User])
     async allFarmers(): Promise<[User]> {
         return Farmers.find({});
