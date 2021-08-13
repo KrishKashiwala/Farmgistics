@@ -1,20 +1,36 @@
-import { Resolver, Query, Mutation, Args, Arg } from 'type-graphql';
+import {
+    Resolver,
+    Query,
+    Mutation,
+    Args,
+    Arg,
+    MiddlewareFn,
+    UseMiddleware,
+    Ctx
+} from 'type-graphql';
 import { Farmer, Post, User } from './queries';
 import { farmerArgs, loginArgs, postTypes, simpleId } from './argsTypes';
 import { farmer } from '../serverInterface';
+import { MyContext } from 'src/types/MyContext';
 const bcrypt = require('bcrypt');
 const Farmers = require('../Models/farmer');
 const Posts = require('../Models/post');
 const jwt = require('jsonwebtoken');
 const { UserInputError } = require('apollo-server-express');
-
+export const MiddlewareFun: MiddlewareFn = async ({ context }, next) => {
+    console.log('first middleware implementated successfully!..');
+    console.log(context);
+    return next();
+};
 @Resolver()
 class HelloResolver {
     @Query(() => String)
+    @UseMiddleware(MiddlewareFun)
     async helloWorld(
         @Args() { name }: farmerArgs
     ): Promise<string | undefined> {
         console.log(name);
+
         return name;
     }
     @Query(() => [User])
@@ -116,7 +132,10 @@ class HelloResolver {
         return { name, phone, city, email, password, confirmPassword };
     }
     @Mutation(() => Farmer)
-    async login(@Args() { email, password }: loginArgs): Promise<{}> {
+    async login(
+        @Args() { email, password }: loginArgs,
+        @Ctx() ctx: MyContext
+    ): Promise<{} | null> {
         const oneFarmer: Farmer = await Farmers.findOne({ email });
         const returnData = {
             name: oneFarmer.name,
@@ -126,8 +145,11 @@ class HelloResolver {
             id: oneFarmer.id,
             image: oneFarmer.image
         };
+        if (!oneFarmer) return null;
         if (oneFarmer) {
-            if (await bcrypt.compare(password, oneFarmer.password)) {
+            const valid = await bcrypt.compare(password, oneFarmer.password);
+            if (!valid) return null;
+            if (valid) {
                 // jwt token
                 const token = jwt.sign(
                     {
@@ -138,6 +160,7 @@ class HelloResolver {
                 );
 
                 console.log('successfully logged in ', oneFarmer);
+                ctx.req.session.id = oneFarmer.id;
                 return {
                     ...returnData,
                     email,

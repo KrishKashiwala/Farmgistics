@@ -6,7 +6,7 @@ require('dotenv').config();
 
 const Auth = (context: any) => {
     // console.log(context);
-    const authHeader = context.req.headers.authorization
+    const authHeader = context.req.headers.authorization;
     console.log(authHeader);
     if (authHeader) {
         // Bearer ....

@@ -26,16 +26,16 @@ abstract class farmer {
 
 @ObjectType({ implements: farmer })
 class Farmer implements farmer {
-    id: String;
-    name: String;
-    phone: String;
-    city: String;
-    email: String;
-    password: String;
-    confirmPassword: String;
-    token: String;
-    redirect: String;
-    image: String;
+    id: string;
+    name: string;
+    phone: string;
+    city: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
+    token: string;
+    redirect: string;
+    image: string;
 }
 
 // posts
