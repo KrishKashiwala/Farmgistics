@@ -24,14 +24,11 @@ export const MiddlewareFun: MiddlewareFn = async ({ context }, next) => {
 };
 @Resolver()
 class HelloResolver {
-    @Query(() => String)
+    @Query(() => Farmer)
     @UseMiddleware(MiddlewareFun)
-    async helloWorld(
-        @Args() { name }: farmerArgs
-    ): Promise<string | undefined> {
-        console.log(name);
-
-        return name;
+    async helloWorld(@Ctx() ctx: MyContext): Promise<Farmer | undefined> {
+        if (!ctx.req.session!.id) return undefined;
+        return Farmers.findOne(ctx.req.session!.id);
     }
     @Query(() => [User])
     async allFarmers(): Promise<[User]> {
@@ -160,7 +157,7 @@ class HelloResolver {
                 );
 
                 console.log('successfully logged in ', oneFarmer);
-                ctx.req.session.id = oneFarmer.id;
+                ctx.req.session!.id = oneFarmer.id;
                 return {
                     ...returnData,
                     email,
