@@ -2,14 +2,14 @@ import 'reflect-metadata';
 import { ApolloServer } from 'apollo-server-express';
 const logger = require('morgan');
 const cors = require('cors');
-// @ts-ignore
-const session = require('express-session');
-const MongoStore = require('connect-mongo');
+import * as session from 'express-session';
+import * as connectRedis from 'connect-redis';
+const RedisStore = connectRedis(session);
+// const MongoStore = require('connect-mongo');
 require('dotenv').config();
 import * as Express from 'express';
 import { buildSchema } from 'type-graphql';
 import { HelloResolver } from './graphql/resolvers';
-// const expressJwt = require('express-jwt');
 
 require('./server');
 //  express setup
@@ -19,7 +19,7 @@ const main = async () => {
     });
     const apolloserver = new ApolloServer({
         schema,
-        context: ({ req }) => req
+        context: ({ req }) => req.session
     });
     const app = Express();
     app.use(
@@ -31,16 +31,11 @@ const main = async () => {
     app.use(logger('dev'));
     app.use(Express.json());
     app.use(Express.urlencoded({ extended: true }));
-    // app.use(
-    //     expressJwt({
-    //         secret: process.env.SECRET,
-    //         algorithms: ['HS256']
-    //         // credentialsRequired: false
-    //     })
-    // );
+
     // express session
     app.use(
         session({
+            store: new RedisStore({}),
             name: 'qid',
             secret: 'aslkdfjoiq12312',
             resave: false,
@@ -49,11 +44,7 @@ const main = async () => {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === 'production',
                 maxAge: 1000 * 60 * 60 * 24 * 7 * 365 // 7 years
-            },
-            store: MongoStore.create({
-                mongoUrl: process.env.DATABASE,
-                collection: 'sessions'
-            })
+            }
         })
     );
 
