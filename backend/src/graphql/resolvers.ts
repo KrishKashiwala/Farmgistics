@@ -26,7 +26,8 @@ export const MiddlewareFun: MiddlewareFn = async ({ context }, next) => {
 class HelloResolver {
     @Query(() => Farmer)
     @UseMiddleware(MiddlewareFun)
-    async helloWorld(): Promise<Farmer | undefined> {
+    async helloWorld(@Ctx() ctx: MyContext): Promise<Farmer | undefined> {
+        console.log(ctx);
         return undefined;
     }
     @Query(() => [User])
@@ -155,8 +156,9 @@ class HelloResolver {
                     { expiresIn: '1h' }
                 );
 
+                console.log(ctx);
                 console.log('successfully logged in ', oneFarmer);
-                ctx.session.userId = oneFarmer.id;
+                // ctx.req.session!.id = oneFarmer.id;
                 return {
                     ...returnData,
                     email,

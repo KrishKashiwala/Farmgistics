@@ -12,7 +12,7 @@ import React, { useState } from 'react';
 import { green } from '@material-ui/core/colors';
 import { useMutation } from '@apollo/client';
 import { Redirect } from 'react-router-dom';
-import { LOGIN_FARMER } from '../graphql/mutations';
+import { LOGIN_FARMER } from '../graphql/mutations'
 import { logged } from '../../interface';
 import './componentsCss/login.css';
 import './componentsCss/signup.css';
