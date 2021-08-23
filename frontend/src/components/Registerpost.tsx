@@ -42,7 +42,6 @@ const Registerpost = ({ postBool, val }: any) => {
         });
         setPostAdded(true);
     };
-    //     if (!datas || errors) console.log('post error');
     if (!data || error || loading) console.log('farmer fetch error');
     if (!postBool) {
         return null;

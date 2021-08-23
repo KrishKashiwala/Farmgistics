@@ -3,9 +3,7 @@ import { ApolloServer } from 'apollo-server-express';
 const logger = require('morgan');
 const cors = require('cors');
 import * as session from 'express-session';
-import * as connectRedis from 'connect-redis';
-const RedisStore = connectRedis(session);
-// const MongoStore = require('connect-mongo');
+const MongoStore = require('connect-mongo');
 require('dotenv').config();
 import * as Express from 'express';
 import { buildSchema } from 'type-graphql';
@@ -19,7 +17,7 @@ const main = async () => {
     });
     const apolloserver = new ApolloServer({
         schema,
-        context: ({ req }) => req.session
+        context: ({ req }) => req
     });
     const app = Express();
     app.use(
@@ -35,16 +33,17 @@ const main = async () => {
     // express session
     app.use(
         session({
-            store: new RedisStore({}),
             name: 'qid',
             secret: 'aslkdfjoiq12312',
             resave: false,
             saveUninitialized: false,
             cookie: {
-                httpOnly: true,
-                secure: process.env.NODE_ENV === 'production',
                 maxAge: 1000 * 60 * 60 * 24 * 7 * 365 // 7 years
-            }
+            },
+            store: MongoStore.create({
+                mongoUrl: process.env.DATABASE,
+                collection: 'sessions'
+            })
         })
     );
 
