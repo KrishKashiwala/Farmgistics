@@ -26,6 +26,7 @@
     "morgan": "^1.10.0",
     "nodemon": "^2.0.12",
     "reflect-metadata": "^0.1.13",
+    "tar": "^6.1.10",
     "type-graphql": "^1.1.1"
   },
   "devDependencies": {
