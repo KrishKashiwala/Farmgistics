@@ -2,14 +2,12 @@ import 'reflect-metadata';
 import { ApolloServer } from 'apollo-server-express';
 const logger = require('morgan');
 const cors = require('cors');
-// @ts-ignore
-const session = require('express-session');
+import * as session from 'express-session';
 const MongoStore = require('connect-mongo');
 require('dotenv').config();
 import * as Express from 'express';
 import { buildSchema } from 'type-graphql';
 import { HelloResolver } from './graphql/resolvers';
-// const expressJwt = require('express-jwt');
 
 require('./server');
 //  express setup
@@ -31,13 +29,7 @@ const main = async () => {
     app.use(logger('dev'));
     app.use(Express.json());
     app.use(Express.urlencoded({ extended: true }));
-    // app.use(
-    //     expressJwt({
-    //         secret: process.env.SECRET,
-    //         algorithms: ['HS256']
-    //         // credentialsRequired: false
-    //     })
-    // );
+
     // express session
     app.use(
         session({
@@ -46,8 +38,6 @@ const main = async () => {
             resave: false,
             saveUninitialized: false,
             cookie: {
-                httpOnly: true,
-                secure: process.env.NODE_ENV === 'production',
                 maxAge: 1000 * 60 * 60 * 24 * 7 * 365 // 7 years
             },
             store: MongoStore.create({

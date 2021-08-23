@@ -27,8 +27,8 @@ class HelloResolver {
     @Query(() => Farmer)
     @UseMiddleware(MiddlewareFun)
     async helloWorld(@Ctx() ctx: MyContext): Promise<Farmer | undefined> {
-        if (!ctx.req.session!.id) return undefined;
-        return Farmers.findOne(ctx.req.session!.id);
+        console.log(ctx);
+        return undefined;
     }
     @Query(() => [User])
     async allFarmers(): Promise<[User]> {
@@ -156,7 +156,7 @@ class HelloResolver {
                     { expiresIn: '1h' }
                 );
 
-                console.log(ctx)
+                console.log(ctx);
                 console.log('successfully logged in ', oneFarmer);
                 // ctx.req.session!.id = oneFarmer.id;
                 return {

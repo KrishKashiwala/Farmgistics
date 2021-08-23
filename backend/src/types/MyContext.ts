@@ -1,4 +1,6 @@
-import { Request } from 'express';
+export interface Session {
+    userId?: string;
+}
 export interface MyContext {
-    req: Request;
+    session: Session;
 }

@@ -1,11 +1,11 @@
 export interface UserPost {
     UserPost: {
-        title?: String;
-        des?: String;
-        city?: String;
-        price?: String;
-        farmerId?: String;
-        id?: String;
+        title?: string;
+        des?: string;
+        city?: string;
+        price?: string;
+        farmerId?: string;
+        id?: string;
     };
 }
 export interface farmer {
@@ -14,16 +14,16 @@ export interface farmer {
         city?: string;
         email?: string;
         phone?: string;
-        id?: String;
+        id?: string;
     };
 }
 
 export interface order {
-    title?: String;
-    des?: String;
+    title?: string;
+    des?: string;
     allFarmers: {
-        title?: String;
-        des?: String;
+        title?: string;
+        des?: string;
     };
 }
 export interface allOrders {
@@ -31,9 +31,9 @@ export interface allOrders {
 }
 export interface logged {
     login: {
-        name: String;
-        id: String;
-        email: String;
-        token?: String;
+        name: string;
+        id: string;
+        email: string;
+        token?: string;
     };
 }
