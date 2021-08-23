@@ -156,8 +156,9 @@ class HelloResolver {
                     { expiresIn: '1h' }
                 );
 
+                console.log(ctx)
                 console.log('successfully logged in ', oneFarmer);
-                ctx.req.session!.id = oneFarmer.id;
+                // ctx.req.session!.id = oneFarmer.id;
                 return {
                     ...returnData,
                     email,
