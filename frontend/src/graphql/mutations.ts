@@ -1,12 +1,12 @@
 import { gql } from '@apollo/client';
 const CREATE_FARMER = gql`
     mutation createFarmer(
-        $name: string
-        $phone: string
-        $city: string
-        $email: string
-        $password: string
-        $confirmPassword: string
+        $name: String
+        $phone: String
+        $city: String
+        $email: String
+        $password: String
+        $confirmPassword: String
     ) {
         createFarmer(
             name: $name
@@ -27,7 +27,7 @@ const CREATE_FARMER = gql`
     }
 `;
 const LOGIN_FARMER = gql`
-    mutation login($email: string, $password: string) {
+    mutation login($email: String, $password: String) {
         login(email: $email, password: $password) {
             email
             token
@@ -38,7 +38,7 @@ const LOGIN_FARMER = gql`
     }
 `;
 const FIND_FARMER = gql`
-    mutation getByIdFarmers($id: string!) {
+    mutation getByIdFarmers($id: String!) {
         getByIdFarmers(id: $id) {
             name
             id
