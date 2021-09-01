@@ -26,9 +26,12 @@ export const MiddlewareFun: MiddlewareFn = async ({ context }, next) => {
 class HelloResolver {
     @Query(() => Farmer)
     @UseMiddleware(MiddlewareFun)
-    async helloWorld(@Ctx() ctx: MyContext): Promise<Farmer | undefined> {
+    async helloWorld(
+        @Ctx() ctx: MyContext,
+        @Args() { name }: farmerArgs
+    ): Promise<string | undefined> {
         console.log(ctx);
-        return undefined;
+        return name;
     }
     @Query(() => [User])
     async allFarmers(): Promise<[User]> {
