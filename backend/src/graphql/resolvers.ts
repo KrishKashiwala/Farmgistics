@@ -31,6 +31,7 @@ class HelloResolver {
         @Args() { name }: farmerArgs
     ): Promise<string | undefined> {
         console.log(ctx);
+        
         return name;
     }
     @Query(() => [User])
