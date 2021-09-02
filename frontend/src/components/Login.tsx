@@ -16,6 +16,7 @@ import { LOGIN_FARMER } from '../graphql/mutations'
 import { logged } from '../../interface';
 import './componentsCss/login.css';
 import './componentsCss/signup.css';
+
 const theme = createTheme({
     palette: {
         primary: green
