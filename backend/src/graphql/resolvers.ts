@@ -31,7 +31,7 @@ class HelloResolver {
         @Args() { name }: farmerArgs
     ): Promise<string | undefined> {
         console.log(ctx);
-        
+
         return name;
     }
     @Query(() => [User])
@@ -65,10 +65,10 @@ class HelloResolver {
                 email: farmer.email,
                 password: farmer.password,
                 city: farmer.city,
-                id: farmer.id
+                id: farmer.id,
+                token : farmer.token
             };
             if (farmer) {
-                console.log('right data in placed wrong');
                 return { ...returnData };
             }
             console.log('error');
@@ -121,6 +121,7 @@ class HelloResolver {
                 'this is password check' +
                     (await bcrypt.compare(confirmPassword, hashedPassword))
             );
+            
             return {
                 name,
                 city,
@@ -149,7 +150,10 @@ class HelloResolver {
         if (!oneFarmer) return null;
         if (oneFarmer) {
             const valid = await bcrypt.compare(password, oneFarmer.password);
-            if (!valid) return null;
+            if (!valid) {
+                console.log('wrong password: ' + oneFarmer.password);
+                return null;
+            }
             if (valid) {
                 // jwt token
                 const token = jwt.sign(

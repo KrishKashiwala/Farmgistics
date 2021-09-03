@@ -42,6 +42,7 @@ const FIND_FARMER = gql`
         getByIdFarmers(id: $id) {
             name
             id
+            token
             email
             city
         }

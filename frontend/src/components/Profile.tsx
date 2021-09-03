@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme: Theme) =>
         }
     })
 );
-const Profile = ({ match }: any) => {
+const Profile = ({ match, history }: any) => {
     const [postBool, setPostBool] = useState<Boolean>(false);
     const classes = useStyles();
     const [getByIdFarmers] = useMutation<farmer>(FIND_FARMER);
@@ -63,6 +63,9 @@ const Profile = ({ match }: any) => {
     console.log(data);
     if (error || !data) console.log(error);
     React.useEffect(() => {
+        const token = localStorage.getItem("jwt-token")
+        if(!token) console.log('no token')
+        else console.log(token)
         firstProfileLoader();
         firstOrders();
         // eslint-disable-next-line react-hooks/exhaustive-deps
