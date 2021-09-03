@@ -1,51 +1,26 @@
-import { Avatar } from '@material-ui/core';
-import farmgistic_logo from './assests/farmgistic_logo.png';
-import { Link } from 'react-router-dom';
 import './componentsCss/navbar.css';
+import PersonOutlineOutlined from '@material-ui/icons/PersonOutlineOutlined'
+import ShoppingCartOutlined from '@material-ui/icons/ShoppingCartOutlined'
+import SimpleTabs from './Tabs'
 const Navbar = ({ id }: any) => {
     return (
-        <div style={{ position: 'relative' }}>
-            <div className="nav_body">
-                <img src={farmgistic_logo} alt="logo" />
-                <div className="nav_options">
-                    <div className="dropdown">
-                        <a href="google.com" className="dropbtn">
-                            Category <i className="fa fa-chevron-down down"></i>
-                        </a>
-                        <div className="dropdown-content">
-                            <a href="google.com">Vegetables</a>
-                            <a href="google.com">Fruits</a>
-                            <a href="google.com">Spices</a>
-                        </div>
-                    </div>
-                    <a href="google.com" className="nav_a">
-                        Contact Us
-                    </a>
-                    <a href="google.com" className="nav_a">
-                        About Us
-                    </a>
+        <div>
+            <div className="Top-bar">
+                <div className="logo">
+                    <img src = {require("./assests/farmgistic_logo.png")}></img>
                 </div>
-                <div className="nav_icon">
-                    <div className="input-group rounded search">
-                        <input
-                            type="search"
-                            className="form-control rounded"
-                            placeholder="search query"
-                        />
-                        <i className="fa fa-search font"></i>
-                        {/* <i className="fas fa-shopping-bag"></i> */}
+                <div className="Search-bar">
+                    <div className="input-group">
+                        <input type='text' placeholder='Search'></input>
+                        <button>Search</button>
                     </div>
-                    <a href="google.com">
-                        <i className="fas fa-shopping-bag font"></i>
-                    </a>
-                    <a href="google.com">
-                        <i className="fas fa-sliders-h font"></i>
-                    </a>
-                    <Link to={`/home/profile/${id}`}>
-                        <Avatar alt="profile_pic" src={farmgistic_logo} />
-                    </Link>
+                </div>
+                <div className="Profile">
+                    <PersonOutlineOutlined fontSize="large" style={{marginRight: '2rem'}} />
+                    <ShoppingCartOutlined fontSize="large" />
                 </div>
             </div>
+            <SimpleTabs/>
         </div>
     );
 };
