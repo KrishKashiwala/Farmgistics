@@ -1,0 +1,14 @@
+.footer{
+    justify-content: space-around;
+    background-color: lightgray;
+    padding: 2rem;
+}
+.footer-col{
+    text-align: left;
+}
+.footer-col>h5{
+    margin-left: 2.5rem;
+}
+ul{
+    list-style: none;
+}

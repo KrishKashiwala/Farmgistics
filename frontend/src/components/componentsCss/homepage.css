@@ -50,3 +50,38 @@
     justify-content: space-evenly;
     margin-top: 3rem;
 }
+.categories>.single-category{
+    text-align: center;
+    align-content: center;
+}
+.review-section{
+    margin-top: 5rem;
+}
+.review-section>.heading{
+    text-align: center;
+    margin-bottom: 4rem;
+}
+.review-section>.heading>hr{
+    width: 7rem;
+    background-color: orange;
+    border: 1.5px solid orange;
+}
+.review-section>.review-slider>.carousel>.carousel-inner>.carousel-item{
+    text-align: center;
+}
+.review-section>.review-slider>.carousel>.carousel-inner>.carousel-item>.review-profile{
+    text-align: center;
+}
+.review-section>.review-slider>.carousel>.carousel-inner>.carousel-item>.review-profile>.avatar{
+    width: 6rem;
+    height: 6rem;
+    margin-left: 44.5rem;
+    margin-bottom: 1rem;
+}
+.review-section>.review-slider>.carousel>.carousel-indicators{
+    position: unset;
+}
+.review-section>.review-slider>.carousel>.carousel-indicators>li{
+    background-color: #86bc42;
+}
+

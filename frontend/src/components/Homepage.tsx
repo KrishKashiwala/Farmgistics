@@ -13,6 +13,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Footer from './Footer';
 
 
 const useStyles = makeStyles({
@@ -104,7 +105,7 @@ const Homepage = ({ match }: any) => {
                         <CardActionArea>
                             <CardMedia
                             className={classes.media}
-                            image = {require("./assests/img1.jpg")}
+                            image = { require("./assests/img1.jpg") }
                             title="Vegetable"
                             />
                             <CardContent>
@@ -329,27 +330,90 @@ const Homepage = ({ match }: any) => {
                     <a>
                         <Avatar alt="Fruits" src={require("./assests/fruit.jpg")} className={classes.large} />
                     </a>
-                    <Typography gutterBottom variant="h6" component="h6">
-                        Fruits
-                    </Typography>
+                    <h6>Fruits</h6>
                 </div>
                 <div className="single-category">
                     <a>
                         <Avatar alt="Vegetables" src={require("./assests/vegetable.jpg")} className={classes.large} />
                     </a>
-                    <Typography gutterBottom variant="h6" component="h6">
-                        Vegetables
-                    </Typography>
+                    <h6>Vegetables</h6>
                 </div>
                 <div className="single-category">
                     <a>
                         <Avatar alt="Spices" src={require("./assests/spices.jpg")} className={classes.large} />
                     </a>
-                    <Typography gutterBottom variant="h6" component="h6">
-                        Spices
-                    </Typography>
+                    <h6>Spices</h6>
                 </div>
             </div>
+            <div className="review-section">
+                <div className="heading">
+                    <h2>Review of Traders</h2>
+                    <hr></hr>
+                </div>
+                <div className="review-slider">
+                    <div id="review" className="carousel slide" data-ride="carousel">
+                        <div className="carousel-inner">
+                            <div className="carousel-item active">
+                                <div className="review-profile">
+                                    <Avatar alt="Fruits" src={require("./assests/fruit.jpg")} className="avatar" />
+                                    <h5>John Deo</h5>
+                                    <p>Laxman Traders</p>
+                                </div>
+                                <div className="review-text">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                        Sed venenatis porttitor leo, volutpat facilisis augue posuere et. 
+                                        In in est et neque scelerisque mattis. Aenean lacus est, efficitur ut posuere sit amet, pulvinar ac felis. 
+                                        Sed sed scelerisque odio. Nulla id diam posuere, ultrices purus et, dignissim risus. Suspendisse sit.
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="carousel-item">
+                            <div className="review-profile">
+                                    <Avatar alt="Fruits" src={require("./assests/fruit.jpg")} className="avatar" />
+                                    <h5>Laxman Prashad</h5>
+                                    <p>Shiv Traders</p>
+                                </div>
+                                <div className="review-text">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                        Sed venenatis porttitor leo, volutpat facilisis augue posuere et. 
+                                        In in est et neque scelerisque mattis. Aenean lacus est, efficitur ut posuere sit amet, pulvinar ac felis. 
+                                        Sed sed scelerisque odio. Nulla id diam posuere, ultrices purus et, dignissim risus. Suspendisse sit.
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="carousel-item">
+                            <div className="review-profile">
+                                    <Avatar alt="Fruits" src={require("./assests/fruit.jpg")} className="avatar" />
+                                    <h5>Mukesh Sheth</h5>
+                                    <p>Sheth Traders</p>
+                                </div>
+                                <div className="review-text">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                        Sed venenatis porttitor leo, volutpat facilisis augue posuere et. 
+                                        In in est et neque scelerisque mattis. Aenean lacus est, efficitur ut posuere sit amet, pulvinar ac felis. 
+                                        Sed sed scelerisque odio. Nulla id diam posuere, ultrices purus et, dignissim risus. Suspendisse sit.
+                                    </p>
+                                </div>
+                            </div>
+                            <a className="carousel-control-prev" href="#review" data-slide="prev">
+                                <span className="carousel-control-prev-icon"></span>
+                            </a>
+                            <a className="carousel-control-next" href="#review" data-slide="next">
+                                <span className="carousel-control-next-icon"></span>
+                            </a>
+                        </div>
+                        <ul className="carousel-indicators">
+                        <li data-target="#review" data-slide-to="0" className="active"></li>
+                        <li data-target="#review" data-slide-to="1"></li>
+                        <li data-target="#review" data-slide-to="2"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <Footer/>
         </div>
     );
 };
