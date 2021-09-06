@@ -5,7 +5,6 @@ import PhoneInTalkOutlinedIcon from '@material-ui/icons/PhoneInTalkOutlined';
 import MailOutlineOutlinedIcon from '@material-ui/icons/MailOutlineOutlined';
 
 
-
 const Footer = () => {
     return (
         <div>
