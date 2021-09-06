@@ -37,3 +37,4 @@ export interface logged {
         token?: string;
     };
 }
+
