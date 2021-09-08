@@ -8,7 +8,7 @@ import MailOutlineOutlinedIcon from '@material-ui/icons/MailOutlineOutlined';
 const Footer = () => {
     return (
         <div>
-            <Grid container spacing={1} className="footer">
+            <Grid container spacing={0} className="footer">
                 <Grid item xs={3}>
                     <div className="footer-col">
                         <h5>Contact Us</h5>

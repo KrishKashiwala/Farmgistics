@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@1&display=swap');
+.main-container{
+    margin: 0;
+    padding: 0;
+}
 .image-slider{
     margin-top: 1rem;
 }

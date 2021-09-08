@@ -1,19 +1,11 @@
-import React, { useEffect } from 'react';
-import Navbar from './Navbar';
+import { useEffect } from 'react';
 import './componentsCss/homepage.css';
 import { FIND_FARMER } from '../graphql/mutations';
 import { useMutation } from '@apollo/client';
 import { farmer } from '../../interface';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import Footer from './Footer';
+import Cards from './Cards';
 
 
 const useStyles = makeStyles({
@@ -52,8 +44,7 @@ const Homepage = ({ match }: any) => {
     const classes = useStyles();
 
     return (
-        <div>
-            <Navbar id={match.params.id} />
+        <div className="main-container">
             <div className="image-slider">
                 <div id="demo" className="carousel slide" data-ride="carousel">
                     <ul className="carousel-indicators">
@@ -63,13 +54,13 @@ const Homepage = ({ match }: any) => {
                     </ul>
                     <div className="carousel-inner">
                         <div className="carousel-item active">
-                            <img src={ require('./assests/engin-akyurt-Y5n8mCpvlZU-unsplash.jpg')} alt="Los Angeles"></img>
+                            <img src={"https://images.unsplash.com/photo-1610348725531-843dff563e2c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZnJ1aXRzJTIwYW5kJTIwdmVnZXRhYmxlc3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"} alt="Los Angeles"></img>
                         </div>
                         <div className="carousel-item">
-                            <img src={ require('./assests/josephine-baran-g4wzhY8qiMw-unsplash.jpg') } alt="Chicago"></img>
+                            <img src={"https://images.unsplash.com/photo-1598030304671-5aa1d6f21128?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZnJ1aXRzJTIwYW5kJTIwdmVnZXRhYmxlc3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"} alt="Chicago"></img>
                         </div>
                         <div className="carousel-item">
-                            <img src={ require('./assests/nrd-D6Tu_L3chLE-unsplash.jpg') } alt="New York"></img>
+                            <img src={"https://images.unsplash.com/photo-1542838132-92c53300491e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8ZnJ1aXRzJTIwYW5kJTIwdmVnZXRhYmxlc3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"} alt="New York"></img>
                         </div>
                         <a className="carousel-control-prev" href="#demo" data-slide="prev">
                             <span className="carousel-control-prev-icon"></span>
@@ -101,222 +92,14 @@ const Homepage = ({ match }: any) => {
                     </ul>
                 </div>
                 <div className='product-cards'>
-                    <Card className={classes.root}>
-                        <CardActionArea>
-                            <CardMedia
-                            className={classes.media}
-                            image = { require("./assests/img1.jpg") }
-                            title="Vegetable"
-                            />
-                            <CardContent>
-                            <Typography gutterBottom variant="h5" component="h2">
-                                Vegetable
-                            </Typography>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                            Donec sed vulputate odio. Nunc tincidunt a enim ac tristique. 
-                            Praesent laoreet eu diam vitae faucibus. Suspendisse.
-                            </Typography>
-                            </CardContent>
-                        </CardActionArea>
-                        <CardActions>
-                            <Button size="small" color="primary">
-                            Buy Now
-                            </Button>
-                            <Button size="small" color="primary">
-                            Add To Cart
-                            </Button>
-                        </CardActions>
-                    </Card>
-                    <Card className={classes.root}>
-                        <CardActionArea>
-                            <CardMedia
-                            className={classes.media}
-                            image = {require("./assests/img2.jpg")}
-                            title="Vegetable"
-                            />
-                            <CardContent>
-                            <Typography gutterBottom variant="h5" component="h2">
-                                Vegetable
-                            </Typography>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                            Donec sed vulputate odio. Nunc tincidunt a enim ac tristique. 
-                            Praesent laoreet eu diam vitae faucibus. Suspendisse.
-                            </Typography>
-                            </CardContent>
-                        </CardActionArea>
-                        <CardActions>
-                            <Button size="small" color="primary">
-                            Buy Now
-                            </Button>
-                            <Button size="small" color="primary">
-                            Add To Cart
-                            </Button>
-                        </CardActions>
-                    </Card>
-                    <Card className={classes.root}>
-                        <CardActionArea>
-                            <CardMedia
-                            className={classes.media}
-                            image = {require("./assests/img3.jpg")}
-                            title="Vegetable"
-                            />
-                            <CardContent>
-                            <Typography gutterBottom variant="h5" component="h2">
-                                Vegetable
-                            </Typography>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                            Donec sed vulputate odio. Nunc tincidunt a enim ac tristique. 
-                            Praesent laoreet eu diam vitae faucibus. Suspendisse.
-                            </Typography>
-                            </CardContent>
-                        </CardActionArea>
-                        <CardActions>
-                            <Button size="small" color="primary">
-                            Buy Now
-                            </Button>
-                            <Button size="small" color="primary">
-                            Add To Cart
-                            </Button>
-                        </CardActions>
-                    </Card>
-                    <Card className={classes.root}>
-                        <CardActionArea>
-                            <CardMedia
-                            className={classes.media}
-                            image = {require("./assests/img4.jpg")}
-                            title="Vegetable"
-                            />
-                            <CardContent>
-                            <Typography gutterBottom variant="h5" component="h2">
-                                Vegetable
-                            </Typography>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                            Donec sed vulputate odio. Nunc tincidunt a enim ac tristique. 
-                            Praesent laoreet eu diam vitae faucibus. Suspendisse.
-                            </Typography>
-                            </CardContent>
-                        </CardActionArea>
-                        <CardActions>
-                            <Button size="small" color="primary">
-                            Buy Now
-                            </Button>
-                            <Button size="small" color="primary">
-                            Add To Cart
-                            </Button>
-                        </CardActions>
-                    </Card>
-                    <Card className={classes.root}>
-                        <CardActionArea>
-                            <CardMedia
-                            className={classes.media}
-                            image = {require("./assests/img5.jpg")}
-                            title="Vegetable"
-                            />
-                            <CardContent>
-                            <Typography gutterBottom variant="h5" component="h2">
-                                Vegetable
-                            </Typography>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                            Donec sed vulputate odio. Nunc tincidunt a enim ac tristique. 
-                            Praesent laoreet eu diam vitae faucibus. Suspendisse.
-                            </Typography>
-                            </CardContent>
-                        </CardActionArea>
-                        <CardActions>
-                            <Button size="small" color="primary">
-                            Buy Now
-                            </Button>
-                            <Button size="small" color="primary">
-                            Add To Cart
-                            </Button>
-                        </CardActions>
-                    </Card>
-                    <Card className={classes.root}>
-                        <CardActionArea>
-                            <CardMedia
-                            className={classes.media}
-                            image = {require("./assests/img1.jpg")}
-                            title="Vegetable"
-                            />
-                            <CardContent>
-                            <Typography gutterBottom variant="h5" component="h2">
-                                Vegetable
-                            </Typography>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                            Donec sed vulputate odio. Nunc tincidunt a enim ac tristique. 
-                            Praesent laoreet eu diam vitae faucibus. Suspendisse.
-                            </Typography>
-                            </CardContent>
-                        </CardActionArea>
-                        <CardActions>
-                            <Button size="small" color="primary">
-                            Buy Now
-                            </Button>
-                            <Button size="small" color="primary">
-                            Add To Cart
-                            </Button>
-                        </CardActions>
-                    </Card>
-                    <Card className={classes.root}>
-                        <CardActionArea>
-                            <CardMedia
-                            className={classes.media}
-                            image = {require("./assests/img2.jpg")}
-                            title="Vegetable"
-                            />
-                            <CardContent>
-                            <Typography gutterBottom variant="h5" component="h2">
-                                Vegetable
-                            </Typography>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                            Donec sed vulputate odio. Nunc tincidunt a enim ac tristique. 
-                            Praesent laoreet eu diam vitae faucibus. Suspendisse.
-                            </Typography>
-                            </CardContent>
-                        </CardActionArea>
-                        <CardActions>
-                            <Button size="small" color="primary">
-                            Buy Now
-                            </Button>
-                            <Button size="small" color="primary">
-                            Add To Cart
-                            </Button>
-                        </CardActions>
-                    </Card>
-                    <Card className={classes.root}>
-                        <CardActionArea>
-                            <CardMedia
-                            className={classes.media}
-                            image = {require("./assests/img3.jpg")}
-                            title="Vegetable"
-                            />
-                            <CardContent>
-                            <Typography gutterBottom variant="h5" component="h2">
-                                Vegetable
-                            </Typography>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                            Donec sed vulputate odio. Nunc tincidunt a enim ac tristique. 
-                            Praesent laoreet eu diam vitae faucibus. Suspendisse.
-                            </Typography>
-                            </CardContent>
-                        </CardActionArea>
-                        <CardActions>
-                            <Button size="small" color="primary">
-                            Buy Now
-                            </Button>
-                            <Button size="small" color="primary">
-                            Add To Cart
-                            </Button>
-                        </CardActions>
-                    </Card>  
+                     <Cards/>
+                     <Cards/>
+                     <Cards/>
+                     <Cards/>
+                     <Cards/>
+                     <Cards/>
+                     <Cards/>
+                     <Cards/>
                 </div>
             </div>
             <div className="our-category">
@@ -413,7 +196,6 @@ const Homepage = ({ match }: any) => {
                     </div>
                 </div>
             </div>
-            <Footer/>
         </div>
     );
 };
