@@ -12,14 +12,15 @@ import { Farmer, Post, User } from './queries';
 import { farmerArgs, loginArgs, postTypes, simpleId } from './argsTypes';
 import { farmer } from '../serverInterface';
 import { MyContext } from 'src/types/MyContext';
+// import {Auth} from '../utils/checkAuth'
 const bcrypt = require('bcrypt');
 const Farmers = require('../Models/farmer');
 const Posts = require('../Models/post');
 const jwt = require('jsonwebtoken');
 const { UserInputError } = require('apollo-server-express');
-export const MiddlewareFun: MiddlewareFn = async ({ context }, next) => {
-    console.log('first middleware implementated successfully!..');
-    console.log(context);
+export const MiddlewareFun: MiddlewareFn = async ({ context }: any, next) => {
+    console.log("first middleware....")
+    console.log(context)
     return next();
 };
 @Resolver()
@@ -30,12 +31,14 @@ class HelloResolver {
         @Ctx() ctx: MyContext,
         @Args() { name }: farmerArgs
     ): Promise<string | undefined> {
-        console.log(ctx);
+        console.log(ctx.req);
 
         return name;
     }
+    @UseMiddleware(MiddlewareFun)
     @Query(() => [User])
     async allFarmers(): Promise<[User]> {
+    
         return Farmers.find({});
     }
     @Query(() => [Post])
@@ -66,7 +69,7 @@ class HelloResolver {
                 password: farmer.password,
                 city: farmer.city,
                 id: farmer.id,
-                token : farmer.token
+                token: farmer.token
             };
             if (farmer) {
                 return { ...returnData };
@@ -121,7 +124,7 @@ class HelloResolver {
                 'this is password check' +
                     (await bcrypt.compare(confirmPassword, hashedPassword))
             );
-            
+
             return {
                 name,
                 city,
@@ -133,6 +136,7 @@ class HelloResolver {
         }
         return { name, phone, city, email, password, confirmPassword };
     }
+
     @Mutation(() => Farmer)
     async login(
         @Args() { email, password }: loginArgs,

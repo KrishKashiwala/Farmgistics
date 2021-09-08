@@ -12,7 +12,7 @@ import React, { useState } from 'react';
 import { green } from '@material-ui/core/colors';
 import { useMutation } from '@apollo/client';
 import { Redirect } from 'react-router-dom';
-import { LOGIN_FARMER } from '../graphql/mutations'
+import { LOGIN_FARMER } from '../graphql/mutations';
 import { logged } from '../../interface';
 import './componentsCss/login.css';
 import './componentsCss/signup.css';
@@ -55,7 +55,8 @@ const Login = ({ show }: any) => {
     console.log(`${data?.login.id}`);
 
     localStorage.setItem('jwt-token', `${data?.login.token}`);
-
+    localStorage.setItem('logged-in', 'true');
+    sessionStorage.setItem('logged-in', 'true');
     return (
         <div className="modal">
             <div className="modal-content">

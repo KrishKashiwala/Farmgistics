@@ -39,6 +39,33 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 const Profile = ({ match, history }: any) => {
+    window.onbeforeunload = (event) => {
+        localStorage.removeItem('logged-in');
+    };
+
+    let loggedIn = localStorage.getItem('logged-in');
+    let sessionLoggedIn = sessionStorage.getItem('logged-in');
+    if (!loggedIn) {
+        if (sessionLoggedIn) {
+            localStorage.setItem('logged-in', JSON.parse(sessionLoggedIn));
+            //go to authenticated space
+            window.location.href = '/authenticated';
+        } else {
+            //go to login
+            window.location.href = '/login';
+        }
+    } else {
+        //go to authenticated space
+        window.location.href = '/authenticated';
+    }
+    window.addEventListener('storage', (event) => {
+        if (event.key === 'logout' && event.newValue) {
+            sessionStorage.removeItem('logged-in');
+            localStorage.removeItem('logout');
+            window.location.href = '/login';
+        }
+    });
+
     const [postBool, setPostBool] = useState<Boolean>(false);
     const classes = useStyles();
     const [getByIdFarmers] = useMutation<farmer>(FIND_FARMER);
@@ -63,14 +90,14 @@ const Profile = ({ match, history }: any) => {
     console.log(data);
     if (error || !data) console.log(error);
     React.useEffect(() => {
-        const token = localStorage.getItem("jwt-token")
-        if(!token) console.log('no token')
-        else console.log(token)
+        const token = localStorage.getItem('jwt-token');
+        if (!token) console.log('no token');
+        else console.log(token);
         firstProfileLoader();
         firstOrders();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-    localStorage.setItem('ids', `${match.params.id}`);
+
     return (
         <div>
             <Navbar style={{ width: '100%' }} />
