@@ -16,6 +16,7 @@ import Footer from './Footer';
 import fimg from './assests/engin-akyurt-Y5n8mCpvlZU-unsplash.jpg';
 import simg from './assests/josephine-baran-g4wzhY8qiMw-unsplash.jpg';
 import timg from './assests/nrd-D6Tu_L3chLE-unsplash.jpg';
+import Cards from "./Cards";
 const useStyles = makeStyles({
     root: {
         maxWidth: 300,
@@ -567,10 +568,8 @@ const Homepage = ({ match }: any) => {
                     </div>
                 </div>
             </div>
-<<<<<<< HEAD
-=======
             <Footer />
->>>>>>> aaf5c7b5a80639b376558582b73c149eb611f9c9
+            </div>
         </div>
     );
 };
