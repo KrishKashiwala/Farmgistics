@@ -8,7 +8,8 @@ import {
     Theme,
     Button
 } from '@material-ui/core';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import UserContext from '../Context/UserContext'
 import { green } from '@material-ui/core/colors';
 import { useMutation } from '@apollo/client';
 import { Redirect } from 'react-router-dom';
@@ -36,6 +37,7 @@ const Login = ({ show }: any) => {
     const [email, setEmail] = useState<String>();
     const [password, setPassword] = useState<String>();
     const classes = useStyles();
+    const context = useContext(UserContext);
     if (!show) {
         return null;
     }
@@ -50,6 +52,8 @@ const Login = ({ show }: any) => {
     if (error) {
         console.log(error);
     }
+
+    context.setUser(data?.login.id, data?.login.token);
 
     console.log(`${data?.login}`);
     console.log(`${data?.login.id}`);

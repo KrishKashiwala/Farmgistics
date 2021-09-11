@@ -1,6 +1,6 @@
 .footer{
     justify-content: space-around;
-    background-color: lightgray;
+    background-color: #E0E0E0;
     padding: 2rem;
 }
 .footer-col{
@@ -9,6 +9,13 @@
 .footer-col>h5{
     margin-left: 2.5rem;
 }
-ul{
+.footer-links{
     list-style: none;
+}
+.footer-links>.footer-link>a{
+    color: #636363;
+}
+.footer-links>.footer-link>a:hover{
+    color: #86bc42;
+    text-decoration: none;
 }

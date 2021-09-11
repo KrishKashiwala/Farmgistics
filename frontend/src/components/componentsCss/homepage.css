@@ -33,7 +33,12 @@
 .product-list>.product-links>ul>li{
     margin-right: 4rem;
 }
-.product-list>.product-cards{
+.product-list>.product-links>ul>li>button{
+    border: none;
+    background-color: transparent;
+    color: #4781ff;
+}
+.product-list>#products>.collapse>.product-cards{
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;

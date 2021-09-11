@@ -7,7 +7,7 @@
     margin-bottom: 2rem;
 }
 .Top-bar>.Search-bar{
-    margin-left: 25rem;
+    margin-left: 20rem;
 }
 .Top-bar>.Search-bar>.input-group{
     border: 1px solid lightgrey;
@@ -19,6 +19,7 @@
     border-radius: 5rem;
     border: none;
     margin-left: 1rem;
+    outline: none;
 }
 .Top-bar>.Search-bar>.input-group>button{
     height: 3.1rem;
@@ -30,20 +31,4 @@
 .Top-bar>.Profile{
     margin-top: 0.5rem;
     margin-left: 22rem;
-}
-.Navbar{
-    margin-top: 2rem;
-    height: 3rem;
-    border-radius: 5rem;
-}
-.Navbar>ul{
-    display: flex;
-    justify-content: space-evenly;
-    list-style: none;
-    padding-top: 1rem;
-}
-.Navbar>ul>li>a{
-    color: #ffffff;
-    text-decoration: none;
-    font-size: large;
 }

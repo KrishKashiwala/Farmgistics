@@ -1,4 +1,4 @@
-import React from 'react'
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -34,11 +34,13 @@ const Cards = () => {
         <div>
             <Card className={classes.root}>
                         <CardActionArea>
+                          <Link to="/product">
                             <CardMedia
-                            className={classes.media}
-                            image = { img1 }
-                            title="Vegetable"
-                            />
+                              className={classes.media}
+                              image = { img1 }
+                              title="Vegetable"
+                              />
+                          </Link>
                             <CardContent>
                             <Typography gutterBottom variant="h5" component="h2">
                                 Vegetable
@@ -51,12 +53,8 @@ const Cards = () => {
                             </CardContent>
                         </CardActionArea>
                         <CardActions>
-                            <Button size="small" color="primary">
-                            Buy Now
-                            </Button>
-                            <Button size="small" color="primary">
-                            Add To Cart
-                            </Button>
+                            <Link to="/product">Buy Now</Link>
+                            <Link to="/product">Add to Cart</Link>
                         </CardActions>
             </Card>
         </div>

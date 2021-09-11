@@ -10,3 +10,6 @@
 .makeStyles-root-1>.MuiAppBar-colorPrimary{
     background-color: #ffffff;
 }
+.MuiTabs-root>.MuiTabs-scroller>.MuiTabs-flexContainer>a{
+    color: white;
+}
