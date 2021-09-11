@@ -124,7 +124,6 @@ class HelloResolver {
                 'this is password check' +
                     (await bcrypt.compare(confirmPassword, hashedPassword))
             );
-
             return {
                 name,
                 city,
