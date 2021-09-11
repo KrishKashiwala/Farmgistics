@@ -8,9 +8,9 @@ import img1 from './assests/farmgistic_logo.png'
 const Navbar = ({ id }: any) => {
 
     const context = useContext(UserContext);
-    const userId = localStorage.getItem('ids');
+    const isLoggedIn = localStorage.getItem('logged-in');
 
-    if(context.Id || userId){
+    if(isLoggedIn === 'true'){
         return (
             <div>
                 <div className="Top-bar">

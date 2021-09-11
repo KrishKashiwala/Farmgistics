@@ -1,11 +1,12 @@
-import { useState } from 'react'
+import '../componentsCss/product.css';
+import vege from '../assests/vegetable.jpg';
 
 const Product = () => { 
     return (
         <div>
             <div className="product-info">
                 <div className="product-img">
-                    <img></img>
+                    <img src={vege} alt='Vege'></img>
                 </div>
                 <div className="product-details">
                     <h4>Tomato</h4>

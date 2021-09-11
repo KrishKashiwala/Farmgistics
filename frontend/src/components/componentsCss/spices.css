@@ -1,0 +1,29 @@
+aside{
+    float: left;
+    width: 20rem;
+    margin-left: 1rem;
+    margin-right: 3rem;
+    box-shadow: 0px 0px 1px 1px lightgray;
+    padding: 1rem 1rem;
+}
+aside>.price>input{
+    width: 5rem;
+    margin-left: 6rem;
+}
+.spices-heading{
+    text-align: center;
+    margin-top: 3rem;
+}
+.spices-heading>hr{
+    width: 7rem;
+    background-color: orange;
+    border: 1.5px solid orange;
+    margin-left: 56rem;
+}
+.spices-cards{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-top: 2rem;
+    justify-content: space-between;
+}
