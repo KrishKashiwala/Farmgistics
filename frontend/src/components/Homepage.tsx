@@ -105,6 +105,7 @@ const Homepage = ({ match }: any) => {
                     <hr></hr>
                 </div>
             </div>
+            LInk to {'/home/profile/:id'}
             <div className="product-list">
                 <div className="product-links">
                     <ul>
