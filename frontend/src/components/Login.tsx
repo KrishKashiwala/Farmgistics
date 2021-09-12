@@ -47,13 +47,15 @@ const Login = ({ show }: any) => {
                 email: email,
                 password: password
             }
-        });
+        }).then(res => {
+            console.log(res);
+            
+            context.setValue(res.data?.login.id, res.data?.login.token);
+        })
     };
     if (error) {
         console.log(error);
     }
-
-    context.setUser(data?.login.id, data?.login.token);
 
     console.log(`${data?.login}`);
     console.log(`${data?.login.id}`);

@@ -14,29 +14,18 @@ import Product from './components/pages/Product';
 
 const App = () => {
 
-    const [userId, setUserId] = useState(null);
-    const [userToken, setUserToken] = useState(null);
+    const [id, setId] = useState(null);
+    const [token, setToken] = useState(null);
 
-    const Add = ( Id, Token ) => {
-        setUserId(Id);
-        setUserToken(Token);
-    }
-
-    const Remove = () => {
-        setUserId(null);
-        setUserToken(null);
+    const Value = (I, T) => {
+        setId(I);
+        setToken(T);
     }
 
     return (
         <div>
             <BrowserRouter>
-            <UserContext.Provider value={{
-                Id: userId, 
-                Token: userToken, 
-                setUser: Add, 
-                removeUser: Remove,
-                }}>
-                <Navbar/>
+            <UserContext.Provider value={{ Id: id, Token: token, setValue: Value}}>
                 <Switch>
                     <Route exact path="/home/:id" component={Homepage} />
                     <Route exact path="/home/profile/:id" component={Profile} />
@@ -48,7 +37,6 @@ const App = () => {
                     <Route exact path="/product" component={Product} />
                     <Route path="/" render={() => <div>404</div>} />
                 </Switch>
-                <Footer/>
             </UserContext.Provider>
             </BrowserRouter>
         </div>

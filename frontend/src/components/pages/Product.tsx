@@ -1,9 +1,12 @@
 import '../componentsCss/product.css';
 import vege from '../assests/vegetable.jpg';
+import Navbar from '../Navbar';
+import Footer from '../Footer';
 
 const Product = () => { 
     return (
         <div>
+            <Navbar/>
             <div className="product-info">
                 <div className="product-img">
                     <img src={vege} alt='Vege'></img>
@@ -25,6 +28,7 @@ const Product = () => {
                     <button>Buy Now</button>
                 </div>
             </div>
+            <Footer/>
         </div>
     )
 }

@@ -8,6 +8,8 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Cards from '../Cards';
+import Navbar from '../Navbar';
+import Footer from '../Footer';
 
 
 function valuetext(value) {
@@ -23,6 +25,7 @@ const Spices = () => {
 
     return (
         <div>
+            <Navbar/>
             <aside>
                 <h5>Filters</h5>
                 <hr></hr>
@@ -86,6 +89,7 @@ const Spices = () => {
                 <Cards/>
                 <Cards/>
             </div>
+            <Footer/>
         </div>
     )
 }

@@ -7,35 +7,25 @@ import UserContext from '../Context/UserContext';
 import img1 from './assests/farmgistic_logo.png'
 const Navbar = ({ id }: any) => {
 
-    const context = useContext(UserContext);
-    const isLoggedIn = localStorage.getItem('logged-in');
-
-    if(isLoggedIn === 'true'){
-        return (
-            <div>
-                <div className="Top-bar">
-                    <div className="logo">
-                        <img src = {img1}></img>
-                    </div>
-                    <div className="Search-bar">
-                        <div className="input-group">
-                            <input type='text' placeholder='Search'></input>
-                            <button>Search</button>
-                        </div>
-                    </div>
-                    <div className="Profile">
-                        <PersonOutlineOutlined fontSize="large" style={{marginRight: '2rem'}} />
-                        <ShoppingCartOutlined fontSize="large" />
+    return (
+        <div>
+            <div className="Top-bar">
+                <div className="logo">
+                    <img src = {img1}></img>
+                </div>
+                <div className="Search-bar">
+                    <div className="input-group">
+                        <input type='text' placeholder='Search'></input>
+                        <button>Search</button>
                     </div>
                 </div>
-                <SimpleTabs/>
+                <div className="Profile">
+                    <PersonOutlineOutlined fontSize="large" style={{marginRight: '2rem'}} />
+                    <ShoppingCartOutlined fontSize="large" />
+                </div>
             </div>
-        );
-    }
-    else{
-        return(
-            <></>
-        );
-    }
+            <SimpleTabs/>
+        </div>
+    );
 };
 export default Navbar;

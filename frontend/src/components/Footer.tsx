@@ -1,5 +1,5 @@
-// import { useContext } from "react";
-// import UserContext from "../Context/UserContext";
+import { useContext } from "react";
+import UserContext from "../Context/UserContext";
 import "./componentsCss/footer.css"
 import Grid from '@material-ui/core/Grid';
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
@@ -8,11 +8,6 @@ import MailOutlineOutlinedIcon from '@material-ui/icons/MailOutlineOutlined';
 
 
 const Footer = () => {
-
-    // const context = useContext(UserContext);
-    const isLoggedIn = localStorage.getItem('logged-in');
-
-    if(isLoggedIn === 'true'){
         return (
             <div>
                 <Grid container spacing={0} className="footer">
@@ -66,12 +61,6 @@ const Footer = () => {
                 </Grid>
             </div>
         )
-    }
-    else{
-        return(
-            <></>
-        )
-    }
 }
 
 export default Footer

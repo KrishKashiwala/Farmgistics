@@ -4,6 +4,7 @@ import { FIND_FARMER } from '../graphql/mutations';
 import { useMutation } from '@apollo/client';
 import { farmer } from '../../interface';
 import { makeStyles } from '@material-ui/core/styles';
+import Navbar from './Navbar';
 import Avatar from '@material-ui/core/Avatar';
 import fimg from './assests/engin-akyurt-Y5n8mCpvlZU-unsplash.jpg';
 import simg from './assests/josephine-baran-g4wzhY8qiMw-unsplash.jpg';
@@ -12,6 +13,7 @@ import Cards from "./Cards";
 import fruits from './assests/fruit.jpg';
 import vegetable from './assests/vegetable.jpg';
 import spices from './assests/spices.jpg';
+import Footer from './Footer';
 const useStyles = makeStyles({
     root: {
         maxWidth: 300,
@@ -49,6 +51,7 @@ const Homepage = ({ match }: any) => {
 
     return (
         <div className="main-container">
+            <Navbar/>
             <div className="image-slider">
                 <div id="demo" className="carousel slide" data-ride="carousel">
                     <ul className="carousel-indicators">
@@ -290,6 +293,7 @@ const Homepage = ({ match }: any) => {
                     </div>
                 </div>
             </div>
+            <Footer/>
         </div>
     );
 };
