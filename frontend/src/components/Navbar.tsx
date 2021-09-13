@@ -2,9 +2,8 @@ import { useContext } from 'react';
 import './componentsCss/navbar.css';
 import PersonOutlineOutlined from '@material-ui/icons/PersonOutlineOutlined'
 import ShoppingCartOutlined from '@material-ui/icons/ShoppingCartOutlined'
-import SimpleTabs from './Tabs'
-import UserContext from '../Context/UserContext';
 import img1 from './assests/farmgistic_logo.png'
+import { Link } from 'react-router-dom';
 const Navbar = ({ id }: any) => {
 
     return (
@@ -24,7 +23,22 @@ const Navbar = ({ id }: any) => {
                     <ShoppingCartOutlined fontSize="large" />
                 </div>
             </div>
-            <SimpleTabs/>
+            <div className="Nav-links">
+                <ul>
+                    <li>
+                        <Link to=''>Home</Link>
+                    </li>
+                    <li>
+                        <Link to='/spices'>Spices</Link>
+                    </li>
+                    <li>
+                        <Link to='/vegetables'>Vegetables</Link>
+                    </li>
+                    <li>
+                        <Link to='/fruits'>Fruits</Link>
+                    </li>
+                </ul>
+            </div>
         </div>
     );
 };
