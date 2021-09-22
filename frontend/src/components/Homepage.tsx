@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
+import UserContext from '../Context/UserContext';
 import './componentsCss/homepage.css';
 import { FIND_FARMER } from '../graphql/mutations';
 import { useMutation } from '@apollo/client';
@@ -10,9 +11,6 @@ import fimg from './assests/engin-akyurt-Y5n8mCpvlZU-unsplash.jpg';
 import simg from './assests/josephine-baran-g4wzhY8qiMw-unsplash.jpg';
 import timg from './assests/nrd-D6Tu_L3chLE-unsplash.jpg';
 import Cards from "./Cards";
-import fruits from './assests/fruit.jpg';
-import vegetable from './assests/vegetable.jpg';
-import spices from './assests/spices.jpg';
 import Footer from './Footer';
 const useStyles = makeStyles({
     root: {
@@ -30,22 +28,25 @@ const useStyles = makeStyles({
     }
 });
 
-const Homepage = ({ match }: any) => {
+const Homepage = () => {
+
+    const context = useContext(UserContext);
+
     const [getByIdFarmers, { data, error }] = useMutation<farmer>(FIND_FARMER);
     const farmerRequest = () => {
         getByIdFarmers({
             variables: {
-                id: match?.params.id
+                id: context.Id
             }
         });
-    };
+    }; 
     if (error || !data) console.log(error);
-
+ 
     useEffect(() => {
         farmerRequest();
-        console.log(data?.getByIdFarmers?.id);
+        console.log(data?.getByIdFarmers.id);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    },[]);
 
     const classes = useStyles();
 
@@ -119,7 +120,7 @@ const Homepage = ({ match }: any) => {
                 </div>
                 <div id="products">
                     <div id="featured" className="collapse show" data-parent="#products"> 
-                        <div className="product-cards">
+                        <div className="row product-cards">
                             <Cards/>
                             <Cards/>
                             <Cards/>
@@ -129,7 +130,7 @@ const Homepage = ({ match }: any) => {
                         </div>
                     </div>
                     <div id="bestseller" className="collapse" data-parent="#products"> 
-                        <div className="product-cards">
+                        <div className="row product-cards">
                         <Cards/>
                         <Cards/>
                         <Cards/>
@@ -137,49 +138,11 @@ const Homepage = ({ match }: any) => {
                         </div>
                     </div>
                     <div id="latest" className="collapse" data-parent="#products"> 
-                        <div className="product-cards">
+                        <div className="row product-cards">
                         <Cards/>
                         <Cards/>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div className="our-category">
-                <div className="heading">
-                    <h2>Our Category</h2>
-                    <hr></hr>
-                </div>
-            </div>
-            <div className="categories">
-                <div className="single-category">
-                    <a>
-                        <Avatar
-                            alt="Fruits"
-                            src={fruits}
-                            className={classes.large}
-                        />
-                    </a>
-                    <h6>Fruits</h6>
-                </div>
-                <div className="single-category">
-                    <a>
-                        <Avatar
-                            alt="Vegetables"
-                            src={vegetable}
-                            className={classes.large}
-                        />
-                    </a>
-                    <h6>Vegetables</h6>
-                </div>
-                <div className="single-category">
-                    <a>
-                        <Avatar
-                            alt="Spices"
-                            src={spices}
-                            className={classes.large}
-                        />
-                    </a>
-                    <h6>Spices</h6>
                 </div>
             </div>
             <div className="review-section">

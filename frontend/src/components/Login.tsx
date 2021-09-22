@@ -47,21 +47,15 @@ const Login = ({ show }: any) => {
                 email: email,
                 password: password
             }
-        }).then(res => {
-            console.log(res);
-            
-            context.setValue(res.data?.login.id, res.data?.login.token);
-        })
+        });
     };
     if (error) {
         console.log(error);
     }
+    context.setValue(data?.login.id, data?.login.token);
 
-    console.log(`${data?.login}`);
-    console.log(`${data?.login.id}`);
-
-    localStorage.setItem('jwt-token', `${data?.login.token}`);
-    localStorage.setItem('logged-in', 'true');
+    localStorage.setItem('jwt-token', `${data?.login.token}` as string);
+    localStorage.setItem('id', `${data?.login.id}` as string);
     sessionStorage.setItem('logged-in', 'true');
     return (
         <div className="modal">

@@ -1,5 +1,4 @@
-import { useContext } from "react";
-import UserContext from "../Context/UserContext";
+
 import "./componentsCss/footer.css"
 import Grid from '@material-ui/core/Grid';
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';

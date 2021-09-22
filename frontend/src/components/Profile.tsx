@@ -100,7 +100,7 @@ const Profile = ({ match, history }: any) => {
 
     return (
         <div>
-            <Navbar style={{ width: '100%' }} />
+            <Navbar/>
             <div className="root">
                 <div className="upper-container">
                     <Avatar

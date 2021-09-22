@@ -3,11 +3,26 @@
 .Top-bar{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     margin-top: 1rem;
     margin-bottom: 2rem;
 }
+.Top-bar>.logo{
+    margin-left: 2rem;
+    margin-top: -0.5rem;
+    display: flex;
+}
+.Top-bar>.logo>p{
+    margin-top: 1.5rem;
+    margin-left: 1rem;
+}
+.Top-bar>.logo>img{
+    border-radius: 50%;
+    width: 5rem;
+    height: 5rem;
+}
 .Top-bar>.Search-bar{
-    margin-left: 20rem;
+    margin-left: 16rem;
 }
 .Top-bar>.Search-bar>.input-group{
     border: 1px solid lightgrey;
@@ -31,7 +46,12 @@
 }
 .Top-bar>.Profile{
     margin-top: 0.5rem;
-    margin-left: 22rem;
+    margin-left: 16rem;
+    display: flex;
+}
+.Profile>a{
+    color: black;
+    text-decoration: none;
 }
 .Nav-links{
     padding-top: 0.7rem;

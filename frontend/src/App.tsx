@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Homepage from './components/Homepage';
 import Landing from './components/Landing';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
@@ -11,6 +11,7 @@ import Footer from './components/Footer';
 import ContactUs from './components/pages/ContactUs';
 import UserContext from './Context/UserContext';
 import Product from './components/pages/Product';
+import Cart from './components/pages/Cart';
 
 const App = () => {
 
@@ -21,6 +22,16 @@ const App = () => {
         setId(I);
         setToken(T);
     }
+
+    useEffect(() => {
+        if(id === null && token === null){
+            Value(localStorage.getItem('id'), localStorage.getItem('jwt-token'))
+        }
+        console.log('Context Updated');
+        
+    }, [])
+
+    
 
     return (
         <div>
@@ -35,6 +46,7 @@ const App = () => {
                     <Route exact path="/spices" component={Spices} />
                     <Route exact path="/contactus" component={ContactUs} />
                     <Route exact path="/product" component={Product} />
+                    <Route exact path="/cart" component={Cart} />
                     <Route path="/" render={() => <div>404</div>} />
                 </Switch>
             </UserContext.Provider>
