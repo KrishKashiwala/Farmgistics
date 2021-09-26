@@ -1,4 +1,18 @@
+<<<<<<< HEAD
 .root {
     margin: 0 10em;
     font-family: 'Helvetica Neue', Helvetica, Arial;
 }
+=======
+.root {
+    margin: 0 10em;
+    font-family: 'Helvetica Neue', Helvetica, Arial;
+}
+.upper-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 7em;
+    padding: 5em;
+}
+>>>>>>> f6ccaef625972c7081e2a2de4a84f7ee8e646785

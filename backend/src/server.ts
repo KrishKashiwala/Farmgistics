@@ -6,7 +6,8 @@ const connection = mongoose
     .connect(process.env.DATABASE, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        useCreateIndex: true
+        useCreateIndex: true,
+        useUnifiedTopolgy : true
     })
     .then(() => console.log('Database connected!'));
 mongoose.connection.on('error', (err: any) => console.log(err));
