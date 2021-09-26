@@ -1,9 +1,19 @@
+import { useContext } from 'react';
+import UserContext from '../../Context/UserContext';
+import { Redirect } from 'react-router';
 import '../componentsCss/product.css';
 import vege from '../assests/vegetable.jpg';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 
 const Product = () => { 
+
+    const context = useContext(UserContext);
+
+    if(context.Id === null){
+        return <Redirect to="/"/>
+    }
+
     return (
         <div>
             <Navbar/>

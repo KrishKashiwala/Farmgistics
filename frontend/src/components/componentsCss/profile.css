@@ -2,10 +2,3 @@
     margin: 0 10em;
     font-family: 'Helvetica Neue', Helvetica, Arial;
 }
-.upper-container {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 7em;
-    padding: 5em;
-}

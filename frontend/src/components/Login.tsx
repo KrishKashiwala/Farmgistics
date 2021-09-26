@@ -101,7 +101,7 @@ const Login = ({ show }: any) => {
                 </div>
             </div>
             {data?.login && (
-                <Redirect to={`/home/${data?.login.id}`}></Redirect>
+                <Redirect to="/home"></Redirect>
             )}
         </div>
     );

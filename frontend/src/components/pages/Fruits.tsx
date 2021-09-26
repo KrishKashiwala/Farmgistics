@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import UserContext from '../../Context/UserContext';
+import { Redirect } from 'react-router';
 import '../componentsCss/spices.css'
 import Slider from '@material-ui/core/Slider';
 import Input from '@material-ui/core/Input';
@@ -18,10 +20,15 @@ function valuetext(value) {
 const Fruits = () => {
 
     const [price, setPrice] = useState(100);
+    const context = useContext(UserContext);
 
     const handleChange = (event, newValue) => {
         setPrice(newValue);
     };
+
+    if(context.Id === null){
+        return <Redirect to="/"/>
+    }
 
     return (
         <div>

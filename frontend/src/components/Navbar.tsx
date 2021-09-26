@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import UserContext from '../Context/UserContext'
 import { FIND_FARMER } from '../graphql/mutations';
 import { useMutation } from '@apollo/client';
@@ -12,7 +12,6 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
     
     const context = useContext(UserContext);
-    console.log(context);
 
     const [getByIdFarmers, { data, error }] = useMutation<farmer>(FIND_FARMER)
     getByIdFarmers({
@@ -26,7 +25,7 @@ const Navbar = () => {
         <div>
             <div className="Top-bar">
                 <div className="logo">
-                    <img src = {img1}></img>
+                    <img src = {img1} alt="img"></img>
                     <p>Welcome, {`${data?.getByIdFarmers.name}`}</p>
                 </div>
                 <div className="Search-bar">
@@ -36,7 +35,7 @@ const Navbar = () => {
                     </div>
                 </div>
                 <div className="Profile">
-                    <Link to={`/home/${context.Id}`}>
+                    <Link to="/profile">
                         <PersonOutlineOutlined fontSize="large" style={{marginRight: '2rem'}} />
                         <p>{`${data?.getByIdFarmers.name}`}</p>
                     </Link>
@@ -48,7 +47,7 @@ const Navbar = () => {
             <div className="Nav-links">
                 <ul>
                     <li>
-                        <Link to={`/home/${context.Id}`}>Home</Link>
+                        <Link to="/home">Home</Link>
                     </li>
                     <li>
                         <Link to='/spices'>Spices</Link>

@@ -4,7 +4,6 @@ import './componentsCss/homepage.css';
 import { FIND_FARMER } from '../graphql/mutations';
 import { useMutation } from '@apollo/client';
 import { farmer } from '../../interface';
-import { makeStyles } from '@material-ui/core/styles';
 import Navbar from './Navbar';
 import Avatar from '@material-ui/core/Avatar';
 import fimg from './assests/engin-akyurt-Y5n8mCpvlZU-unsplash.jpg';
@@ -12,21 +11,7 @@ import simg from './assests/josephine-baran-g4wzhY8qiMw-unsplash.jpg';
 import timg from './assests/nrd-D6Tu_L3chLE-unsplash.jpg';
 import Cards from "./Cards";
 import Footer from './Footer';
-const useStyles = makeStyles({
-    root: {
-        maxWidth: 300,
-        marginRight: 10,
-        marginTop: 10,
-        marginBottom: 10
-    },
-    media: {
-        height: 150
-    },
-    large: {
-        width: 80,
-        height: 80
-    }
-});
+import { Redirect } from 'react-router';
 
 const Homepage = () => {
 
@@ -48,7 +33,9 @@ const Homepage = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]);
 
-    const classes = useStyles();
+    if(context.Id === null){
+        return <Redirect to="/"/>
+    }
 
     return (
         <div className="main-container">
