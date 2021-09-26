@@ -2,7 +2,8 @@ import { useEffect, useContext } from 'react';
 import UserContext from '../Context/UserContext';
 import './componentsCss/homepage.css';
 import { FIND_FARMER } from '../graphql/mutations';
-import { useMutation } from '@apollo/client';
+import { useMutation,gql } from '@apollo/client';
+import * as compose from 'lodash.flowright';
 import { farmer } from '../../interface';
 import { makeStyles } from '@material-ui/core/styles';
 import Navbar from './Navbar';
@@ -12,6 +13,7 @@ import simg from './assests/josephine-baran-g4wzhY8qiMw-unsplash.jpg';
 import timg from './assests/nrd-D6Tu_L3chLE-unsplash.jpg';
 import Cards from "./Cards";
 import Footer from './Footer';
+import { graphql } from 'graphql';
 const useStyles = makeStyles({
     root: {
         maxWidth: 300,
@@ -31,6 +33,11 @@ const useStyles = makeStyles({
 const Homepage = () => {
 
     const context = useContext(UserContext);
+    // const mutu = compose(
+    //     graphql(FIND_FARMER,{
+    //         name : 'FIND_FARMER'
+    //     })
+    // )
 
     const [getByIdFarmers, { data, error }] = useMutation<farmer>(FIND_FARMER);
     const farmerRequest = () => {
@@ -101,6 +108,7 @@ const Homepage = () => {
             <div className="trending-products">
                 <div className="heading">
                     <h2>Trending Products</h2>
+                    <h2>{data?.getSecond?.name}</h2>
                     <hr></hr>
                 </div>
             </div>

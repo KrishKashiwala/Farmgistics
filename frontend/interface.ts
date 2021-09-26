@@ -16,6 +16,9 @@ export interface farmer {
         phone?: string;
         id?: string;
     };
+    getSecond:{
+        name?: string;
+    }
 }
 
 export interface order {

@@ -25,15 +25,10 @@ export const MiddlewareFun: MiddlewareFn = async ({ context }: any, next) => {
 };
 @Resolver()
 class HelloResolver {
-    @Query(() => Farmer)
-    @UseMiddleware(MiddlewareFun)
-    async helloWorld(
-        @Ctx() ctx: MyContext,
-        @Args() { name }: farmerArgs
-    ): Promise<string | undefined> {
-        console.log(ctx.req);
-
-        return name;
+    @Mutation(()=>String)
+    async getSecond(@Arg('id',{nullable : true}) id : String) : Promise<String>{
+        const farmer = await Farmers.find({id})
+        return farmer.name;
     }
     @UseMiddleware(MiddlewareFun)
     @Query(() => [User])

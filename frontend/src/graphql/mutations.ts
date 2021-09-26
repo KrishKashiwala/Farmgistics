@@ -1,4 +1,5 @@
 import { gql } from '@apollo/client';
+import { graphql } from 'graphql';
 const CREATE_FARMER = gql`
     mutation createFarmer(
         $name: String
@@ -45,6 +46,11 @@ const FIND_FARMER = gql`
             token
             email
             city
+        }
+    }
+    mutation getSecond($id : String!){
+        getSecond(id : $id){
+            name
         }
     }
 `;
