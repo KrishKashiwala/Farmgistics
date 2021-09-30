@@ -40,10 +40,7 @@ class HelloResolver {
   }
   @Query(() => Farmer)
   async third(@Args() { id }: simpleId): Promise<farmer | {}> {
-    const farmer = await Farmers.findById(id, () => {
-      console.log("not found");
-    });
-    console.log("hello farmer", farmer);
+    const farmer = await Farmers.findById(id);
     const returnval = {
       name: farmer.name,
       id: farmer.id,
@@ -59,7 +56,7 @@ class HelloResolver {
   }
   @Query(() => [Post])
   async getAllPosts(): Promise<Post[]> {
-    return await Posts.find({});
+    return await Posts.find({}).limit(3);
   }
   @Mutation(() => [Post], { nullable: true })
   async getAllFarmers(@Args() { farmerId }: postTypes): Promise<[Post]> {

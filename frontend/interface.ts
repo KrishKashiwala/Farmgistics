@@ -1,12 +1,14 @@
-export interface UserPost {
-  UserPost: {
-    title?: string;
-    des?: string;
-    city?: string;
-    price?: string;
-    farmerId?: string;
-    id?: string;
-  };
+export interface getAllPosts {
+  title?: string;
+  des?: string;
+  city?: string;
+  price?: string;
+  farmerId?: string;
+  id?: string;
+}
+
+export interface UserPostA {
+  getAllPosts: [getAllPosts];
 }
 export interface farmer {
   getByIdFarmers: {
