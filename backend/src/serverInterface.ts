@@ -6,3 +6,6 @@ export interface farmer {
     password?: String;
     city?: String;
 }
+export interface temp{
+    id ?: String
+}

@@ -1,5 +1,4 @@
 import { gql } from '@apollo/client';
-import { graphql } from 'graphql';
 const CREATE_FARMER = gql`
     mutation createFarmer(
         $name: String
@@ -48,13 +47,16 @@ const FIND_FARMER = gql`
             city
         }
     }
-    mutation getSecond($id : String!){
-        getSecond(id : $id){
-            name
-        }
-    }
+   
 `;
-
+const SECOND_QUERY = gql`
+ query secondq($id : String){
+     secondq(id : $id){
+         name
+         email
+     }
+ }
+`
 const FIND_FARMER_POST = gql`
     mutation getAllFarmers($farmerId: String) {
         getAllFarmers(farmerId: $farmerId) {
@@ -91,5 +93,6 @@ export {
     LOGIN_FARMER,
     FIND_FARMER,
     FIND_FARMER_POST,
-    USER_POST
+    USER_POST,
+    SECOND_QUERY
 };

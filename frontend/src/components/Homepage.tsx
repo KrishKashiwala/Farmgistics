@@ -1,9 +1,8 @@
 import { useEffect, useContext } from 'react';
 import UserContext from '../Context/UserContext';
 import './componentsCss/homepage.css';
-import { FIND_FARMER } from '../graphql/mutations';
-import { useMutation } from '@apollo/client';
-import { farmer } from '../../interface';
+import { FIND_FARMER,SECOND_QUERY } from '../graphql/mutations';
+import { useMutation,useQuery } from '@apollo/client';
 import Navbar from './Navbar';
 import Avatar from '@material-ui/core/Avatar';
 import fimg from './assests/engin-akyurt-Y5n8mCpvlZU-unsplash.jpg';
@@ -12,12 +11,17 @@ import timg from './assests/nrd-D6Tu_L3chLE-unsplash.jpg';
 import Cards from "./Cards";
 import Footer from './Footer';
 import { Redirect } from 'react-router';
+import { farmer } from '../../interface';
 
 const Homepage = () => {
 
     const context = useContext(UserContext);
-
-    const [getByIdFarmers, { data, error }] = useMutation<farmer>(FIND_FARMER);
+    const [getByIdFarmers ] = useMutation<farmer>(FIND_FARMER);
+    const {data,loading,error} = useQuery<farmer>(SECOND_QUERY,{
+        variables:{
+            id : context.Id
+        }
+    })
     const farmerRequest = () => {
         getByIdFarmers({
             variables: {
@@ -26,11 +30,12 @@ const Homepage = () => {
         });
     }; 
     if (error || !data) console.log(error);
+
  
     useEffect(() => {
         farmerRequest();
         console.log(data?.getByIdFarmers.id);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+
     },[]);
 
     if(context.Id === null){
@@ -40,6 +45,7 @@ const Homepage = () => {
     return (
         <div className="main-container">
             <Navbar/>
+            <h1>{data?.secondq?.name}</h1>
             <div className="image-slider">
                 <div id="demo" className="carousel slide" data-ride="carousel">
                     <ul className="carousel-indicators">

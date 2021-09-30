@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import storage from '../Firebase/config';
 import {
     TextField,
     Button
@@ -24,35 +23,7 @@ const Registerpost = ({ postBool, val }: any) => {
     const [UserPost, { data, error, loading }] =
         useMutation<UserPost>(USER_POST);
 
-    const handleImage = e => {
-        try {
-            var st = storage.ref();
-            const file = e.target.files[0]
-            const uploadTask = st.child('Photo/' + file.name).put(file)
-            uploadTask.on(
-                "state_changed",
-                snapshot => {
-                    const Done = Math.round(
-                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-                    )
-                    setProgress(Done)
-                },
-                error => {
-                    console.log(error)
-                },
-                async () => {
-                    await uploadTask.snapshot.ref.getDownloadURL()
-                        .then(downloadURL => {
-                            console.log(downloadURL);
-                            setPhoto(downloadURL);
-                        })
-                        .catch(err => console.log(err))
-                }
-            )
-        } catch (err) {
-            console.log(err)
-        }
-    }
+    
 
     const registered = () => {
         UserPost({
@@ -64,7 +35,6 @@ const Registerpost = ({ postBool, val }: any) => {
                 // for photo link use photo like photo: photo,
             }
         });
-        <Redirect to='/profile'/>
     };
     if (!data || error || loading) console.log('farmer fetch error');
     if (!postBool) {
@@ -80,10 +50,8 @@ const Registerpost = ({ postBool, val }: any) => {
                         <TextField id="outlined-basic" label="Description" variant="outlined" value={des} onChange={ e => setDes(e.target.value)}/>
                         <TextField id="outlined-basic" label="Price" variant="outlined" value={price} onChange={ e => setPrice(e.target.value)}/>
                         <TextField id="outlined-basic" label="City" variant="outlined" value={city} onChange={ e => setCity(e.target.value)}/>
-                        <TextField type="file" id="outlined-basic" label="Photo" variant="outlined" onChange={ e => handleImage(e)}/>
                         <Button type='submit' variant="contained" color="primary">Submit</Button>
                     </form>
-                    <LinearProgress value={progress} />
                 </div>
             </div>
         </div>

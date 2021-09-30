@@ -56,5 +56,8 @@ class simpleId {
     @Field({ nullable: true })
     @MaxLength(30)
     farmerId: String;
+    @Field({ nullable: true })
+    @MaxLength(30)
+    id: String;
 }
 export { farmerArgs, loginArgs, postTypes, simpleId };
