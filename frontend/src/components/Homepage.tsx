@@ -1,7 +1,7 @@
 import { useEffect, useContext } from 'react';
 import UserContext from '../Context/UserContext';
 import './componentsCss/homepage.css';
-import { FIND_FARMER,SECOND_QUERY } from '../graphql/mutations';
+import { FIND_FARMER,SECOND_QUERY,THIRD_QUERY } from '../graphql/mutations';
 import { useMutation,useQuery } from '@apollo/client';
 import Navbar from './Navbar';
 import Avatar from '@material-ui/core/Avatar';
@@ -22,6 +22,12 @@ const Homepage = () => {
             id : context.Id
         }
     })
+   const {data : t_d} = useQuery<farmer>(THIRD_QUERY,{
+        variables:{
+            id : context.Id
+        }
+    })
+
     const farmerRequest = () => {
         getByIdFarmers({
             variables: {
@@ -45,7 +51,8 @@ const Homepage = () => {
     return (
         <div className="main-container">
             <Navbar/>
-            <h1>{data?.secondq?.name}</h1>
+            {/* <h1>{data?.secondq?.name}</h1>
+            <h1>{t_d?.third?.name}</h1> */}
             <div className="image-slider">
                 <div id="demo" className="carousel slide" data-ride="carousel">
                     <ul className="carousel-indicators">

@@ -57,6 +57,14 @@ const SECOND_QUERY = gql`
      }
  }
 `
+const THIRD_QUERY = gql`
+ query third($id : String){
+     third(id : $id){
+         name
+         email
+     }
+ }
+`
 const FIND_FARMER_POST = gql`
     mutation getAllFarmers($farmerId: String) {
         getAllFarmers(farmerId: $farmerId) {
@@ -94,5 +102,6 @@ export {
     FIND_FARMER,
     FIND_FARMER_POST,
     USER_POST,
-    SECOND_QUERY
+    SECOND_QUERY,
+    THIRD_QUERY
 };

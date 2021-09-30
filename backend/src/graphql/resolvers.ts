@@ -38,6 +38,19 @@ class HelloResolver {
     };
     return returnval;
   }
+  @Query(() => Farmer)
+  async third(@Args() { id }: simpleId): Promise<farmer | {}> {
+    const farmer = await Farmers.findById(id, () => {
+      console.log("not found");
+    });
+    console.log("hello farmer", farmer);
+    const returnval = {
+      name: farmer.name,
+      id: farmer.id,
+      email: farmer.email,
+    };
+    return returnval;
+  }
 
   @UseMiddleware(MiddlewareFun)
   @Query(() => [User])
