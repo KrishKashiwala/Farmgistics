@@ -1,5 +1,5 @@
 import { useState } from "react";
-import firebaseApp from '../Firebase'
+import firebaseApp from "../Firebase";
 import { TextField, Button } from "@material-ui/core";
 import { useMutation } from "@apollo/client";
 //@ts-ignore
@@ -15,40 +15,40 @@ const Registerpost = ({ postBool, val }: any) => {
   const [des, setDes] = useState<String>();
   const [price, setPrice] = useState<String>();
   const [city, setCity] = useState<String>();
-  const [photo, setPhoto] = useState<String>();
   const [progress, setProgress] = useState(0);
   const [UserPost, { data, error, loading }] =
     useMutation<UserPostA>(USER_POST);
-
-    const handleImg = e => {
-      try {
-          var st = firebaseApp.storage().ref();
-          const file = e.target.files[0]
-          const uploadTask = st.child('Photos/' + file.name).put(file)
-          uploadTask.on(
-              "state_changed",
-              snapshot => {
-                  const Done = Math.round(
-                      (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-                  )
-                  setProgress(Done)
-              },
-              error => {
-                  console.log(error)
-              },
-              async () => {
-                  await uploadTask.snapshot.ref.getDownloadURL()
-                      .then(downloadURL => {
-                          console.log(downloadURL);
-                          setPhoto(downloadURL);
-                      })
-                      .catch(err => console.log(err))
-              }
-          )
-      } catch (err) {
-          console.log(err)
-      }
-  }
+  let photo = "";
+  const handleImg = (e) => {
+    try {
+      var st = firebaseApp.storage().ref();
+      const file = e.target.files[0];
+      const uploadTask = st.child("Photos/" + file.name).put(file);
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const Done = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+          setProgress(Done);
+        },
+        (error) => {
+          console.log(error);
+        },
+        async () => {
+          await uploadTask.snapshot.ref
+            .getDownloadURL()
+            .then((downloadURL) => {
+              console.log(downloadURL);
+              photo = downloadURL;
+            })
+            .catch((err) => console.log(err));
+        }
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const registered = () => {
     UserPost({
@@ -57,9 +57,11 @@ const Registerpost = ({ postBool, val }: any) => {
         title: title,
         des: des,
         price: price,
+        photo: photo,
         // for photo link use photo like photo: photo,
       },
     });
+    console.log(photo);
   };
   if (!data || error || loading) console.log("farmer fetch error");
   if (!postBool) {
@@ -103,10 +105,11 @@ const Registerpost = ({ postBool, val }: any) => {
               id='outlined-basic'
               label='Photo'
               variant='outlined'
-              type="file"
+              type='file'
               onChange={(e) => handleImg(e)}
             />
-            <Button type='submit' variant='contained' color='primary'>
+
+            <Button onClick={registered} variant='contained' color='primary'>
               Submit
             </Button>
           </form>

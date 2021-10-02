@@ -1,107 +1,109 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 const CREATE_FARMER = gql`
-    mutation createFarmer(
-        $name: String
-        $phone: String
-        $city: String
-        $email: String
-        $password: String
-        $confirmPassword: String
+  mutation createFarmer(
+    $name: String
+    $phone: String
+    $city: String
+    $email: String
+    $password: String
+    $confirmPassword: String
+  ) {
+    createFarmer(
+      name: $name
+      phone: $phone
+      city: $city
+      email: $email
+      password: $password
+      confirmPassword: $confirmPassword
     ) {
-        createFarmer(
-            name: $name
-            phone: $phone
-            city: $city
-            email: $email
-            password: $password
-            confirmPassword: $confirmPassword
-        ) {
-            name
-            phone
-            city
-            email
-            city
-            password
-            confirmPassword
-        }
+      name
+      phone
+      city
+      email
+      city
+      password
+      confirmPassword
     }
+  }
 `;
 const LOGIN_FARMER = gql`
-    mutation login($email: String, $password: String) {
-        login(email: $email, password: $password) {
-            email
-            token
-            name
-            city
-            id
-        }
+  mutation login($email: String, $password: String) {
+    login(email: $email, password: $password) {
+      email
+      token
+      name
+      city
+      id
     }
+  }
 `;
 const FIND_FARMER = gql`
-    mutation getByIdFarmers($id: String!) {
-        getByIdFarmers(id: $id) {
-            name
-            id
-            token
-            email
-            city
-        }
+  mutation getByIdFarmers($id: String!) {
+    getByIdFarmers(id: $id) {
+      name
+      id
+      token
+      email
+      city
     }
-   
+  }
 `;
 const SECOND_QUERY = gql`
- query secondq($id : String){
-     secondq(id : $id){
-         name
-         email
-     }
- }
-`
-const THIRD_QUERY = gql`
- query third($id : String){
-     third(id : $id){
-         name
-         email
-     }
- }
-`
-const FIND_FARMER_POST = gql`
-    mutation getAllFarmers($farmerId: String) {
-        getAllFarmers(farmerId: $farmerId) {
-            title
-            des
-        }
+  query secondq($id: String) {
+    secondq(id: $id) {
+      name
+      email
     }
+  }
+`;
+const THIRD_QUERY = gql`
+  query third($id: String) {
+    third(id: $id) {
+      name
+      email
+    }
+  }
+`;
+const FIND_FARMER_POST = gql`
+  mutation getAllFarmers($farmerId: String) {
+    getAllFarmers(farmerId: $farmerId) {
+      title
+      des
+    }
+  }
 `;
 const USER_POST = gql`
-    mutation UserPost(
-        $farmerId: String
-        $title: String
-        $des: String
-        $price: String
-        $city: String
+  mutation UserPost(
+    $farmerId: String
+    $title: String
+    $des: String
+    $price: String
+    $city: String
+    $photo: String
+  ) {
+    UserPost(
+      farmerId: $farmerId
+      title: $title
+      des: $des
+      price: $price
+      city: $city
+      photo: $photo
     ) {
-        UserPost(
-            farmerId: $farmerId
-            title: $title
-            des: $des
-            price: $price
-            city: $city
-        ) {
-            farmerId
-            title
-            des
-            price
-            city
-        }
+      farmerId
+      title
+      des
+      price
+      photo
+      city
     }
+  }
 `;
 export {
-    CREATE_FARMER,
-    LOGIN_FARMER,
-    FIND_FARMER,
-    FIND_FARMER_POST,
-    USER_POST,
-    SECOND_QUERY,
-    THIRD_QUERY
+  CREATE_FARMER,
+  LOGIN_FARMER,
+  FIND_FARMER,
+  FIND_FARMER_POST,
+  USER_POST,
+  SECOND_QUERY,
+  THIRD_QUERY,
 };
