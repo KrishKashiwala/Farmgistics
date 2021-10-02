@@ -1,4 +1,5 @@
 import { useState } from "react";
+import firebaseApp from '../Firebase'
 import { TextField, Button } from "@material-ui/core";
 import { useMutation } from "@apollo/client";
 //@ts-ignore
@@ -18,6 +19,36 @@ const Registerpost = ({ postBool, val }: any) => {
   const [progress, setProgress] = useState(0);
   const [UserPost, { data, error, loading }] =
     useMutation<UserPostA>(USER_POST);
+
+    const handleImg = e => {
+      try {
+          var st = firebaseApp.storage().ref();
+          const file = e.target.files[0]
+          const uploadTask = st.child('Photos/' + file.name).put(file)
+          uploadTask.on(
+              "state_changed",
+              snapshot => {
+                  const Done = Math.round(
+                      (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                  )
+                  setProgress(Done)
+              },
+              error => {
+                  console.log(error)
+              },
+              async () => {
+                  await uploadTask.snapshot.ref.getDownloadURL()
+                      .then(downloadURL => {
+                          console.log(downloadURL);
+                          setPhoto(downloadURL);
+                      })
+                      .catch(err => console.log(err))
+              }
+          )
+      } catch (err) {
+          console.log(err)
+      }
+  }
 
   const registered = () => {
     UserPost({
@@ -67,6 +98,13 @@ const Registerpost = ({ postBool, val }: any) => {
               variant='outlined'
               value={city}
               onChange={(e) => setCity(e.target.value)}
+            />
+            <TextField
+              id='outlined-basic'
+              label='Photo'
+              variant='outlined'
+              type="file"
+              onChange={(e) => handleImg(e)}
             />
             <Button type='submit' variant='contained' color='primary'>
               Submit
