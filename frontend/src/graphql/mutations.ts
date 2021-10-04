@@ -48,6 +48,7 @@ const FIND_FARMER = gql`
       token
       email
       city
+      image
     }
   }
 `;

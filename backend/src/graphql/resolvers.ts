@@ -83,6 +83,7 @@ class HelloResolver {
         city: farmer.city,
         id: farmer.id,
         token: farmer.token,
+        image: farmer.image,
       };
       if (farmer) {
         return { ...returnData };
