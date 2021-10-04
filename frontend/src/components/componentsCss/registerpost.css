@@ -12,13 +12,8 @@
 }
 .modal-content {
     width: 50em;
-<<<<<<< Updated upstream
     height: 50rem;
     /* padding: 1em; */
-=======
-    height: 50em;
-    padding: 1em;
->>>>>>> Stashed changes
     border-radius: 25px;
 }
 .modal-footer,

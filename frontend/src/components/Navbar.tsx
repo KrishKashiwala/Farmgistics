@@ -81,7 +81,7 @@ const Navbar = () => {
         <div className='Profile'>
           <Link to='/profile'>
             <img
-              src={data.getByIdFarmers.image}
+              src={data?.getByIdFarmers.image}
               style={{ borderRadius: "50", width: "2rem", height: "2rem" }}
               alt='profile pic'
             />

@@ -37,35 +37,36 @@ const SignUp = ({ show }: any) => {
   const [progress, setProgress] = useState(0);
   const [createFarmer] = useMutation(CREATE_FARMER);
 
-  const handleProfile = e => {
+  const handleProfile = (e) => {
     try {
-        var st = firebaseApp.storage().ref();
-        const file = e.target.files[0]
-        const uploadTask = st.child('User-Photos/' + file.name).put(file)
-        uploadTask.on(
-            "state_changed",
-            snapshot => {
-                const Done = Math.round(
-                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-                )
-                setProgress(Done)
-            },
-            error => {
-                console.log(error)
-            },
-            async () => {
-                await uploadTask.snapshot.ref.getDownloadURL()
-                    .then(downloadURL => {
-                        console.log(downloadURL);
-                        setPhoto(downloadURL);
-                    })
-                    .catch(err => console.log(err))
-            }
-        )
-      } catch (err) {
-          console.log(err)
-      }
-  }
+      var st = firebaseApp.storage().ref();
+      const file = e.target.files[0];
+      const uploadTask = st.child("User-Photos/" + file.name).put(file);
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const Done = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+          setProgress(Done);
+        },
+        (error) => {
+          console.log(error);
+        },
+        async () => {
+          await uploadTask.snapshot.ref
+            .getDownloadURL()
+            .then((downloadURL) => {
+              console.log(downloadURL);
+              setPhoto(downloadURL);
+            })
+            .catch((err) => console.log(err));
+        }
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const registered = () => {
     createFarmer({
@@ -81,7 +82,6 @@ const SignUp = ({ show }: any) => {
     });
 
     console.log(photo);
-    
   };
   if (!show) {
     return null;
@@ -112,7 +112,6 @@ const SignUp = ({ show }: any) => {
                 <ThemeProvider theme={theme}>
                   <Typography variant='h5'>Create your account</Typography>
                   <div className='modal-header'></div>
-                  
                   <TextField
                     fullWidth
                     variant='outlined'
@@ -124,24 +123,7 @@ const SignUp = ({ show }: any) => {
                   >
                     First Name
                   </TextField>
-<<<<<<< Updated upstream
-                  
-                  
-                  <TextField
-                    fullWidth
-                    variant='outlined'
-                    label='Profile Photo'
-                    name='name'
-                    type="file"
-                    onChange={(e) => handleProfile(e)}
-                  >
-                    Profile Photo
-                  </TextField>
-                  
-                  
-=======
                   <br />
->>>>>>> Stashed changes
                   <TextField
                     fullWidth
                     variant='outlined'
@@ -153,12 +135,7 @@ const SignUp = ({ show }: any) => {
                   >
                     email
                   </TextField>
-<<<<<<< Updated upstream
-                  
-                  
-=======
                   <br />
->>>>>>> Stashed changes
                   <TextField
                     fullWidth
                     variant='outlined'
@@ -170,12 +147,7 @@ const SignUp = ({ show }: any) => {
                   >
                     phone number
                   </TextField>
-<<<<<<< Updated upstream
-                  
-                  
-=======
                   <br />
->>>>>>> Stashed changes
                   <TextField
                     select
                     label='City'
@@ -192,12 +164,7 @@ const SignUp = ({ show }: any) => {
                       </option>
                     ))}
                   </TextField>
-<<<<<<< Updated upstream
-                  
-                  
-=======
                   <br />
->>>>>>> Stashed changes
                   <TextField
                     label='Password'
                     name='password'
@@ -221,12 +188,7 @@ const SignUp = ({ show }: any) => {
                   >
                     confirm password
                   </TextField>
-<<<<<<< Updated upstream
-                  
-                  
-=======
                   <br />
->>>>>>> Stashed changes
                   <Button
                     fullWidth
                     variant='contained'
