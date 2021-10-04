@@ -1,6 +1,6 @@
 import firebase from 'firebase';
-import 'firebase/storage'
-const firebaseConfig = {
+
+const config = {
   apiKey: "AIzaSyCVJRQm-N-1jLUXNSfz3DBZ-qfUq-nlZSg",
   authDomain: "farmgistic-a0a33.firebaseapp.com",
   projectId: "farmgistic-a0a33",
@@ -10,8 +10,6 @@ const firebaseConfig = {
   measurementId: "G-ZBVLTH8H9W"
 };
 
-const firebaseApp = firebase.initializeApp(firebaseConfig);
-const storage = firebase.storage()
-export {
-  storage, firebaseConfig  as default
-};  
+const firebaseApp = firebase.initializeApp(config);
+
+export default firebaseApp; 

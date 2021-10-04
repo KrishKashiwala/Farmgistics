@@ -79,7 +79,7 @@ const USER_POST = gql`
     $des: String
     $price: String
     $city: String
-    $photo: String
+    $url: String
   ) {
     UserPost(
       farmerId: $farmerId
@@ -87,13 +87,13 @@ const USER_POST = gql`
       des: $des
       price: $price
       city: $city
-      photo: $photo
+      url: $url
     ) {
       farmerId
       title
       des
       price
-      photo
+      url
       city
     }
   }

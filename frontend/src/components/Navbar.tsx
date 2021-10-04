@@ -18,7 +18,6 @@ const Navbar = () => {
       id: context.Id,
     },
   });
-  if (error || !data) console.log(error);
 
   const [search, setSearch] = useState<String>("no");
   const searcher = () => {

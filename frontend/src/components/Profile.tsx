@@ -60,12 +60,10 @@ const Profile = () => {
       },
     });
   };
-  if (error || !data) console.log(error);
 
   React.useEffect(() => {
     const token = localStorage.getItem("jwt-token");
     if (!token) console.log("no token");
-    else console.log(token);
     firstProfileLoader();
     firstOrders();
     // eslint-disable-next-line react-hooks/exhaustive-deps

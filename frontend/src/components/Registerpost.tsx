@@ -1,5 +1,5 @@
 import { useState } from "react";
-import firebaseApp from "../Firebase";
+import firebaseApp from '../Firebase';
 import { TextField, Button } from "@material-ui/core";
 import { useMutation } from "@apollo/client";
 //@ts-ignore
@@ -7,39 +7,55 @@ import { USER_POST } from "../graphql/mutations";
 import { getAllPosts, UserPostA } from "../../interface";
 // css imports
 import "./componentsCss/registerpost.css";
-import { LinearProgress } from "@material-ui/core";
-import { Redirect } from "react-router";
 
-import { storage } from "../Firebase";
+import { useHistory } from 'react-router-dom';
 
 const Registerpost = ({ postBool, val }: any) => {
+
+  const history = useHistory();
+
   const [title, setTitle] = useState<String>();
   const [des, setDes] = useState<String>();
   const [price, setPrice] = useState<String>();
   const [city, setCity] = useState<String>();
-  // const [photo, setPhoto] = useState<String>();
+  const [url, setURL] = useState("");
   const [progress, setProgress] = useState(0);
   const [UserPost, { data, error, loading }] =
     useMutation<UserPostA>(USER_POST);
 
-  const [file, setFile] = useState(null);
-  const [url, setURL] = useState("");
+  const handleChange = e => {
+    try {
+        var st = firebaseApp.storage().ref();
+        const file = e.target.files[0]
+        const uploadTask = st.child('Photos/' + file.name).put(file)
+        uploadTask.on(
+            "state_changed",
+            snapshot => {
+                const Done = Math.round(
+                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                )
+                setProgress(Done)
+            },
+            error => {
+                console.log(error)
+            },
+            async () => {
+                await uploadTask.snapshot.ref.getDownloadURL()
+                    .then(downloadURL => {
+                        console.log(downloadURL);
+                        setURL(downloadURL);
+                    })
+                    .catch(err => console.log(err))
+            }
+        )
+      } catch (err) {
+          console.log(err)
+      }
+  }
+  const register = (e) => {
 
-  function handleChange(e) {
-    setFile(e.target.files[0]);
-  }
-  function handleUpload(e) {
     e.preventDefault();
-    const ref = storage.ref(`/images/${file.name}`);
-    const uploadTask = ref.put(file);
-    uploadTask.on("state_changed", console.log, console.error, () => {
-      ref.getDownloadURL().then((url) => {
-        setFile(null);
-        setURL(url);
-      });
-    });
-  }
-  const registered = () => {
+
     UserPost({
       variables: {
         farmerId: val,
@@ -47,21 +63,24 @@ const Registerpost = ({ postBool, val }: any) => {
         des: des,
         price: price,
         url: url,
-        // for photo link use photo like photo: photo,
       },
     });
+
+    console.log(url);
+
+    history.push("/home/");
   };
-  if (!data || error || loading) console.log("farmer fetch error");
+  
   if (!postBool) {
     return null;
   }
-  console.log(url);
+  
   return (
     <div className='modal'>
       <div className='modal-content'>
         <div className='modal-body'>
           <h3>Add a Product</h3>
-          <form>
+          <form onSubmit={register}>
             <TextField
               id='outlined-basic'
               label='Title'
@@ -100,8 +119,7 @@ const Registerpost = ({ postBool, val }: any) => {
             />
 
             <Button
-              onClick={handleUpload}
-              disabled={!file}
+              type="submit"
               variant='contained'
               color='primary'
             >
