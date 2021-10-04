@@ -43,7 +43,7 @@ const Homepage = () => {
     farmerRequest();
   }, []);
   if (context.Id === null) {
-    return <Redirect to='/' />;
+    return <Redirect to='/not-found' />;
   }
   return (
     <div className='main-container'>

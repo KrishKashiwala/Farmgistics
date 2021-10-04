@@ -15,10 +15,10 @@ const Registerpost = ({ postBool, val }: any) => {
   const [des, setDes] = useState<String>();
   const [price, setPrice] = useState<String>();
   const [city, setCity] = useState<String>();
+  const [photo, setPhoto] = useState<String>();
   const [progress, setProgress] = useState(0);
   const [UserPost, { data, error, loading }] =
     useMutation<UserPostA>(USER_POST);
-  let photo = "";
   const handleImg = (e) => {
     try {
       var st = firebaseApp.storage().ref();
@@ -40,7 +40,7 @@ const Registerpost = ({ postBool, val }: any) => {
             .getDownloadURL()
             .then((downloadURL) => {
               console.log(downloadURL);
-              photo = downloadURL;
+              setPhoto(downloadURL);
             })
             .catch((err) => console.log(err));
         }
@@ -82,6 +82,14 @@ const Registerpost = ({ postBool, val }: any) => {
             />
             <TextField
               id='outlined-basic'
+              label='Photo'
+              variant='outlined'
+              type='file'
+              name='photo'
+              onChange={(e) => handleImg(e)}
+            />
+            <TextField
+              id='outlined-basic'
               label='Description'
               variant='outlined'
               value={des}
@@ -100,13 +108,6 @@ const Registerpost = ({ postBool, val }: any) => {
               variant='outlined'
               value={city}
               onChange={(e) => setCity(e.target.value)}
-            />
-            <TextField
-              id='outlined-basic'
-              label='Photo'
-              variant='outlined'
-              type='file'
-              onChange={(e) => handleImg(e)}
             />
 
             <Button onClick={registered} variant='contained' color='primary'>

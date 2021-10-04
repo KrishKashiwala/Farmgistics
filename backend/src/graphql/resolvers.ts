@@ -56,7 +56,7 @@ class HelloResolver {
   }
   @Query(() => [Post])
   async getAllPosts(): Promise<Post[]> {
-    return await Posts.find({}).limit(3);
+    return await Posts.find({});
   }
   @Mutation(() => [Post], { nullable: true })
   async getAllFarmers(@Args() { farmerId }: postTypes): Promise<[Post]> {

@@ -10,6 +10,7 @@ import ContactUs from "./components/pages/ContactUs";
 import UserContext from "./Context/UserContext";
 import Product from "./components/pages/Product";
 import Cart from "./components/pages/Cart";
+import ReLogin from "./components/pages/ReLogin";
 
 const App = () => {
   const [id, setId] = useState(null);
@@ -44,7 +45,7 @@ const App = () => {
             <Route exact path='/contactus' component={ContactUs} />
             <Route exact path='/product' component={Product} />
             <Route exact path='/cart' component={Cart} />
-            <Route path='/' render={() => <div>404</div>} />
+            <Route path='/not-found' render={ReLogin} />
           </Switch>
         </UserContext.Provider>
       </BrowserRouter>
