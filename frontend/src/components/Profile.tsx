@@ -81,6 +81,8 @@ const Profile = () => {
               url={item.url}
               title={item.title}
               des={item.des}
+              price={item.price}
+              city={item.city}
             />
           ))}
         </div>

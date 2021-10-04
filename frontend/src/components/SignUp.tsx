@@ -124,6 +124,7 @@ const SignUp = ({ show }: any) => {
                   >
                     First Name
                   </TextField>
+<<<<<<< Updated upstream
                   
                   
                   <TextField
@@ -138,6 +139,9 @@ const SignUp = ({ show }: any) => {
                   </TextField>
                   
                   
+=======
+                  <br />
+>>>>>>> Stashed changes
                   <TextField
                     fullWidth
                     variant='outlined'
@@ -149,8 +153,12 @@ const SignUp = ({ show }: any) => {
                   >
                     email
                   </TextField>
+<<<<<<< Updated upstream
                   
                   
+=======
+                  <br />
+>>>>>>> Stashed changes
                   <TextField
                     fullWidth
                     variant='outlined'
@@ -162,8 +170,12 @@ const SignUp = ({ show }: any) => {
                   >
                     phone number
                   </TextField>
+<<<<<<< Updated upstream
                   
                   
+=======
+                  <br />
+>>>>>>> Stashed changes
                   <TextField
                     select
                     label='City'
@@ -180,8 +192,12 @@ const SignUp = ({ show }: any) => {
                       </option>
                     ))}
                   </TextField>
+<<<<<<< Updated upstream
                   
                   
+=======
+                  <br />
+>>>>>>> Stashed changes
                   <TextField
                     label='Password'
                     name='password'
@@ -205,8 +221,12 @@ const SignUp = ({ show }: any) => {
                   >
                     confirm password
                   </TextField>
+<<<<<<< Updated upstream
                   
                   
+=======
+                  <br />
+>>>>>>> Stashed changes
                   <Button
                     fullWidth
                     variant='contained'

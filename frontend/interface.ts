@@ -17,6 +17,7 @@ export interface farmer {
     email?: string;
     phone?: string;
     id?: string;
+    image?: string;
   };
   secondq: {
     name?: string;
@@ -31,11 +32,13 @@ export interface order {
   des?: string;
   url?: string;
   price?: string;
+  city?: string;
   allFarmers: {
     title?: string;
     des?: string;
     url?: string;
     price?: string;
+    city?: string;
   };
 }
 export interface allOrders {

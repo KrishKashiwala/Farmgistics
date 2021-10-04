@@ -80,9 +80,10 @@ const Navbar = () => {
         </div>
         <div className='Profile'>
           <Link to='/profile'>
-            <PersonOutlineOutlined
-              fontSize='large'
-              style={{ marginRight: "2rem" }}
+            <img
+              src={data.getByIdFarmers.image}
+              style={{ borderRadius: "50", width: "2rem", height: "2rem" }}
+              alt='profile pic'
             />
             <p>{`${data?.getByIdFarmers.name}`}</p>
           </Link>
