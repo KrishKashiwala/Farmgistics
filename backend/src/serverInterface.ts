@@ -5,6 +5,7 @@ export interface farmer {
   token?: String;
   password?: String;
   city?: String;
+  image?: String;
 }
 export interface temp {
   id?: String;

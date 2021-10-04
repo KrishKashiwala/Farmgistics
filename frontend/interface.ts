@@ -29,9 +29,13 @@ export interface farmer {
 export interface order {
   title?: string;
   des?: string;
+  url?: string;
+  price?: string;
   allFarmers: {
     title?: string;
     des?: string;
+    url?: string;
+    price?: string;
   };
 }
 export interface allOrders {

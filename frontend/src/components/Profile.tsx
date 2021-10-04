@@ -78,6 +78,7 @@ const Profile = () => {
           {data?.getAllFarmers.map((item) => (
             <OrderItem
               val={`${context.Id}`}
+              url={item.url}
               title={item.title}
               des={item.des}
             />
