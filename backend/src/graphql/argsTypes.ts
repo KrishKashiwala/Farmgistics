@@ -51,8 +51,8 @@ class postTypes {
   @MaxLength(30)
   city: string;
   @Field({ nullable: true })
-  @MaxLength(100)
-  photo: string;
+  @MaxLength(1000)
+  url: string;
 }
 @ArgsType()
 class simpleId {

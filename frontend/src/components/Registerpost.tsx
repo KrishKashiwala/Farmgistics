@@ -17,84 +17,28 @@ const Registerpost = ({ postBool, val }: any) => {
   const [des, setDes] = useState<String>();
   const [price, setPrice] = useState<String>();
   const [city, setCity] = useState<String>();
-  const [photo, setPhoto] = useState<String>();
-  const allInputs = { imgUrl: "" };
-  const [imageAsFile, setImageAsFile] = useState("");
-  const [imageAsUrl, setImageAsUrl] = useState(allInputs);
+  // const [photo, setPhoto] = useState<String>();
   const [progress, setProgress] = useState(0);
   const [UserPost, { data, error, loading }] =
     useMutation<UserPostA>(USER_POST);
-  console.log(imageAsFile);
-  const handleImg = (e) => {
-    // try {
-    // var st = firebaseApp.storage().ref();
-    const image = e.target.files[0];
-    setImageAsFile((imageFile) => image);
-    //   const uploadTask = st.child("Photos/" + file.name).put(file);
-    //   uploadTask.on(
-    //     "state_changed",
-    //     (snapshot) => {
-    //       const Done = Math.round(
-    //         (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-    //       );
-    //       setProgress(Done);
-    //     },
-    //     (error) => {
-    //       console.log(error);
-    //     },
-    //     async () => {
-    //       await uploadTask.snapshot.ref
-    //         .getDownloadURL()
-    //         .then((downloadURL) => {
-    //           console.log(downloadURL);
-    //           setPhoto(downloadURL);
-    //         })
-    //         .catch((err) => console.log(err));
-    //     }
-    //   );
-    // } catch (err) {
-    //   console.log(err);
-    // }
-  };
-  const handleFireBaseUpload = (e) => {
+
+  const [file, setFile] = useState(null);
+  const [url, setURL] = useState("");
+
+  function handleChange(e) {
+    setFile(e.target.files[0]);
+  }
+  function handleUpload(e) {
     e.preventDefault();
-    console.log("start of upload");
-    // async magic goes here...
-    if (imageAsFile === "") {
-      console.error(`not an image, the image file is a ${typeof imageAsFile}`);
-    }
-    const uploadTask = storage
-      .ref(`/images/${imageAsFile}`)
-      // @ts-ignore
-      .put(imageAsFile);
-    //initiates the firebase side uploading
-    uploadTask.on(
-      "state_changed",
-      (snapShot) => {
-        //takes a snap shot of the process as it is happening
-        console.log(snapShot);
-      },
-      (err) => {
-        //catches the errors
-        console.log(err);
-      },
-      () => {
-        // gets the functions from storage refences the image storage in firebase by the children
-        // gets the download url then sets the image from firebase as the value for the imgUrl key:
-        storage
-          .ref("images")
-          // @ts-ignore
-          .child(imageAsFile.name)
-          .getDownloadURL()
-          .then((fireBaseUrl) => {
-            setImageAsUrl((prevObject) => ({
-              ...prevObject,
-              imgUrl: fireBaseUrl,
-            }));
-          });
-      }
-    );
-  };
+    const ref = storage.ref(`/images/${file.name}`);
+    const uploadTask = ref.put(file);
+    uploadTask.on("state_changed", console.log, console.error, () => {
+      ref.getDownloadURL().then((url) => {
+        setFile(null);
+        setURL(url);
+      });
+    });
+  }
   const registered = () => {
     UserPost({
       variables: {
@@ -102,22 +46,22 @@ const Registerpost = ({ postBool, val }: any) => {
         title: title,
         des: des,
         price: price,
-        photo: photo,
+        url: url,
         // for photo link use photo like photo: photo,
       },
     });
-    console.log(photo);
   };
   if (!data || error || loading) console.log("farmer fetch error");
   if (!postBool) {
     return null;
   }
+  console.log(url);
   return (
     <div className='modal'>
       <div className='modal-content'>
         <div className='modal-body'>
           <h3>Add a Product</h3>
-          <form onSubmit={registered}>
+          <form>
             <TextField
               id='outlined-basic'
               label='Title'
@@ -131,7 +75,7 @@ const Registerpost = ({ postBool, val }: any) => {
               variant='outlined'
               type='file'
               name='photo'
-              onChange={(e) => handleImg(e)}
+              onChange={(e) => handleChange(e)}
             />
             <TextField
               id='outlined-basic'
@@ -156,8 +100,8 @@ const Registerpost = ({ postBool, val }: any) => {
             />
 
             <Button
-              onClick={handleFireBaseUpload}
-              disabled={!imageAsUrl}
+              onClick={handleUpload}
+              disabled={!file}
               variant='contained'
               color='primary'
             >

@@ -5,6 +5,6 @@ const postSchema = new mongo.Schema({
   price: String,
   city: String,
   des: String,
-  img: String,
+  url: String,
 });
 module.exports = mongo.model("postData", postSchema);

@@ -52,7 +52,7 @@ abstract class post {
   @Field(() => String, { nullable: true })
   city?: String;
   @Field(() => String, { nullable: true })
-  photo?: String;
+  url?: String;
 }
 
 @ObjectType({ implements: post, description: "nothing here" })
@@ -62,7 +62,7 @@ class Post implements post {
   des: String;
   price: String;
   city?: String;
-  photo?: String;
+  url?: String;
 }
 
 //

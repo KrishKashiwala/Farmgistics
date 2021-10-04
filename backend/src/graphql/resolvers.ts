@@ -199,7 +199,7 @@ class HelloResolver {
   }
   @Mutation(() => Post)
   async UserPost(
-    @Args() { farmerId, title, des, price, city, photo }: postTypes
+    @Args() { farmerId, title, des, price, city, url }: postTypes
   ): Promise<Post> {
     await Farmers.findById(farmerId);
     const newPost = new Posts({
@@ -208,11 +208,11 @@ class HelloResolver {
       des: des,
       price: price,
       city: city,
-      photo: photo,
+      url: url,
     });
     newPost.save();
     console.log(newPost);
-    return { farmerId, photo, title, des, price, city };
+    return { farmerId, url, title, des, price, city };
   }
 }
 
