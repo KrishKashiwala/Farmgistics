@@ -21,7 +21,7 @@ class farmerArgs {
   @MaxLength(30)
   confirmPassword?: string;
   @Field({ nullable: true })
-  @MaxLength(30)
+  @MaxLength(1000)
   image?: string;
 }
 @ArgsType()
