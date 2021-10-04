@@ -1,16 +1,17 @@
 import firebase from 'firebase';
-
+import 'firebase/storage'
 const firebaseConfig = {
-    apiKey: "AIzaSyAFKjC8U2bJTUDnjeyPItNl7mv6BkoROts",
-    authDomain: "myfirebase-6e645.firebaseapp.com",
-    databaseURL: "https://myfirebase-6e645.firebaseio.com",
-    projectId: "myfirebase-6e645",
-    storageBucket: "myfirebase-6e645.appspot.com",
-    messagingSenderId: "644154542686",
-    appId: "1:644154542686:web:f65c419d2c722429b482cf",
-    measurementId: "G-PWWCT8ESNX"
-  };
+  apiKey: "AIzaSyCVJRQm-N-1jLUXNSfz3DBZ-qfUq-nlZSg",
+  authDomain: "farmgistic-a0a33.firebaseapp.com",
+  projectId: "farmgistic-a0a33",
+  storageBucket: "farmgistic-a0a33.appspot.com",
+  messagingSenderId: "647651490078",
+  appId: "1:647651490078:web:19f3ac06fc8e55e26db10f",
+  measurementId: "G-ZBVLTH8H9W"
+};
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
-
-export default firebaseApp;
+const storage = firebase.storage()
+export {
+  storage, firebaseConfig  as default
+};  
