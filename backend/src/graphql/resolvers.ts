@@ -97,7 +97,7 @@ class HelloResolver {
   @Mutation(() => User)
   async createFarmer(
     @Args()
-    { name, phone, city, email, password, confirmPassword }: farmerArgs
+    { name, phone, city, email, password, confirmPassword, image }: farmerArgs
   ): Promise<{}> {
     const hashedPassword = await bcrypt.hash(password, 12);
     // check for existing user's data.
@@ -120,6 +120,7 @@ class HelloResolver {
         email: email,
         password: hashedPassword,
         confirmPassword: confirmPassword,
+        image: image,
       });
       newFarmer.save();
 
@@ -144,9 +145,10 @@ class HelloResolver {
         password,
         confirmPassword,
         token,
+        image,
       };
     }
-    return { name, phone, city, email, password, confirmPassword };
+    return { name, phone, city, email, image, password, confirmPassword };
   }
 
   @Mutation(() => Farmer)

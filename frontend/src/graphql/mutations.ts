@@ -6,6 +6,7 @@ const CREATE_FARMER = gql`
     $city: String
     $email: String
     $password: String
+    $image: String
     $confirmPassword: String
   ) {
     createFarmer(
@@ -13,6 +14,7 @@ const CREATE_FARMER = gql`
       phone: $phone
       city: $city
       email: $email
+      image: $image
       password: $password
       confirmPassword: $confirmPassword
     ) {
@@ -20,6 +22,7 @@ const CREATE_FARMER = gql`
       phone
       city
       email
+      image
       city
       password
       confirmPassword
