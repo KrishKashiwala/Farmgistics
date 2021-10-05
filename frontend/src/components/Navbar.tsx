@@ -63,7 +63,7 @@ const Navbar = () => {
     <div>
       <div className='Top-bar'>
         <div className='logo'>
-          <img src={img1} alt='img'></img>
+          <img src={data?.getByIdFarmers.image} alt='img'></img>
           <p>Welcome, {`${data?.getByIdFarmers.name}`}</p>
         </div>
         <div className='Search-bar'>
@@ -80,7 +80,10 @@ const Navbar = () => {
         </div>
         <div className='Profile'>
           <Link to='/profile'>
-            {/* <img src={data?.getByIdFarmers.}/> */}
+            <img
+              style={{ width: "2em", height: "2em", borderRadius: "50%" }}
+              src={data?.getByIdFarmers.image}
+            />
             <p>{`${data?.getByIdFarmers.name}`}</p>
           </Link>
           <Link to='/cart'>

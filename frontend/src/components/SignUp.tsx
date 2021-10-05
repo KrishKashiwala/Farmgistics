@@ -128,7 +128,7 @@ const SignUp = ({ show }: any) => {
                     variant='outlined'
                     label='Profile Photo'
                     name='name'
-                    type="file"
+                    type='file'
                     onChange={(e) => handleProfile(e)}
                   >
                     Profile Photo
@@ -144,7 +144,6 @@ const SignUp = ({ show }: any) => {
                   >
                     email
                   </TextField>
-                  <br />
                   <TextField
                     fullWidth
                     variant='outlined'
@@ -156,7 +155,6 @@ const SignUp = ({ show }: any) => {
                   >
                     phone number
                   </TextField>
-                  <br />
                   <TextField
                     select
                     label='City'
@@ -173,7 +171,6 @@ const SignUp = ({ show }: any) => {
                       </option>
                     ))}
                   </TextField>
-                  <br />
                   <TextField
                     label='Password'
                     name='password'
@@ -197,7 +194,6 @@ const SignUp = ({ show }: any) => {
                   >
                     confirm password
                   </TextField>
-                  <br />
                   <Button
                     fullWidth
                     variant='contained'
