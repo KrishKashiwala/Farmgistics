@@ -123,7 +123,16 @@ const SignUp = ({ show }: any) => {
                   >
                     First Name
                   </TextField>
-                  <br />
+                  <TextField
+                    fullWidth
+                    variant='outlined'
+                    label='Profile Photo'
+                    name='name'
+                    type="file"
+                    onChange={(e) => handleProfile(e)}
+                  >
+                    Profile Photo
+                  </TextField>
                   <TextField
                     fullWidth
                     variant='outlined'
