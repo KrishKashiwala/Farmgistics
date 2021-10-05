@@ -58,6 +58,12 @@ class HelloResolver {
   async getAllPosts(): Promise<Post[]> {
     return await Posts.find({});
   }
+  @Query(() => [Post])
+  async getAllSpices(@Args() { city }: postTypes): Promise<Post[]> {
+    return await Posts.find({ city: city });
+  }
+
+  // mutations
   @Mutation(() => [Post], { nullable: true })
   async getAllFarmers(@Args() { farmerId }: postTypes): Promise<[Post]> {
     return await Posts.find({ farmerId });
@@ -202,7 +208,7 @@ class HelloResolver {
   }
   @Mutation(() => Post)
   async UserPost(
-    @Args() { farmerId, title, des, price, city, url }: postTypes
+    @Args() { farmerId, title, des, cropType, price, city, url }: postTypes
   ): Promise<Post> {
     await Farmers.findById(farmerId);
     const newPost = new Posts({
@@ -212,10 +218,11 @@ class HelloResolver {
       price: price,
       city: city,
       url: url,
+      cropType: cropType,
     });
     newPost.save();
     console.log(newPost);
-    return { farmerId, url, title, des, price, city };
+    return { farmerId, cropType, url, title, des, price, city };
   }
 }
 

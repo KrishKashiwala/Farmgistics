@@ -40,6 +40,9 @@ class postTypes {
   farmerId?: String;
   @Field({ nullable: true })
   @MaxLength(30)
+  cropType: string;
+  @Field({ nullable: true })
+  @MaxLength(30)
   title: string;
   @Field({ nullable: true })
   @MaxLength(30)

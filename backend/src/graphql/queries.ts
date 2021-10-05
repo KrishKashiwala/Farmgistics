@@ -44,6 +44,8 @@ abstract class post {
   @Field(() => String, { nullable: true })
   farmerId?: String;
   @Field(() => String, { nullable: true })
+  cropType?: String;
+  @Field(() => String, { nullable: true })
   title: String;
   @Field(() => String, { nullable: true })
   des: String;
@@ -59,6 +61,7 @@ abstract class post {
 class Post implements post {
   title: String;
   farmerId?: String;
+  cropType?: String;
   des: String;
   price: String;
   city?: String;

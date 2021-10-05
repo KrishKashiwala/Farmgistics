@@ -9,6 +9,7 @@ import { getAllPosts, UserPostA } from "../../interface";
 import "./componentsCss/registerpost.css";
 
 import { Redirect, useHistory } from "react-router-dom";
+import { cities, cropTypes } from "./data/FakeData";
 
 const Registerpost = ({ postBool, val }: any) => {
   const history = useHistory();
@@ -17,6 +18,7 @@ const Registerpost = ({ postBool, val }: any) => {
   const [des, setDes] = useState<String>();
   const [price, setPrice] = useState<String>();
   const [city, setCity] = useState<String>();
+  const [cropType, setCropType] = useState<String>("");
   const [url, setURL] = useState("");
   const [progress, setProgress] = useState(0);
   const [UserPost, { data, error, loading }] =
@@ -62,12 +64,14 @@ const Registerpost = ({ postBool, val }: any) => {
         des: des,
         price: price,
         url: url,
+        cropType: cropType,
+        city: city,
       },
     });
 
     console.log(url);
 
-    history.push("/home/");
+    history.push("/profile");
   };
 
   if (!postBool) {
@@ -97,6 +101,22 @@ const Registerpost = ({ postBool, val }: any) => {
               onChange={(e) => handleChange(e)}
             />
             <TextField
+              select
+              label='Crop Type'
+              name='cropType'
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setCropType(e.target.value)
+              }
+              helperText='Select Crop Type'
+              variant='outlined'
+            >
+              {cropTypes.map((option) => (
+                <option key={option.label} value={option.label}>
+                  {option.label}
+                </option>
+              ))}
+            </TextField>
+            <TextField
               id='outlined-basic'
               label='Description'
               variant='outlined'
@@ -110,13 +130,23 @@ const Registerpost = ({ postBool, val }: any) => {
               value={price}
               onChange={(e) => setPrice(e.target.value)}
             />
+
             <TextField
-              id='outlined-basic'
+              select
               label='City'
+              name='city'
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setCity(e.target.value)
+              }
+              helperText='Please select your city'
               variant='outlined'
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-            />
+            >
+              {cities.map((option) => (
+                <option key={option.label} value={option.label}>
+                  {option.label}
+                </option>
+              ))}
+            </TextField>
 
             <Button type='submit' variant='contained' color='primary'>
               Submit

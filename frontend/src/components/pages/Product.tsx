@@ -6,20 +6,22 @@ import vege from "../assests/vegetable.jpg";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 
+// import ImageZoom from "js-image-zoom";
+
 const Product = () => {
-  const context = useContext(UserContext);
+  // const context = useContext(UserContext);
 
-  if (context.Id === null) {
-    return <Redirect to='/not-found' />;
-  }
-
+  // if (context.Id === null) {
+  //   return <Redirect to='/not-found' />;
+  // }
   if (localStorage.getItem("id") === null) return <Redirect to='/not-found' />;
   return (
     <div>
       <Navbar />
       <div className='product-info'>
         <div className='product-img'>
-          <img src={vege} alt='Vege'></img>
+          <img id='myimage' src={vege} width='300' height='240' alt='Girl' />
+          <div id='myresult' className='img-zoom-result'></div>
         </div>
         <div className='product-details'>
           <h4>Tomato</h4>

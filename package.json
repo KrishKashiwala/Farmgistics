@@ -1,0 +1,6 @@
+{
+  "devDependencies": {
+    "@types/js-image-zoom": "^0.7.0",
+    "js-image-zoom": "^0.7.0"
+  }
+}
