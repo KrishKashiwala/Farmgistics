@@ -73,6 +73,9 @@ const FIND_FARMER_POST = gql`
     getAllFarmers(farmerId: $farmerId) {
       title
       des
+      price
+      city
+      url
     }
   }
 `;

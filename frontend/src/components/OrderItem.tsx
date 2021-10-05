@@ -18,8 +18,9 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   })
 );
-const OrderItem = ({ title, des, url }: any) => {
+const OrderItem = ({ title, des, url, price, city }: any) => {
   const classes = useStyles();
+  console.log(url);
   return (
     <div>
       <Card className={classes.cardWidth}>
@@ -34,8 +35,14 @@ const OrderItem = ({ title, des, url }: any) => {
             <Typography gutterBottom variant='h5' component='h2'>
               {title}
             </Typography>
+            <Typography gutterBottom variant='h5' component='h2'>
+              &#8377; {price}
+            </Typography>
             <Typography variant='body2' color='textSecondary' component='p'>
               {des}
+            </Typography>
+            <Typography variant='body2' color='textSecondary' component='p'>
+              {city}
             </Typography>
           </CardContent>
         </CardActionArea>

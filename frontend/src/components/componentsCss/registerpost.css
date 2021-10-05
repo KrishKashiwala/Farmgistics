@@ -23,9 +23,9 @@
 .modal-title {
     margin: 0;
 }
-.modal-body {
+/* .modal-body {
     padding: 10px;
-}
+} */
 .modal-footer {
     display: flex;
     top: 2em;
