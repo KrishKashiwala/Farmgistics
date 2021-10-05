@@ -21,17 +21,17 @@ const Homepage = () => {
   // backend graphql code starts
   const [getByIdFarmers] = useMutation<farmer>(FIND_FARMER, {
     variables: {
-      id: context.Id,
+      id: localStorage.getItem("id"),
     },
   });
   const { data, loading, error } = useQuery<farmer>(SECOND_QUERY, {
     variables: {
-      id: context.Id,
+      id: localStorage.getItem("id"),
     },
   });
   const { data: t_d } = useQuery<farmer>(THIRD_QUERY, {
     variables: {
-      id: context.Id,
+      id: localStorage.getItem("id"),
     },
   });
   const { data: posts_d } = useQuery<UserPostA>(ALL_POSTS);
@@ -42,9 +42,10 @@ const Homepage = () => {
   useEffect(() => {
     farmerRequest();
   }, []);
-  if (context.Id === null) {
-    return <Redirect to='/not-found' />;
-  }
+  // if (context.Id === null) {
+  //   return <Redirect to='/not-found' />;
+  // }
+  if (localStorage.getItem("id") === null) return <Redirect to='/not-found' />;
   return (
     <div className='main-container'>
       <Navbar />

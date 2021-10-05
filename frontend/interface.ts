@@ -8,7 +8,7 @@ export interface getAllPosts {
 }
 
 export interface UserPostA {
-  getAllPosts: [getAllPosts];
+  getAllPosts?: [getAllPosts];
 }
 export interface farmer {
   getByIdFarmers: {

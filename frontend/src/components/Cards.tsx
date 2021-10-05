@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import "./componentsCss/cards.css";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -29,6 +29,7 @@ const useStyles = makeStyles({
 const Cards = ({ des, title, price }: any) => {
   const classes = useStyles();
 
+  if (localStorage.getItem("id") === null) return <Redirect to='/not-found' />;
   return (
     <div>
       <Card className={classes.root}>

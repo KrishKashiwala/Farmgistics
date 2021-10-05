@@ -15,7 +15,7 @@ const Navbar = () => {
   const [getByIdFarmers, { data, error }] = useMutation<farmer>(FIND_FARMER);
   getByIdFarmers({
     variables: {
-      id: context.Id,
+      id: localStorage.getItem("id"),
     },
   });
 
@@ -59,6 +59,7 @@ const Navbar = () => {
     }
   };
 
+  if (localStorage.getItem("id") === null) return <Redirect to='/not-found' />;
   return (
     <div>
       <div className='Top-bar'>

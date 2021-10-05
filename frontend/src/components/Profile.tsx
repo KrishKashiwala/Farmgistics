@@ -46,7 +46,7 @@ const Profile = () => {
   const firstProfileLoader = () => {
     getByIdFarmers({
       variables: {
-        id: context.Id,
+        id: localStorage.getItem("id"),
       },
     });
   };
@@ -56,11 +56,10 @@ const Profile = () => {
   const firstOrders = () => {
     getAllFarmers({
       variables: {
-        farmerId: context.Id,
+        farmerId: localStorage.getItem("id"),
       },
     });
   };
-
   React.useEffect(() => {
     const token = localStorage.getItem("jwt-token");
     if (!token) console.log("no token");
@@ -69,6 +68,7 @@ const Profile = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  if (localStorage.getItem("id") === null) return <Redirect to='/not-found' />;
   return (
     <div>
       <Navbar />

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import firebaseApp from '../Firebase';
+import firebaseApp from "../Firebase";
 import { TextField, Button } from "@material-ui/core";
 import { useMutation } from "@apollo/client";
 //@ts-ignore
@@ -8,10 +8,9 @@ import { getAllPosts, UserPostA } from "../../interface";
 // css imports
 import "./componentsCss/registerpost.css";
 
-import { useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from "react-router-dom";
 
 const Registerpost = ({ postBool, val }: any) => {
-
   const history = useHistory();
 
   const [title, setTitle] = useState<String>();
@@ -23,37 +22,37 @@ const Registerpost = ({ postBool, val }: any) => {
   const [UserPost, { data, error, loading }] =
     useMutation<UserPostA>(USER_POST);
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     try {
-        var st = firebaseApp.storage().ref();
-        const file = e.target.files[0]
-        const uploadTask = st.child('Photos/' + file.name).put(file)
-        uploadTask.on(
-            "state_changed",
-            snapshot => {
-                const Done = Math.round(
-                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-                )
-                setProgress(Done)
-            },
-            error => {
-                console.log(error)
-            },
-            async () => {
-                await uploadTask.snapshot.ref.getDownloadURL()
-                    .then(downloadURL => {
-                        console.log(downloadURL);
-                        setURL(downloadURL);
-                    })
-                    .catch(err => console.log(err))
-            }
-        )
-      } catch (err) {
-          console.log(err)
-      }
-  }
+      var st = firebaseApp.storage().ref();
+      const file = e.target.files[0];
+      const uploadTask = st.child("Photos/" + file.name).put(file);
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const Done = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+          setProgress(Done);
+        },
+        (error) => {
+          console.log(error);
+        },
+        async () => {
+          await uploadTask.snapshot.ref
+            .getDownloadURL()
+            .then((downloadURL) => {
+              console.log(downloadURL);
+              setURL(downloadURL);
+            })
+            .catch((err) => console.log(err));
+        }
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  };
   const register = (e) => {
-
     e.preventDefault();
 
     UserPost({
@@ -70,11 +69,12 @@ const Registerpost = ({ postBool, val }: any) => {
 
     history.push("/home/");
   };
-  
+
   if (!postBool) {
     return null;
   }
-  
+
+  if (localStorage.getItem("id") === null) return <Redirect to='/not-found' />;
   return (
     <div className='modal'>
       <div className='modal-content'>
@@ -118,11 +118,7 @@ const Registerpost = ({ postBool, val }: any) => {
               onChange={(e) => setCity(e.target.value)}
             />
 
-            <Button
-              type="submit"
-              variant='contained'
-              color='primary'
-            >
+            <Button type='submit' variant='contained' color='primary'>
               Submit
             </Button>
           </form>

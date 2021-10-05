@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router";
 const ReLogin = () => {
+  if (localStorage.getItem("id") === null) return <Redirect to='/not-found' />;
   return (
     <div>
       <h1>

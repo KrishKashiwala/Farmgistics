@@ -13,6 +13,7 @@ const Product = () => {
     return <Redirect to='/not-found' />;
   }
 
+  if (localStorage.getItem("id") === null) return <Redirect to='/not-found' />;
   return (
     <div>
       <Navbar />

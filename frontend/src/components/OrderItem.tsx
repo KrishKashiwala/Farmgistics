@@ -11,6 +11,7 @@ import {
   createStyles,
   CardActions,
 } from "@material-ui/core";
+import { Redirect } from "react-router-dom";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     cardWidth: {
@@ -21,6 +22,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const OrderItem = ({ title, des, url, price, city }: any) => {
   const classes = useStyles();
   console.log(url);
+  if (localStorage.getItem("id") === null) return <Redirect to='/not-found' />;
   return (
     <div>
       <Card className={classes.cardWidth}>

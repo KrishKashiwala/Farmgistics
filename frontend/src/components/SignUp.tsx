@@ -10,7 +10,7 @@ import { Formik, Form } from "formik";
 import { useMutation } from "@apollo/client";
 //@ts-ignore
 import { CREATE_FARMER } from "../graphql/mutations";
-
+import { farmer } from "../../interface";
 // css imports
 import "./componentsCss/signup.css";
 
@@ -28,14 +28,14 @@ const theme = createTheme({
 const SignUp = ({ show }: any) => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  // const [image, setImage] = useState('');
   const [city, setCity] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [photo, setPhoto] = useState("");
   const [progress, setProgress] = useState(0);
-  const [createFarmer] = useMutation(CREATE_FARMER);
+  const [createFarmer, { data, error, loading }] =
+    useMutation<farmer>(CREATE_FARMER);
 
   const handleProfile = (e) => {
     try {
@@ -81,8 +81,11 @@ const SignUp = ({ show }: any) => {
       },
     });
 
+    localStorage.setItem("farmer-id", `${data.getByIdFarmers.id}`);
+
     console.log(photo);
   };
+  if (loading || !data || error) console.log("error");
   if (!show) {
     return null;
   }
