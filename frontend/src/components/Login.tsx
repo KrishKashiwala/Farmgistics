@@ -13,7 +13,7 @@ import UserContext from '../Context/UserContext';
 import { green } from '@material-ui/core/colors';
 import { useMutation } from '@apollo/client';
 import { Redirect } from 'react-router-dom';
-import { LOGIN_FARMER } from '../graphql/queries';
+import { LOGIN_FARMER } from '../graphql/mutations';
 import { logged } from '../../interface';
 import './componentsCss/login.css';
 import './componentsCss/signup.css';
@@ -49,16 +49,17 @@ const Login = ({ show }: any) => {
             }
         });
     };
-    if (error) {
+
+    if (error || !data) {
         console.log(error);
     }
-    context.setValue(data?.login.id, data?.login.token);
+    // context.setValue(data?.login.id, data?.login.token);
 
     localStorage.setItem('jwt-token', `${data?.login.token}` as string);
     localStorage.setItem('id', `${data?.login.id}` as string);
-    sessionStorage.setItem('logged-in', 'true');
-    if (localStorage.getItem('id') === null)
-        return <Redirect to="/not-found" />;
+    console.log(data?.login.id, data?.login.token);
+    // sessionStorage.setItem('logged-in', 'true');
+    // if (localStorage.getItem('id') === null) <Redirect to="/home" />;
     return (
         <div className="modal">
             <div className="modal-content">
@@ -102,7 +103,7 @@ const Login = ({ show }: any) => {
                     </ThemeProvider>
                 </div>
             </div>
-            {data?.login && <Redirect to="/home"></Redirect>}
+            {data?.login.id && <Redirect to="/home"></Redirect>}
         </div>
     );
 };

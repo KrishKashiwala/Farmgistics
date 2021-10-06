@@ -29,6 +29,17 @@ const CREATE_FARMER = gql`
         }
     }
 `;
+const LOGIN_FARMER = gql`
+    mutation login($email: String, $password: String) {
+        login(email: $email, password: $password) {
+            email
+            token
+            name
+            city
+            id
+        }
+    }
+`;
 const USER_POST = gql`
     mutation UserPost(
         $farmerId: String
@@ -58,4 +69,4 @@ const USER_POST = gql`
         }
     }
 `;
-export { CREATE_FARMER, USER_POST };
+export { CREATE_FARMER, LOGIN_FARMER, USER_POST };

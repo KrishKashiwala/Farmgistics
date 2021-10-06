@@ -20,17 +20,6 @@ const POST_BY_FARMER = gql`
         }
     }
 `;
-const LOGIN_FARMER = gql`
-    query login($email: String, $password: String) {
-        login(email: $email, password: $password) {
-            email
-            token
-            name
-            city
-            id
-        }
-    }
-`;
 const FIND_FARMER = gql`
     query getByIdFarmers($id: String!) {
         getByIdFarmers(id: $id) {
@@ -70,7 +59,6 @@ const ALL_FRUITS = gql`
 export {
     ALL_POSTS,
     ALL_FRUITS,
-    LOGIN_FARMER,
     FIND_FARMER,
     FIND_FARMER_POST,
     POST_BY_FARMER

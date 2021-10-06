@@ -84,55 +84,6 @@ class HelloResolver {
             throw new Error(e);
         }
     }
-    @Query(() => Farmer)
-    async login(
-        @Args() { email, password }: loginArgs,
-        @Ctx() ctx: MyContext
-    ): Promise<{} | null> {
-        const oneFarmer: Farmer = await Farmers.findOne({ email });
-        const returnData = {
-            name: oneFarmer.name,
-            email: oneFarmer.email,
-            password: oneFarmer.password,
-            city: oneFarmer.city,
-            id: oneFarmer.id,
-            image: oneFarmer.image
-        };
-        if (!oneFarmer) return null;
-        if (oneFarmer) {
-            const valid = await bcrypt.compare(password, oneFarmer.password);
-            if (!valid) {
-                console.log('wrong password: ' + oneFarmer.password);
-                return null;
-            }
-            if (valid) {
-                // jwt token
-                const token = jwt.sign(
-                    {
-                        email: email
-                    },
-                    process.env.SECRET,
-                    { expiresIn: '1h' }
-                );
-
-                console.log(ctx);
-                console.log('successfully logged in ', oneFarmer);
-                // ctx.req.session!.id = oneFarmer.id;
-                return {
-                    ...returnData,
-                    email,
-                    token,
-                    redirect: '/home'
-                };
-            } else
-                return {
-                    password: 'password incorrect',
-                    ...errors
-                };
-        }
-        return errors.error;
-    }
-
     // mutations
 
     @Mutation(() => User)
@@ -198,6 +149,54 @@ class HelloResolver {
             };
         }
         return { name, phone, city, email, image, password, confirmPassword };
+    }
+
+    @Mutation(() => Farmer)
+    async login(
+        @Args() { email, password }: loginArgs,
+        @Ctx() ctx: MyContext
+    ): Promise<{} | null | Farmer> {
+        const oneFarmer: Farmer = await Farmers.findOne({ email: email });
+        const returnData = {
+            name: oneFarmer.name,
+            email: oneFarmer.email,
+            password: oneFarmer.password,
+            city: oneFarmer.city,
+            id: oneFarmer.id,
+            image: oneFarmer.image
+        };
+        if (!oneFarmer) return null;
+        if (oneFarmer) {
+            const valid = await bcrypt.compare(password, oneFarmer.password);
+            if (!valid) {
+                console.log('wrong password: ' + oneFarmer.password);
+                return null;
+            }
+            if (valid) {
+                // jwt token
+                const token = jwt.sign(
+                    {
+                        email: email
+                    },
+                    process.env.SECRET,
+                    { expiresIn: '1h' }
+                );
+
+                console.log(ctx);
+                console.log('successfully logged in ', oneFarmer);
+                // ctx.req.session!.id = oneFarmer.id;
+                return {
+                    ...returnData,
+                    email,
+                    token
+                };
+            } else
+                return {
+                    password: 'password incorrect',
+                    ...errors
+                };
+        }
+        return errors.error;
     }
 
     @Mutation(() => Post)

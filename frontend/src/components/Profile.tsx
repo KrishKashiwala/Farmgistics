@@ -16,8 +16,8 @@ import UserContext from '../Context/UserContext';
 import Registerpost from './Registerpost';
 import AddIcon from '@material-ui/icons/Add';
 import { farmer, allOrders, postArray } from '../../interface';
-import { Redirect } from 'react-router';
-
+import { Redirect, useHistory } from 'react-router';
+import LogoutIcon from '@mui/icons-material/Logout';
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         small: {
@@ -35,10 +35,16 @@ const useStyles = makeStyles((theme: Theme) =>
             position: 'fixed',
             bottom: theme.spacing(2),
             right: theme.spacing(3)
+        },
+        logout: {
+            position: 'fixed',
+            bottom: theme.spacing(10),
+            right: theme.spacing(3)
         }
     })
 );
 const Profile = () => {
+    const history = useHistory();
     // const context = useContext(UserContext);
     const [postBool, setPostBool] = useState<Boolean>(false);
     const classes = useStyles();
@@ -67,7 +73,11 @@ const Profile = () => {
     if (error_id || !data_id || loading_id) console.log(error_id);
     // eslint-disable-next-line @typescript-eslint/no-redeclare
     // const { data, error } = useQuery<allOrders>(FIND_FARMER_POST);
-
+    const logout = () => {
+        localStorage.removeItem('id');
+        localStorage.removeItem('jwt-token');
+        history.push('/');
+    };
     if (localStorage.getItem('id') === null)
         return <Redirect to="/not-found" />;
     return (
@@ -87,6 +97,15 @@ const Profile = () => {
                     ))}
                 </div>
             </div>
+            <Tooltip title="Logout">
+                <Fab
+                    color="primary"
+                    className={classes.logout}
+                    onClick={logout}
+                >
+                    <LogoutIcon />
+                </Fab>
+            </Tooltip>
             <Tooltip title="Add Crop">
                 <Fab
                     color="secondary"
