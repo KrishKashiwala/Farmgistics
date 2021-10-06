@@ -118,8 +118,8 @@ const Registerpost = ({ postBool, val }: any) => {
                             variant="outlined"
                         >
                             {cropTypes.map((option) => (
-                                <option key={option.label} value={option.label}>
-                                    {option.label}
+                                <option key={option} value={option}>
+                                    {option}
                                 </option>
                             ))}
                         </TextField>
@@ -149,8 +149,8 @@ const Registerpost = ({ postBool, val }: any) => {
                             variant="outlined"
                         >
                             {cities.map((option) => (
-                                <option key={option.label} value={option.label}>
-                                    {option.label}
+                                <option key={option} value={option}>
+                                    {option}
                                 </option>
                             ))}
                         </TextField>

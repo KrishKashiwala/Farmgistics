@@ -45,9 +45,9 @@ const FIND_FARMER_POST = gql`
     }
 `;
 
-const ALL_FRUITS = gql`
-    query getAllFruits($cropType: String) {
-        getAllFruits(cropType: $cropType) {
+const ALL_THINGS = gql`
+    query getAllThings($cropType: String) {
+        getAllThings(cropType: $cropType) {
             title
             des
             price
@@ -56,10 +56,4 @@ const ALL_FRUITS = gql`
         }
     }
 `;
-export {
-    ALL_POSTS,
-    ALL_FRUITS,
-    FIND_FARMER,
-    FIND_FARMER_POST,
-    POST_BY_FARMER
-};
+export { ALL_POSTS, ALL_THINGS, FIND_FARMER, FIND_FARMER_POST, POST_BY_FARMER };
