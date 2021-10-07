@@ -1,15 +1,11 @@
-import { useEffect, useContext } from 'react';
-// import UserContext from '../Context/UserContext';
 import './componentsCss/homepage.css';
 import { ALL_THINGS, FIND_FARMER } from '../graphql/queries';
 import { ALL_POSTS } from '../graphql/queries';
 import { useQuery } from '@apollo/client';
 import Navbar from './Navbar';
-import Avatar from '@material-ui/core/Avatar';
 import fimg from './assests/engin-akyurt-Y5n8mCpvlZU-unsplash.jpg';
 import simg from './assests/josephine-baran-g4wzhY8qiMw-unsplash.jpg';
 import timg from './assests/nrd-D6Tu_L3chLE-unsplash.jpg';
-import Cards from './Cards';
 import Footer from './Footer';
 import { Redirect } from 'react-router';
 import { farmer, postArray } from '../../interface';
@@ -18,9 +14,6 @@ import { cropTypes } from './data/FakeData';
 import Custom_4 from './Custom_4';
 
 const Homepage = () => {
-    // context value
-    // const context = useContext(UserContext);
-
     // backend graphql code starts
     const {
         data: data_id,

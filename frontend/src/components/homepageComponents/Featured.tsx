@@ -1,4 +1,3 @@
-// import React from 'react';
 import { Box, Typography } from '@mui/material';
 import '../componentsCss/featured.css';
 const Featured = ({ cropType, title, des, url }: any) => {
