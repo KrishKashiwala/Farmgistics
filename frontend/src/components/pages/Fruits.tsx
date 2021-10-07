@@ -1,8 +1,7 @@
 import { useState, useContext } from 'react';
-import UserContext from '../../Context/UserContext';
 import { Redirect } from 'react-router';
 import { useQuery } from '@apollo/client';
-import { ALL_FRUITS } from '../../graphql/queries';
+import { ALL_THINGS } from '../../graphql/queries';
 import '../componentsCss/spices.css';
 import Slider from '@material-ui/core/Slider';
 import Input from '@material-ui/core/Input';
@@ -22,21 +21,16 @@ function valuetext(value) {
 
 const Fruits = () => {
     const [price, setPrice] = useState(100);
-    // const context = useContext(UserContext);
 
     const handleChange = (event, newValue) => {
         setPrice(newValue);
     };
 
-    // if (context.Id === null) {
-    //     return <Redirect to="/" />;
-    // }
-
     const {
         data: fruit_data,
         error: fruit_error,
         loading: fruit_loading
-    } = useQuery<postArray>(ALL_FRUITS, {
+    } = useQuery<postArray>(ALL_THINGS, {
         variables: {
             cropType: 'fruits'
         }
@@ -101,7 +95,7 @@ const Fruits = () => {
                 <hr></hr>
             </div>
             <div className="spices-cards">
-                {fruit_data?.getAllFruits.map((item) => (
+                {fruit_data?.getAllThings.map((item) => (
                     <Cards
                         title={item.title}
                         des={item.des}

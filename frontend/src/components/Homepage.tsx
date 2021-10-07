@@ -1,7 +1,7 @@
 import { useEffect, useContext } from 'react';
 // import UserContext from '../Context/UserContext';
 import './componentsCss/homepage.css';
-import { FIND_FARMER } from '../graphql/queries';
+import { ALL_THINGS, FIND_FARMER } from '../graphql/queries';
 import { ALL_POSTS } from '../graphql/queries';
 import { useQuery } from '@apollo/client';
 import Navbar from './Navbar';
@@ -13,6 +13,8 @@ import Cards from './Cards';
 import Footer from './Footer';
 import { Redirect } from 'react-router';
 import { farmer, postArray } from '../../interface';
+import Featured from './homepageComponents/Featured';
+import { cropTypes } from './data/FakeData';
 
 const Homepage = () => {
     // context value
@@ -40,10 +42,18 @@ const Homepage = () => {
     });
     if (!posts_d || posts_error || posts_loading) console.log(posts_error);
     if (error_id || !data_id || loading_id) console.log(error_id);
+    let cropSend = cropTypes[Math.floor(Math.random() * cropTypes.length)];
+    const {
+        data: f_data,
+        error: f_error,
+        loading: f_loading
+    } = useQuery<postArray>(ALL_THINGS, {
+        variables: {
+            cropType: cropSend
+        }
+    });
+    if (!f_data || f_error || f_loading) console.log(f_error);
     // backend graphql code ends
-    // if (context.Id === null) {
-    //   return <Redirect to='/not-found' />;
-    // }
     if (localStorage.getItem('id') === null)
         return <Redirect to="/not-found" />;
     return (
@@ -109,200 +119,14 @@ const Homepage = () => {
                     </div>
                 </div>
             </div>
-            <div className="trending-products">
-                <div className="heading">
-                    <h2>Trending Products</h2>
-                    <hr></hr>
-                </div>
-            </div>
-            <div className="product-list">
-                <div className="product-links">
-                    <ul>
-                        <li>
-                            <button
-                                data-toggle="collapse"
-                                data-target="#featured"
-                            >
-                                FEATURED
-                            </button>
-                        </li>
-                        <li>
-                            <button
-                                data-toggle="collapse"
-                                data-target="#bestseller"
-                            >
-                                BESTSELLER
-                            </button>
-                        </li>
-                        <li>
-                            <button
-                                data-toggle="collapse"
-                                data-target="#latest"
-                            >
-                                LATEST
-                            </button>
-                        </li>
-                    </ul>
-                </div>
-                <div id="products">
-                    <div
-                        id="featured"
-                        className="collapse show"
-                        data-parent="#products"
-                    >
-                        <div className="row product-cards">
-                            {posts_d?.getAllPosts.map((datas) => (
-                                <Cards
-                                    des={datas.des}
-                                    price={datas.price}
-                                    title={datas.title}
-                                />
-                            ))}
-                        </div>
-                    </div>
-                    <div
-                        id="bestseller"
-                        className="collapse"
-                        data-parent="#products"
-                    >
-                        <div className="row product-cards">
-                            {posts_d?.getAllPosts.map((datas) => (
-                                <Cards
-                                    des={datas.des}
-                                    price={datas.price}
-                                    title={datas.title}
-                                />
-                            ))}
-                        </div>
-                    </div>
-                    <div
-                        id="latest"
-                        className="collapse"
-                        data-parent="#products"
-                    >
-                        <div className="row product-cards">
-                            {posts_d?.getAllPosts.map((datas) => (
-                                <Cards
-                                    des={datas.des}
-                                    price={datas.price}
-                                    title={datas.title}
-                                />
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className="review-section">
-                <div className="heading">
-                    <h2>Review of Traders</h2>
-                    <hr></hr>
-                </div>
-                <div className="review-slider">
-                    <div
-                        id="review"
-                        className="carousel slide"
-                        data-ride="carousel"
-                    >
-                        <div className="carousel-inner">
-                            <div className="carousel-item active">
-                                <div className="review-profile">
-                                    <Avatar
-                                        alt="Fruits"
-                                        src={require('./assests/fruit.jpg')}
-                                        className="avatar"
-                                    />
-                                    <h5>John Deo</h5>
-                                    <p>Laxman Traders</p>
-                                </div>
-                                <div className="review-text">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing elit. Sed venenatis porttitor
-                                        leo, volutpat facilisis augue posuere
-                                        et. In in est et neque scelerisque
-                                        mattis. Aenean lacus est, efficitur ut
-                                        posuere sit amet, pulvinar ac felis. Sed
-                                        sed scelerisque odio. Nulla id diam
-                                        posuere, ultrices purus et, dignissim
-                                        risus. Suspendisse sit.
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="carousel-item">
-                                <div className="review-profile">
-                                    <Avatar
-                                        alt="Fruits"
-                                        src={require('./assests/fruit.jpg')}
-                                        className="avatar"
-                                    />
-                                    <h5>Laxman Prashad</h5>
-                                    <p>Shiv Traders</p>
-                                </div>
-                                <div className="review-text">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing elit. Sed venenatis porttitor
-                                        leo, volutpat facilisis augue posuere
-                                        et. In in est et neque scelerisque
-                                        mattis. Aenean lacus est, efficitur ut
-                                        posuere sit amet, pulvinar ac felis. Sed
-                                        sed scelerisque odio. Nulla id diam
-                                        posuere, ultrices purus et, dignissim
-                                        risus. Suspendisse sit.
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="carousel-item">
-                                <div className="review-profile">
-                                    <Avatar
-                                        alt="Fruits"
-                                        src={require('./assests/fruit.jpg')}
-                                        className="avatar"
-                                    />
-                                    <h5>Mukesh Sheth</h5>
-                                    <p>Sheth Traders</p>
-                                </div>
-                                <div className="review-text">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing elit. Sed venenatis porttitor
-                                        leo, volutpat facilisis augue posuere
-                                        et. In in est et neque scelerisque
-                                        mattis. Aenean lacus est, efficitur ut
-                                        posuere sit amet, pulvinar ac felis. Sed
-                                        sed scelerisque odio. Nulla id diam
-                                        posuere, ultrices purus et, dignissim
-                                        risus. Suspendisse sit.
-                                    </p>
-                                </div>
-                            </div>
-                            <a
-                                className="carousel-control-prev"
-                                href="#review"
-                                data-slide="prev"
-                            >
-                                <span className="carousel-control-prev-icon"></span>
-                            </a>
-                            <a
-                                className="carousel-control-next"
-                                href="#review"
-                                data-slide="next"
-                            >
-                                <span className="carousel-control-next-icon"></span>
-                            </a>
-                        </div>
-                        <ul className="carousel-indicators">
-                            <li
-                                data-target="#review"
-                                data-slide-to="0"
-                                className="active"
-                            ></li>
-                            <li data-target="#review" data-slide-to="1"></li>
-                            <li data-target="#review" data-slide-to="2"></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            {f_data?.getAllThings.map((item) => (
+                <Featured
+                    url={item.url}
+                    cropType={cropSend}
+                    title={item.title}
+                    des={item.des}
+                />
+            ))}
             <Footer />
         </div>
     );

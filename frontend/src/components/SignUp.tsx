@@ -167,9 +167,9 @@ const SignUp = ({ show }: any) => {
                                         variant="outlined"
                                     >
                                         {cities.map((option) => (
-                                            <MenuItem key={option.label} value={option.label}>
-                                                {option.label}
-                                            </MenuItem>
+                                            <option key={option} value={option}>
+                                                {option}
+                                            </option>
                                         ))}
                                     </TextField>
                                     <TextField

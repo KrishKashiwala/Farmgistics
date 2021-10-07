@@ -6,15 +6,13 @@ export interface post {
     farmerId?: string;
     id?: string;
     url?: string;
+    cropType?: string;
 }
 
 export interface postArray {
     getPostByFarmer?: [post];
     getAllPosts?: [post];
-    getAllFruits?: [post];
-    getAllSpices?: [post];
-    getAllPulses?: [post];
-    getAllVegetables?: [post];
+    getAllThings?: [post];
 }
 export interface farmer {
     getByIdFarmers: {

@@ -39,19 +39,7 @@ class HelloResolver {
         return await Posts.find({ farmerId: farmerId });
     }
     @Query(() => [Post])
-    async getAllSpices(@Args() { cropType }: postTypes): Promise<Post[]> {
-        return await Posts.find({ cropType: cropType });
-    }
-    @Query(() => [Post])
-    async getAllVegetables(@Args() { cropType }: postTypes): Promise<Post[]> {
-        return await Posts.find({ cropType: cropType });
-    }
-    @Query(() => [Post])
-    async getAllFruits(@Args() { cropType }: postTypes): Promise<Post[]> {
-        return await Posts.find({ cropType: cropType });
-    }
-    @Query(() => [Post])
-    async getAllPulses(@Args() { cropType }: postTypes): Promise<Post[]> {
+    async getAllThings(@Args() { cropType }: postTypes): Promise<Post[]> {
         return await Posts.find({ cropType: cropType });
     }
 
