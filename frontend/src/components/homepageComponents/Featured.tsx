@@ -5,13 +5,15 @@ const Featured = ({ cropType, title, des, url }: any) => {
     return (
         <Box className="f-container">
             <Box className="s-container">
+                <Typography id="typo">
+                    Top Farmer in {cropType} section
+                </Typography>
                 <Box className="s-s-1-container">
-                    <Typography variant="h4" component="div">
-                        Top Farmer in {cropType} section
-                    </Typography>
                     <img src={url} alt="image" />
-                    <a href={`/${cropType}`}>See All Offers</a>
                 </Box>
+                <a id="a" href={`/${cropType}`}>
+                    See All Offers
+                </a>
             </Box>
         </Box>
     );

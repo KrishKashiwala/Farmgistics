@@ -132,6 +132,15 @@ const Homepage = () => {
             </div>
             <div className="custom-container">
                 <Custom_4 />
+                <Featured url="https://images-eu.ssl-images-amazon.com/images/G/31/img19/AmazonPay/Kartik/Jupiter/LearnMore/PC_01.jpg" />
+                <Featured url="https://images-eu.ssl-images-amazon.com/images/G/31/img19/AmazonPay/Kartik/Jupiter/LearnMore/PC_01.jpg" />
+                <Custom_4 />
+            </div>
+            <div className="custom-container-1">
+                <Custom_4 />
+                <Featured url="https://images-eu.ssl-images-amazon.com/images/G/31/img19/AmazonPay/Kartik/Jupiter/LearnMore/PC_01.jpg" />
+                <Featured url="https://images-eu.ssl-images-amazon.com/images/G/31/img19/AmazonPay/Kartik/Jupiter/LearnMore/PC_01.jpg" />
+                <Custom_4 />
             </div>
             <Footer />
         </div>

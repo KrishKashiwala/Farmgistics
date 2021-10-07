@@ -110,6 +110,17 @@
 }
 
 .featured-container {
+    margin: 2em 0;
+    display: flex;
+    flex-direction: row;
+}
+.custom-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.custom-container-1 {
+    margin-top: 2em;
     display: flex;
     flex-direction: row;
 }
