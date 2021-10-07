@@ -1,12 +1,18 @@
-export interface UserPost {
-    UserPost: {
-        title?: string;
-        des?: string;
-        city?: string;
-        price?: string;
-        farmerId?: string;
-        id?: string;
-    };
+export interface post {
+    title?: string;
+    des?: string;
+    city?: string;
+    price?: string;
+    farmerId?: string;
+    id?: string;
+    url?: string;
+    cropType?: string;
+}
+
+export interface postArray {
+    getPostByFarmer?: [post];
+    getAllPosts?: [post];
+    getAllThings?: [post];
 }
 export interface farmer {
     getByIdFarmers: {
@@ -15,18 +21,22 @@ export interface farmer {
         email?: string;
         phone?: string;
         id?: string;
+        image?: string;
     };
-    getSecond:{
-        name?: string;
-    }
 }
 
 export interface order {
     title?: string;
     des?: string;
+    url?: string;
+    price?: string;
+    city?: string;
     allFarmers: {
         title?: string;
         des?: string;
+        url?: string;
+        price?: string;
+        city?: string;
     };
 }
 export interface allOrders {
@@ -40,4 +50,3 @@ export interface logged {
         token?: string;
     };
 }
-

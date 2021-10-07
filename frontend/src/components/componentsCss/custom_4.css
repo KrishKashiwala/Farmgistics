@@ -1,0 +1,17 @@
+.c-container {
+    margin-left: 1em;
+    margin-right: 1em;
+    max-width: 100%;
+    background-size: contain;
+}
+.c-s-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 2em 0;
+    background-color: #ffffff;
+    height: 33em;
+    width: 21.7em;
+    padding: 5em;
+}

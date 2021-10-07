@@ -1,4 +1,3 @@
-import farmgistic_logo from './assests/farmgistic_logo.png';
 import {
     Card,
     Typography,
@@ -11,6 +10,7 @@ import {
     createStyles,
     CardActions
 } from '@material-ui/core';
+import { Redirect } from 'react-router-dom';
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         cardWidth: {
@@ -18,8 +18,11 @@ const useStyles = makeStyles((theme: Theme) =>
         }
     })
 );
-const OrderItem = ({ val, title, des }: any) => {
+const OrderItem = ({ title, des, url, price, city }: any) => {
     const classes = useStyles();
+    console.log(url);
+    if (localStorage.getItem('id') === null)
+        return <Redirect to="/not-found" />;
     return (
         <div>
             <Card className={classes.cardWidth}>
@@ -28,11 +31,14 @@ const OrderItem = ({ val, title, des }: any) => {
                         component="img"
                         alt="Contemplative Reptile"
                         height="140"
-                        image={farmgistic_logo}
+                        src={url}
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">
                             {title}
+                        </Typography>
+                        <Typography gutterBottom variant="h5" component="h2">
+                            &#8377; {price}
                         </Typography>
                         <Typography
                             variant="body2"
@@ -40,6 +46,13 @@ const OrderItem = ({ val, title, des }: any) => {
                             component="p"
                         >
                             {des}
+                        </Typography>
+                        <Typography
+                            variant="body2"
+                            color="textSecondary"
+                            component="p"
+                        >
+                            {city}
                         </Typography>
                     </CardContent>
                 </CardActionArea>

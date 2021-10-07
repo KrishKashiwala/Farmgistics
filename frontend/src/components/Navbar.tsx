@@ -1,46 +1,104 @@
-<<<<<<< HEAD
-import { useContext } from 'react';
-import UserContext from '../Context/UserContext'
-import { FIND_FARMER } from '../graphql/mutations';
-import { useMutation } from '@apollo/client';
+import { useState } from 'react';
+// import UserContext from '../Context/UserContext';
+import { FIND_FARMER } from '../graphql/queries';
+import { useQuery } from '@apollo/client';
 import { farmer } from '../../interface';
 import './componentsCss/navbar.css';
-import PersonOutlineOutlined from '@material-ui/icons/PersonOutlineOutlined'
-import ShoppingCartOutlined from '@material-ui/icons/ShoppingCartOutlined'
-import img1 from './assests/farmgistic_logo.png'
-import { Link } from 'react-router-dom';
+import ShoppingCartOutlined from '@material-ui/icons/ShoppingCartOutlined';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 
 const Navbar = () => {
-    
-    const context = useContext(UserContext);
-
-    const [getByIdFarmers, { data, error }] = useMutation<farmer>(FIND_FARMER)
-    getByIdFarmers({
+    // const context = useContext(UserContext);
+    const history = useHistory();
+    const {
+        data: data_id,
+        error: error_id,
+        loading: loading_id
+    } = useQuery<farmer>(FIND_FARMER, {
         variables: {
-            id: context.Id
+            id: localStorage.getItem('id')
         }
     });
-    if (error || !data) console.log(error);
 
+    if (error_id || !data_id || loading_id) console.log(error_id);
+    const [search, setSearch] = useState<String>('no');
+    const searcher = () => {
+        if (search !== 'no') {
+            if (
+                search === 'spices' ||
+                search === 's' ||
+                search === 'sp' ||
+                search === 'spi' ||
+                search === 'sices' ||
+                search === 'sip' ||
+                search === 'spice'
+            ) {
+                console.log('working');
+                history.push('/spices');
+            } else if (
+                search === 'vegetables' ||
+                search === 'v' ||
+                search === 've' ||
+                search === 'veggies' ||
+                search === 'veg' ||
+                search === 'vegetable' ||
+                search === 'vegitable' ||
+                search === 'veggie' ||
+                search === 'vegi'
+            ) {
+                history.push('/vegetables');
+            }
+            if (
+                search === 'fruits' ||
+                search === 'fru' ||
+                search === 'fruts' ||
+                search === 'futs' ||
+                search === 'fuits' ||
+                search === 'fruit'
+            ) {
+                history.push('/fruits');
+            }
+        }
+    };
+
+    if (localStorage.getItem('id') === null)
+        return <Redirect to="/not-found" />;
     return (
         <div>
             <div className="Top-bar">
                 <div className="logo">
-                    <img src = {img1} alt="img"></img>
-                    <p>Welcome, {`${data?.getByIdFarmers.name}`}</p>
+                    <img src={data_id?.getByIdFarmers.image} alt="img"></img>
+                    <p>Welcome, {`${data_id?.getByIdFarmers.name}`}</p>
                 </div>
                 <div className="Search-bar">
                     <div className="input-group">
-                        <input type='text' placeholder='Search'></input>
-                        <button>Search</button>
+                        <input
+                            type="text"
+                            placeholder="Search"
+                            onChange={(
+                                e: React.ChangeEvent<HTMLInputElement>
+                            ) => {
+                                setSearch(e.target.value);
+                            }}
+                        ></input>
+                        <button onClick={searcher}>Search</button>
                     </div>
                 </div>
                 <div className="Profile">
                     <Link to="/profile">
-                        <PersonOutlineOutlined fontSize="large" style={{marginRight: '2rem'}} />
-                        <p>{`${data?.getByIdFarmers.name}`}</p>
+                        <img
+                            style={{
+                                width: '3rem',
+                                height: '3rem',
+                                borderRadius: '50%',
+                                border: '2px solid #6d6d6d',
+                                boxShadow: '0px 0px 2px 2px #eeeeee'
+                            }}
+                            src={data_id?.getByIdFarmers.image}
+                        />
+                        <p>{`${data_id?.getByIdFarmers.name}`}</p>
                     </Link>
-                    <Link to='/cart'>
+                    <Link to="/cart">
                         <ShoppingCartOutlined fontSize="large" />
                     </Link>
                 </div>
@@ -51,13 +109,13 @@ const Navbar = () => {
                         <Link to="/home">Home</Link>
                     </li>
                     <li>
-                        <Link to='/spices'>Spices</Link>
+                        <Link to="/spices">Spices</Link>
                     </li>
                     <li>
-                        <Link to='/vegetables'>Vegetables</Link>
+                        <Link to="/vegetables">Vegetables</Link>
                     </li>
                     <li>
-                        <Link to='/fruits'>Fruits</Link>
+                        <Link to="/fruits">Fruits</Link>
                     </li>
                 </ul>
             </div>
@@ -65,72 +123,3 @@ const Navbar = () => {
     );
 };
 export default Navbar;
-=======
-import { useContext, useEffect } from 'react';
-import UserContext from '../Context/UserContext'
-import { FIND_FARMER } from '../graphql/mutations';
-import { useMutation } from '@apollo/client';
-import { farmer } from '../../interface';
-import './componentsCss/navbar.css';
-import PersonOutlineOutlined from '@material-ui/icons/PersonOutlineOutlined'
-import ShoppingCartOutlined from '@material-ui/icons/ShoppingCartOutlined'
-import img1 from './assests/farmgistic_logo.png'
-import { Link } from 'react-router-dom';
-
-const Navbar = () => {
-    
-    const context = useContext(UserContext);
-    console.log(context);
-
-    const [getByIdFarmers, { data, error }] = useMutation<farmer>(FIND_FARMER)
-    getByIdFarmers({
-        variables: {
-            id: context.Id
-        }
-    });
-    if (error || !data) console.log(error);
-
-    return (
-        <div>
-            <div className="Top-bar">
-                <div className="logo">
-                    <img src = {img1}></img>
-                    <p>Welcome, {`${data?.getByIdFarmers.name}`}</p>
-                </div>
-                <div className="Search-bar">
-                    <div className="input-group">
-                        <input type='text' placeholder='Search'></input>
-                        <button>Search</button>
-                    </div>
-                </div>
-                <div className="Profile">
-                    <Link to={`/home/${context.Id}`}>
-                        <PersonOutlineOutlined fontSize="large" style={{marginRight: '2rem'}} />
-                        <p>{`${data?.getByIdFarmers.name}`}</p>
-                    </Link>
-                    <Link to='/cart'>
-                        <ShoppingCartOutlined fontSize="large" />
-                    </Link>
-                </div>
-            </div>
-            <div className="Nav-links">
-                <ul>
-                    <li>
-                        <Link to={`/home/${context.Id}`}>Home</Link>
-                    </li>
-                    <li>
-                        <Link to='/spices'>Spices</Link>
-                    </li>
-                    <li>
-                        <Link to='/vegetables'>Vegetables</Link>
-                    </li>
-                    <li>
-                        <Link to='/fruits'>Fruits</Link>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    );
-};
-export default Navbar;
->>>>>>> f6ccaef625972c7081e2a2de4a84f7ee8e646785

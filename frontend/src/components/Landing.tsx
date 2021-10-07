@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import './componentsCss/landing.css';
 import Login from './Login';
 import SignUp from './SignUp';
@@ -7,7 +8,7 @@ import SignUp from './SignUp';
 const Landing = () => {
     const [modalBool, setModalBool] = useState(false);
     const [loginBool, setLoginBool] = useState(false);
-
+    if (localStorage.getItem('id') !== null) return <Redirect to="/home" />;
     return (
         <div>
             <div

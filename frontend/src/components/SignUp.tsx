@@ -6,17 +6,20 @@ import {
     Typography,
     Button
 } from '@material-ui/core';
+import MenuItem from '@mui/material/MenuItem';
 import { Formik, Form } from 'formik';
 import { useMutation } from '@apollo/client';
 //@ts-ignore
 import { CREATE_FARMER } from '../graphql/mutations';
-
+import { farmer } from '../../interface';
 // css imports
 import './componentsCss/signup.css';
 
 import { green } from '@material-ui/core/colors';
 // fakedata import
 import { cities } from './data/FakeData';
+import firebaseApp from '../Firebase';
+
 const theme = createTheme({
     palette: {
         primary: green
@@ -26,12 +29,46 @@ const theme = createTheme({
 const SignUp = ({ show }: any) => {
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
-    // const [image, setImage] = useState('');
     const [city, setCity] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [createFarmer] = useMutation(CREATE_FARMER);
+    const [photo, setPhoto] = useState('');
+    const [progress, setProgress] = useState(0);
+    const [createFarmer, { data, error, loading }] =
+        useMutation<farmer>(CREATE_FARMER);
+
+    const handleProfile = (e) => {
+        try {
+            var st = firebaseApp.storage().ref();
+            const file = e.target.files[0];
+            const uploadTask = st.child('User-Photos/' + file.name).put(file);
+            uploadTask.on(
+                'state_changed',
+                (snapshot) => {
+                    const Done = Math.round(
+                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                    );
+                    setProgress(Done);
+                },
+                (error) => {
+                    console.log(error);
+                },
+                async () => {
+                    await uploadTask.snapshot.ref
+                        .getDownloadURL()
+                        .then((downloadURL) => {
+                            console.log(downloadURL);
+                            setPhoto(downloadURL);
+                        })
+                        .catch((err) => console.log(err));
+                }
+            );
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     const registered = () => {
         createFarmer({
             variables: {
@@ -40,18 +77,26 @@ const SignUp = ({ show }: any) => {
                 city: city,
                 email: email,
                 password: password,
-                confirmPassword: confirmPassword
-                // image: image
+                confirmPassword: confirmPassword,
+                image: photo
             }
         });
+
+        localStorage.setItem('farmer-id', `${data.getByIdFarmers.id}`);
+
+        console.log(photo);
     };
+    if (loading || !data || error) console.log('error');
     if (!show) {
         return null;
     }
     return (
-        <div className="modal">
-            <div className="modal-content">
-                <div className="modal-body">
+        <div className="signup-modal">
+            <div className="signup-modal-content">
+                <div className="signup-modal-body">
+                    <Typography variant="h3">
+                        Create your account
+                    </Typography>
                     <Formik
                         onSubmit={(data, { setSubmitting }) => {
                             setSubmitting(true);
@@ -72,13 +117,7 @@ const SignUp = ({ show }: any) => {
                         {({ values, errors, isSubmitting, handleChange }) => (
                             <Form>
                                 <ThemeProvider theme={theme}>
-                                    <Typography variant="h5">
-                                        Create your account
-                                    </Typography>
-                                    <div className="modal-header"></div>
-                                    <br />
                                     <TextField
-                                        fullWidth
                                         variant="outlined"
                                         label="Name"
                                         name="name"
@@ -88,10 +127,16 @@ const SignUp = ({ show }: any) => {
                                     >
                                         First Name
                                     </TextField>
-                                    <br />
-                                    <br />
                                     <TextField
-                                        fullWidth
+                                        variant="outlined"
+                                        name="name"
+                                        type="file"
+                                        onChange={(e) => handleProfile(e)}
+                                        helperText="Add a Profile Photo"
+                                    >
+                                        Profile Photo
+                                    </TextField>
+                                    <TextField
                                         variant="outlined"
                                         label="Email"
                                         name="email"
@@ -101,10 +146,7 @@ const SignUp = ({ show }: any) => {
                                     >
                                         email
                                     </TextField>
-                                    <br />
-                                    <br />
                                     <TextField
-                                        fullWidth
                                         variant="outlined"
                                         label="Phone"
                                         name="phone"
@@ -114,8 +156,6 @@ const SignUp = ({ show }: any) => {
                                     >
                                         phone number
                                     </TextField>
-                                    <br />
-                                    <br />
                                     <TextField
                                         select
                                         label="City"
@@ -127,16 +167,11 @@ const SignUp = ({ show }: any) => {
                                         variant="outlined"
                                     >
                                         {cities.map((option) => (
-                                            <option
-                                                key={option.label}
-                                                value={option.label}
-                                            >
-                                                {option.label}
+                                            <option key={option} value={option}>
+                                                {option}
                                             </option>
                                         ))}
                                     </TextField>
-                                    <br />
-                                    <br />
                                     <TextField
                                         label="Password"
                                         name="password"
@@ -148,7 +183,6 @@ const SignUp = ({ show }: any) => {
                                     >
                                         password
                                     </TextField>
-                                    &nbsp;&nbsp;&nbsp;
                                     <TextField
                                         label="Confirm Password"
                                         name="confirmPassword"
@@ -160,10 +194,7 @@ const SignUp = ({ show }: any) => {
                                     >
                                         confirm password
                                     </TextField>
-                                    <br />
-                                    <br />
                                     <Button
-                                        fullWidth
                                         variant="contained"
                                         color="secondary"
                                         disabled={isSubmitting}
@@ -176,11 +207,6 @@ const SignUp = ({ show }: any) => {
                         )}
                     </Formik>
                 </div>
-                {/* <div className="modal-footer">
-                    <button className="btn" onClick={onClose}>
-                        Close
-                    </button>
-                </div> */}
             </div>
         </div>
     );

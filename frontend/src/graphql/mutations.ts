@@ -1,5 +1,4 @@
 import { gql } from '@apollo/client';
-import { graphql } from 'graphql';
 const CREATE_FARMER = gql`
     mutation createFarmer(
         $name: String
@@ -7,6 +6,7 @@ const CREATE_FARMER = gql`
         $city: String
         $email: String
         $password: String
+        $image: String
         $confirmPassword: String
     ) {
         createFarmer(
@@ -14,6 +14,7 @@ const CREATE_FARMER = gql`
             phone: $phone
             city: $city
             email: $email
+            image: $image
             password: $password
             confirmPassword: $confirmPassword
         ) {
@@ -21,6 +22,7 @@ const CREATE_FARMER = gql`
             phone
             city
             email
+            image
             city
             password
             confirmPassword
@@ -38,31 +40,6 @@ const LOGIN_FARMER = gql`
         }
     }
 `;
-const FIND_FARMER = gql`
-    mutation getByIdFarmers($id: String!) {
-        getByIdFarmers(id: $id) {
-            name
-            id
-            token
-            email
-            city
-        }
-    }
-    mutation getSecond($id : String!){
-        getSecond(id : $id){
-            name
-        }
-    }
-`;
-
-const FIND_FARMER_POST = gql`
-    mutation getAllFarmers($farmerId: String) {
-        getAllFarmers(farmerId: $farmerId) {
-            title
-            des
-        }
-    }
-`;
 const USER_POST = gql`
     mutation UserPost(
         $farmerId: String
@@ -70,6 +47,8 @@ const USER_POST = gql`
         $des: String
         $price: String
         $city: String
+        $url: String
+        $cropType: String
     ) {
         UserPost(
             farmerId: $farmerId
@@ -77,19 +56,17 @@ const USER_POST = gql`
             des: $des
             price: $price
             city: $city
+            cropType: $cropType
+            url: $url
         ) {
             farmerId
             title
             des
             price
+            cropType
+            url
             city
         }
     }
 `;
-export {
-    CREATE_FARMER,
-    LOGIN_FARMER,
-    FIND_FARMER,
-    FIND_FARMER_POST,
-    USER_POST
-};
+export { CREATE_FARMER, LOGIN_FARMER, USER_POST };

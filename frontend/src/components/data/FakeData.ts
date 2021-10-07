@@ -1,24 +1,11 @@
 const cities = [
-    {
-        label: 'Surat'
-    },
-    {
-        label: 'Ahemdabad'
-    },
-    {
-        label: 'Vadodara'
-    },
-    {
-        label: 'Kheda'
-    },
-    {
-        label: 'Nadiad'
-    },
-    {
-        label: 'Rajkot'
-    },
-    {
-        label: 'Anand'
-    }
+    'Surat',
+    'Vadodara',
+    'Ahemdabad',
+    'Kheda',
+    'Nadiad',
+    'Rajkot',
+    'Anand'
 ];
-export { cities };
+const cropTypes = ['vegetables', 'spices', 'fruits', 'pulses'];
+export { cities, cropTypes };

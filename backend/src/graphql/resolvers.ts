@@ -1,12 +1,11 @@
 import {
     Resolver,
     Query,
-    Mutation,
     Args,
     Arg,
     MiddlewareFn,
-    UseMiddleware,
-    Ctx
+    Ctx,
+    Mutation
 } from 'type-graphql';
 import { Farmer, Post, User } from './queries';
 import { farmerArgs, loginArgs, postTypes, simpleId } from './argsTypes';
@@ -19,36 +18,32 @@ const Posts = require('../Models/post');
 const jwt = require('jsonwebtoken');
 const { UserInputError } = require('apollo-server-express');
 export const MiddlewareFun: MiddlewareFn = async ({ context }: any, next) => {
-    console.log("first middleware....")
-    console.log(context)
+    console.log('first middleware....');
+    console.log(context);
     return next();
 };
 @Resolver()
 class HelloResolver {
-    @Mutation(()=>String)
-    async getSecond(@Arg('id',{nullable : true}) id : String) : Promise<String>{
-        const farmer = await Farmers.find({id})
-        return farmer.name;
-    }
-    @UseMiddleware(MiddlewareFun)
+    // queries
+
     @Query(() => [User])
-    async allFarmers(): Promise<[User]> {
-    
+    async getAllFarmers(): Promise<[User]> {
         return Farmers.find({});
     }
     @Query(() => [Post])
     async getAllPosts(): Promise<Post[]> {
         return await Posts.find({});
     }
-    @Mutation(() => [Post], { nullable: true })
-    async getAllFarmers(@Args() { farmerId }: postTypes): Promise<[Post]> {
-        return await Posts.find({ farmerId });
+    @Query(() => [Post])
+    async getPostByFarmer(@Args() { farmerId }: simpleId): Promise<Post[]> {
+        return await Posts.find({ farmerId: farmerId });
     }
-    @Mutation(() => Post)
-    async getPostByFarmer(@Args() { farmerId }: simpleId): Promise<Post> {
-        return Posts.findOne(farmerId);
+    @Query(() => [Post])
+    async getAllThings(@Args() { cropType }: postTypes): Promise<Post[]> {
+        return await Posts.find({ cropType: cropType });
     }
-    @Mutation(() => Farmer)
+
+    @Query(() => Farmer)
     async getByIdFarmers(
         @Arg('id', { nullable: true }) id: String
     ): Promise<Farmer | {}> {
@@ -64,7 +59,8 @@ class HelloResolver {
                 password: farmer.password,
                 city: farmer.city,
                 id: farmer.id,
-                token: farmer.token
+                token: farmer.token,
+                image: farmer.image
             };
             if (farmer) {
                 return { ...returnData };
@@ -76,10 +72,20 @@ class HelloResolver {
             throw new Error(e);
         }
     }
+    // mutations
+
     @Mutation(() => User)
     async createFarmer(
         @Args()
-        { name, phone, city, email, password, confirmPassword }: farmerArgs
+        {
+            name,
+            phone,
+            city,
+            email,
+            password,
+            confirmPassword,
+            image
+        }: farmerArgs
     ): Promise<{}> {
         const hashedPassword = await bcrypt.hash(password, 12);
         // check for existing user's data.
@@ -101,7 +107,8 @@ class HelloResolver {
                 city: city,
                 email: email,
                 password: hashedPassword,
-                confirmPassword: confirmPassword
+                confirmPassword: confirmPassword,
+                image: image
             });
             newFarmer.save();
 
@@ -125,18 +132,19 @@ class HelloResolver {
                 email,
                 password,
                 confirmPassword,
-                token
+                token,
+                image
             };
         }
-        return { name, phone, city, email, password, confirmPassword };
+        return { name, phone, city, email, image, password, confirmPassword };
     }
 
     @Mutation(() => Farmer)
     async login(
         @Args() { email, password }: loginArgs,
         @Ctx() ctx: MyContext
-    ): Promise<{} | null> {
-        const oneFarmer: Farmer = await Farmers.findOne({ email });
+    ): Promise<{} | null | Farmer> {
+        const oneFarmer: Farmer = await Farmers.findOne({ email: email });
         const returnData = {
             name: oneFarmer.name,
             email: oneFarmer.email,
@@ -168,8 +176,7 @@ class HelloResolver {
                 return {
                     ...returnData,
                     email,
-                    token,
-                    redirect: '/home'
+                    token
                 };
             } else
                 return {
@@ -179,9 +186,10 @@ class HelloResolver {
         }
         return errors.error;
     }
+
     @Mutation(() => Post)
     async UserPost(
-        @Args() { farmerId, title, des, price, city }: postTypes
+        @Args() { farmerId, title, des, cropType, price, city, url }: postTypes
     ): Promise<Post> {
         await Farmers.findById(farmerId);
         const newPost = new Posts({
@@ -189,11 +197,13 @@ class HelloResolver {
             title: title,
             des: des,
             price: price,
-            city: city
+            city: city,
+            url: url,
+            cropType: cropType
         });
         newPost.save();
         console.log(newPost);
-        return { farmerId, title, des, price, city };
+        return { farmerId, cropType, url, title, des, price, city };
     }
 }
 

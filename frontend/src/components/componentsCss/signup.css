@@ -1,4 +1,4 @@
-.modal {
+.signup-modal {
     position: fixed;
     left: 0;
     right: 0;
@@ -9,24 +9,33 @@
     align-items: center;
     justify-content: center;
 }
-.modal-content {
-    width: 50em;
-    height: 39em;
+.signup-modal-content {
+    background-color: rgba(255, 255, 255, 0.99999);
+    align-items: center;
+    justify-content: flex-start;
+    align-content: flex-start;
+    width: 50rem;
+    height: 45rem;
     padding: 1em;
     border-radius: 25px;
+    margin-top: 2rem;
 }
-.modal-footer,
-.modal-header {
+.signup-modal-header {
     padding: 10px;
-}
-.modal-title {
+} */
+.signup-modal-title {
     margin: 0;
 }
-.modal-body {
+.signup-modal-body {
     padding: 10px;
 }
-.modal-footer {
+.signup-modal-body form h3{
+    text-align: center;
+}
+.signup-modal-body form {
     display: flex;
-    top: 2em;
-    justify-content: space-between;
+    flex-direction: column;
+}
+.signup-modal-body form .MuiFormControl-root{
+    margin-bottom: 1rem;
 }
