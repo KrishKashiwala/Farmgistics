@@ -6,6 +6,7 @@ import {
     Typography,
     Button
 } from '@material-ui/core';
+import MenuItem from '@mui/material/MenuItem';
 import { Formik, Form } from 'formik';
 import { useMutation } from '@apollo/client';
 //@ts-ignore
@@ -90,9 +91,12 @@ const SignUp = ({ show }: any) => {
         return null;
     }
     return (
-        <div className="modal">
-            <div className="modal-content">
-                <div className="modal-body">
+        <div className="signup-modal">
+            <div className="signup-modal-content">
+                <div className="signup-modal-body">
+                    <Typography variant="h3">
+                        Create your account
+                    </Typography>
                     <Formik
                         onSubmit={(data, { setSubmitting }) => {
                             setSubmitting(true);
@@ -113,12 +117,7 @@ const SignUp = ({ show }: any) => {
                         {({ values, errors, isSubmitting, handleChange }) => (
                             <Form>
                                 <ThemeProvider theme={theme}>
-                                    <Typography variant="h5">
-                                        Create your account
-                                    </Typography>
-                                    <div className="modal-header"></div>
                                     <TextField
-                                        fullWidth
                                         variant="outlined"
                                         label="Name"
                                         name="name"
@@ -129,17 +128,15 @@ const SignUp = ({ show }: any) => {
                                         First Name
                                     </TextField>
                                     <TextField
-                                        fullWidth
                                         variant="outlined"
-                                        label="Profile Photo"
                                         name="name"
                                         type="file"
                                         onChange={(e) => handleProfile(e)}
+                                        helperText="Add a Profile Photo"
                                     >
                                         Profile Photo
                                     </TextField>
                                     <TextField
-                                        fullWidth
                                         variant="outlined"
                                         label="Email"
                                         name="email"
@@ -150,7 +147,6 @@ const SignUp = ({ show }: any) => {
                                         email
                                     </TextField>
                                     <TextField
-                                        fullWidth
                                         variant="outlined"
                                         label="Phone"
                                         name="phone"
@@ -171,12 +167,9 @@ const SignUp = ({ show }: any) => {
                                         variant="outlined"
                                     >
                                         {cities.map((option) => (
-                                            <option
-                                                key={option.label}
-                                                value={option.label}
-                                            >
+                                            <MenuItem key={option.label} value={option.label}>
                                                 {option.label}
-                                            </option>
+                                            </MenuItem>
                                         ))}
                                     </TextField>
                                     <TextField
@@ -190,7 +183,6 @@ const SignUp = ({ show }: any) => {
                                     >
                                         password
                                     </TextField>
-                                    &nbsp;&nbsp;&nbsp;
                                     <TextField
                                         label="Confirm Password"
                                         name="confirmPassword"
@@ -203,7 +195,6 @@ const SignUp = ({ show }: any) => {
                                         confirm password
                                     </TextField>
                                     <Button
-                                        fullWidth
                                         variant="contained"
                                         color="secondary"
                                         disabled={isSubmitting}
@@ -216,11 +207,6 @@ const SignUp = ({ show }: any) => {
                         )}
                     </Formik>
                 </div>
-                {/* <div className="modal-footer">
-                    <button className="btn" onClick={onClose}>
-                        Close
-                    </button>
-                </div> */}
             </div>
         </div>
     );

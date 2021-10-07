@@ -61,9 +61,9 @@ const Login = ({ show }: any) => {
     // sessionStorage.setItem('logged-in', 'true');
     // if (localStorage.getItem('id') === null) <Redirect to="/home" />;
     return (
-        <div className="modal">
-            <div className="modal-content">
-                <div className="modal-body">
+        <div className="login-modal">
+            <div className="login-modal-content">
+                <div className="login-modal-body">
                     <ThemeProvider theme={theme}>
                         <Typography variant="h3">
                             Log in to Farmgistic

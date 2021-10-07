@@ -88,9 +88,11 @@ const Navbar = () => {
                     <Link to="/profile">
                         <img
                             style={{
-                                width: '2em',
-                                height: '2em',
-                                borderRadius: '50%'
+                                width: '3rem',
+                                height: '3rem',
+                                borderRadius: '50%',
+                                border: '2px solid #6d6d6d',
+                                boxShadow: '0px 0px 2px 2px #eeeeee'
                             }}
                             src={data_id?.getByIdFarmers.image}
                         />

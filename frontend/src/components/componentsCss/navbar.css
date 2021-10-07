@@ -20,6 +20,8 @@
     border-radius: 50%;
     width: 5rem;
     height: 5rem;
+    border: 2px solid #6d6d6d;
+    box-shadow: 0px 0px 3px 3px #d8d8d8;
 }
 .Top-bar>.Search-bar{
     margin-left: 16rem;
@@ -47,11 +49,16 @@
 .Top-bar>.Profile{
     margin-top: 0.5rem;
     margin-left: 16rem;
+    margin-right: 2rem;
     display: flex;
 }
 .Profile>a{
     color: black;
     text-decoration: none;
+    margin-left: 1rem;
+}
+.Profile a .MuiSvgIcon-root{
+    margin-top: 8px;
 }
 .Nav-links{
     padding-top: 0.7rem;
