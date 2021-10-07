@@ -1,26 +1,17 @@
 // import React from 'react';
 import { Box, Typography } from '@mui/material';
+import '../componentsCss/featured.css';
 const Featured = ({ cropType, title, des, url }: any) => {
     return (
-        <Box sx={{ width: '100%', maxWidth: 500 }}>
-            <Box>
-                <Typography variant="h2" component="div">
-                    Top Farmer in {cropType} section
-                </Typography>
-            </Box>
-            <Box>
-                <img
-                    style={{
-                        margin: '3em',
-                        width: '20em',
-                        height: '24em'
-                    }}
-                    src={url}
-                    alt="image"
-                />
-            </Box>
-            <Box>
-                <a href={`/${cropType}`}>See All Offers</a>
+        <Box className="f-container">
+            <Box className="s-container">
+                <Box className="s-s-1-container">
+                    <Typography variant="h4" component="div">
+                        Top Farmer in {cropType} section
+                    </Typography>
+                    <img src={url} alt="image" />
+                    <a href={`/${cropType}`}>See All Offers</a>
+                </Box>
             </Box>
         </Box>
     );

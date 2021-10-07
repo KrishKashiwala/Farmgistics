@@ -15,6 +15,7 @@ import { Redirect } from 'react-router';
 import { farmer, postArray } from '../../interface';
 import Featured from './homepageComponents/Featured';
 import { cropTypes } from './data/FakeData';
+import Custom_4 from './Custom_4';
 
 const Homepage = () => {
     // context value
@@ -49,7 +50,7 @@ const Homepage = () => {
         loading: f_loading
     } = useQuery<postArray>(ALL_THINGS, {
         variables: {
-            cropType: cropSend
+            cropType: 'fruits'
         }
     });
     if (!f_data || f_error || f_loading) console.log(f_error);
@@ -119,14 +120,19 @@ const Homepage = () => {
                     </div>
                 </div>
             </div>
-            {f_data?.getAllThings.map((item) => (
-                <Featured
-                    url={item.url}
-                    cropType={cropSend}
-                    title={item.title}
-                    des={item.des}
-                />
-            ))}
+            <div className="featured-container">
+                {f_data?.getAllThings.map((item) => (
+                    <Featured
+                        url={item.url}
+                        cropType={item.cropType}
+                        title={item.title}
+                        des={item.des}
+                    />
+                ))}
+            </div>
+            <div className="custom-container">
+                <Custom_4 />
+            </div>
             <Footer />
         </div>
     );
