@@ -53,6 +53,7 @@ const ALL_THINGS = gql`
             price
             url
             city
+            cropType
         }
     }
 `;
