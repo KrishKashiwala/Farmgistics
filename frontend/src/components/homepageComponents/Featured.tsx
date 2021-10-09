@@ -1,4 +1,5 @@
 import { Box, Typography } from '@mui/material';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import '../componentsCss/featured.css';
 const Featured = ({ cropType, title, des, url }: any) => {
     return (
@@ -11,7 +12,7 @@ const Featured = ({ cropType, title, des, url }: any) => {
                     <img src={url} alt="image" />
                 </Box>
                 <a id="a" href={`/${cropType}`}>
-                    See All Offers
+                    <VisibilityIcon /> View Details
                 </a>
             </Box>
         </Box>

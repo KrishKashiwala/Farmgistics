@@ -125,14 +125,14 @@ const Homepage = () => {
             </div>
             <div className="custom-container">
                 <Custom_4 />
-                <Featured url="https://images-eu.ssl-images-amazon.com/images/G/31/img19/AmazonPay/Kartik/Jupiter/LearnMore/PC_01.jpg" />
-                <Featured url="https://images-eu.ssl-images-amazon.com/images/G/31/img19/AmazonPay/Kartik/Jupiter/LearnMore/PC_01.jpg" />
+                <Featured url="https://source.unsplash.com/1600x900/?Vegetable" />
+                <Featured url="https://source.unsplash.com/1600x900/?Fruit" />
                 <Custom_4 />
             </div>
             <div className="custom-container-1">
                 <Custom_4 />
-                <Featured url="https://images-eu.ssl-images-amazon.com/images/G/31/img19/AmazonPay/Kartik/Jupiter/LearnMore/PC_01.jpg" />
-                <Featured url="https://images-eu.ssl-images-amazon.com/images/G/31/img19/AmazonPay/Kartik/Jupiter/LearnMore/PC_01.jpg" />
+                <Featured url="https://source.unsplash.com/1600x900/?Spices" />
+                <Featured url="https://source.unsplash.com/1600x900/?Pulses,dal" />
                 <Custom_4 />
             </div>
             <Footer />
