@@ -8,7 +8,7 @@ import SignUp from './SignUp';
 const Landing = () => {
     const [modalBool, setModalBool] = useState(false);
     const [loginBool, setLoginBool] = useState(false);
-    // if (localStorage.getItem('id') !== null) return <Redirect to="/home" />;
+    if (localStorage.getItem('id') !== null) return <Redirect to="/home" />;
     return (
         <div>
             <div
