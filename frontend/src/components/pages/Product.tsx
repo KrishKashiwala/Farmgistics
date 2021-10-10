@@ -1,6 +1,5 @@
-import { useContext } from "react";
-import UserContext from "../../Context/UserContext";
 import { Redirect } from "react-router";
+import { useLocation } from "react-router";
 import "../componentsCss/product.css";
 import vege from "../assests/vegetable.jpg";
 import Navbar from "../Navbar";
@@ -14,6 +13,11 @@ const Product = () => {
   // if (context.Id === null) {
   //   return <Redirect to='/not-found' />;
   // }
+  const location = useLocation()
+  const quantity = location.state
+
+  console.log(quantity);
+  
   if (localStorage.getItem("id") === null) return <Redirect to='/not-found' />;
   return (
     <div>
@@ -35,7 +39,7 @@ const Product = () => {
           <hr></hr>
           <div className='quantity-selector'>
             <p>Quantity</p>
-            <input type='text'></input>
+            <input type='text'/>
           </div>
           <hr></hr>
           <button>Add to Cart</button>

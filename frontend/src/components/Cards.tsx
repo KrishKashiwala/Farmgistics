@@ -1,12 +1,9 @@
+import { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import './componentsCss/cards.css';
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 
 const useStyles = makeStyles({
     root: {
@@ -27,52 +24,34 @@ const useStyles = makeStyles({
 const Cards = ({ des, title, price, url, city }: any) => {
     const classes = useStyles();
 
+    const [qty, setQty] = useState(0);
+
     if (localStorage.getItem('id') === null)
         return <Redirect to="/not-found" />;
     return (
-        <div>
-            <Card className={classes.root}>
-                <CardActionArea>
-                    <Link to="/product">
-                        <CardMedia
-                            className={classes.media}
-                            image={url}
-                            title="Vegetable"
-                        />
+        <div className="row mb-4 cont">
+                <div className="pd-3 info">
+                    <Link to={{
+                        pathname: '/product',
+                        state: { quantity: qty },
+                    }}>
+                    <img src={url} alt="Image"/>
+                    <div className="crop-details">
+                        <h5>{title}</h5>
+                        <p>City : {city}</p>
+                        <p>Description : {des}</p>
+                    </div>
                     </Link>
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
-                            {title}
-                        </Typography>
-                        <Typography
-                            variant="body2"
-                            color="textSecondary"
-                            component="p"
-                        >
-                            {des}
-                        </Typography>
-                        <Typography
-                            variant="body2"
-                            color="textSecondary"
-                            component="p"
-                        >
-                            price : &#x20B9;{price}
-                        </Typography>
-                        <Typography
-                            variant="body2"
-                            color="textSecondary"
-                            component="p"
-                        >
-                            city : {city}
-                        </Typography>
-                    </CardContent>
-                </CardActionArea>
-                <CardActions>
-                    <Link to="/product">Buy Now</Link>
-                    <Link to="/product">Add to Cart</Link>
-                </CardActions>
-            </Card>
-        </div>
+                </div>
+                <div className="pd-3">
+                    <p>&#x20B9; {price}</p>
+                </div>
+                <div className="pd-3 quantity">
+                    <button type="button" onClick={() => {qty>0 ? setQty(prevQty => prevQty-1) : setQty(0)}}><RemoveIcon/></button>
+                    <input value={qty}/>
+                    <button type="button" onClick={() => {setQty(prevQty => prevQty+1)}}><AddIcon/></button>
+                </div>
+            </div>
     );
 };
 

@@ -41,69 +41,84 @@ const Fruits = () => {
     return (
         <div>
             <Navbar />
-            <aside>
-                <h5>Filters</h5>
-                <hr></hr>
-                <section className="price">
-                    <h6>PRICE</h6>
-                    <Slider
-                        value={price}
-                        onChange={handleChange}
-                        valueLabelDisplay="auto"
-                        aria-labelledby="range-slider"
-                        getAriaValueText={valuetext}
-                        className="slider"
-                    />
-                    <Input
-                        id="standard-adornment-amount"
-                        value={price}
-                        onChange={(e) => handleChange(e, e.target.value)}
-                        startAdornment={
-                            <InputAdornment position="start">$</InputAdornment>
-                        }
-                    />
-                </section>
-                <hr></hr>
-                <section className="spices">
-                    <h6>FRUITS</h6>
-                    <FormControl>
-                        <FormGroup>
-                            <FormControlLabel
-                                value="end"
-                                control={<Checkbox color="primary" />}
-                                label="Apple"
-                                labelPlacement="end"
+            <div className="spices-cont">
+                <aside>
+                    <h5>Filters</h5>
+                    <hr></hr>
+                    <section className="price">
+                        <h5>PRICE</h5>
+                        <Slider
+                            value={price}
+                            onChange={handleChange}
+                            valueLabelDisplay="auto"
+                            aria-labelledby="range-slider"
+                            getAriaValueText={valuetext}
+                            className="slider"
+                        />
+                        <Input
+                            id="standard-adornment-amount"
+                            value={price}
+                            onChange={(e) => handleChange(e, e.target.value)}
+                            startAdornment={
+                                <InputAdornment position="start">$</InputAdornment>
+                            }
+                        />
+                    </section>
+                    <hr></hr>
+                    <section className="spices">
+                        <h5>FRUITS</h5>
+                        <FormControl>
+                            <FormGroup>
+                                <FormControlLabel
+                                    value="end"
+                                    control={<Checkbox color="primary" />}
+                                    label="Apple"
+                                    labelPlacement="end"
+                                />
+                                <FormControlLabel
+                                    value="end"
+                                    control={<Checkbox color="primary" />}
+                                    label="Banana"
+                                    labelPlacement="end"
+                                />
+                                <FormControlLabel
+                                    value="end"
+                                    control={<Checkbox color="primary" />}
+                                    label="Pineapple"
+                                    labelPlacement="end"
+                                />
+                            </FormGroup>
+                        </FormControl>
+                    </section>
+                </aside>
+                <div className="spices-data">
+                    <div className="spices-heading">
+                        <h4>Fruits We Offer</h4>
+                        <hr></hr>
+                    </div>
+                    <div className="titles">
+                      <div className="items">
+                        <h5>Items</h5>
+                      </div>
+                      <div className="price">
+                        <h5>Price</h5>
+                      </div>
+                      <div className="quantity">
+                        <h5>Quantity</h5>
+                      </div>
+                    </div>
+                    <div className="spices-cards">
+                        {fruit_data?.getAllThings.map((item) => (
+                            <Cards
+                                title={item.title}
+                                des={item.des}
+                                url={item.url}
+                                price={item.price}
+                                city={item.city}
                             />
-                            <FormControlLabel
-                                value="end"
-                                control={<Checkbox color="primary" />}
-                                label="Banana"
-                                labelPlacement="end"
-                            />
-                            <FormControlLabel
-                                value="end"
-                                control={<Checkbox color="primary" />}
-                                label="Pineapple"
-                                labelPlacement="end"
-                            />
-                        </FormGroup>
-                    </FormControl>
-                </section>
-            </aside>
-            <div className="spices-heading">
-                <h4>Fruits We Offer</h4>
-                <hr></hr>
-            </div>
-            <div className="spices-cards">
-                {fruit_data?.getAllThings.map((item) => (
-                    <Cards
-                        title={item.title}
-                        des={item.des}
-                        url={item.url}
-                        price={item.price}
-                        city={item.city}
-                    />
-                ))}
+                        ))}
+                    </div>
+                </div>
             </div>
             <Footer />
         </div>
