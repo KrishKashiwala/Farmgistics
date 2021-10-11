@@ -123,12 +123,200 @@ const Homepage = () => {
                     />
                 ))}
             </div>
-            <div className="custom-container">
-                <Custom_4 />
-                <Featured url="https://images-eu.ssl-images-amazon.com/images/G/31/img19/AmazonPay/Kartik/Jupiter/LearnMore/PC_01.jpg" />
-                <Featured url="https://images-eu.ssl-images-amazon.com/images/G/31/img19/AmazonPay/Kartik/Jupiter/LearnMore/PC_01.jpg" />
-                <Custom_4 />
+            <br></br>
+            <div className="container-fluid img-cont">
+                <div className="row">
+                    <div className="col">
+                    <div className="carousel slide multi-item-carousel" id="theCarousel">
+                        <div className="carousel-inner">
+                        <div className="item active">
+                            <div className="cards">
+                                <div className="card" >
+                                            <img className="card-img-top" src="img_avatar1.png" alt="Card image"></img>
+                                            <div className="card-body">
+                                                <h4 className="card-title">John Doe</h4>
+                                                <p className="card-text">Some example text.</p>
+                                                <a href="#" className="btn btn-primary">See Profile</a>
+                                            </div>
+                                </div>
+                                <div className="card">
+                                                <img className="card-img-top" src="img_avatar1.png" alt="Card image"></img>
+                                                <div className="card-body">
+                                                    <h4 className="card-title">John Doe</h4>
+                                                    <p className="card-text">Some example text.</p>
+                                                    <a href="#" className="btn btn-primary">See Profile</a>
+                                                </div>
+                                </div>
+                                <div className="card" >
+                                            <img className="card-img-top" src="img_avatar1.png" alt="Card image"></img>
+                                            <div className="card-body">
+                                                <h4 className="card-title">John Doe</h4>
+                                                <p className="card-text">Some example text.</p>
+                                                <a href="#" className="btn btn-primary">See Profile</a>
+                                            </div>
+                                </div>
+                                <div className="card">
+                                                <img className="card-img-top" src="img_avatar1.png" alt="Card image"></img>
+                                                <div className="card-body">
+                                                    <h4 className="card-title">John Doe</h4>
+                                                    <p className="card-text">Some example text.</p>
+                                                    <a href="#" className="btn btn-primary">See Profile</a>
+                                                </div>
+                                </div>
+                                <div className="card">
+                                                <img className="card-img-top" src="img_avatar1.png" alt="Card image"></img>
+                                                <div className="card-body">
+                                                    <h4 className="card-title">John Doe</h4>
+                                                    <p className="card-text">Some example text.</p>
+                                                    <a href="#" className="btn btn-primary">See Profile</a>
+                                                </div>
+                                </div>
+                                <div className="card">
+                                                <img className="card-img-top" src="img_avatar1.png" alt="Card image"></img>
+                                                <div className="card-body">
+                                                    <h4 className="card-title">John Doe</h4>
+                                                    <p className="card-text">Some example text.</p>
+                                                    <a href="#" className="btn btn-primary">See Profile</a>
+                                                </div>
+                                </div>
+                                <div className="card">
+                                                <img className="card-img-top" src="img_avatar1.png" alt="Card image"></img>
+                                                <div className="card-body">
+                                                    <h4 className="card-title">John Doe</h4>
+                                                    <p className="card-text">Some example text.</p>
+                                                    <a href="#" className="btn btn-primary">See Profile</a>
+                                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="item">
+                            <div className="cards">
+                                <div className="card">
+                                            <img className="card-img-top" src="img_avatar1.png" alt="Card image"></img>
+                                            <div className="card-body">
+                                                <h4 className="card-title">John Doe</h4>
+                                                <p className="card-text">Some example text.</p>
+                                                <a href="#" className="btn btn-primary">See Profile</a>
+                                            </div>
+                                </div>
+                                <div className="card" >
+                                            <img className="card-img-top" src="img_avatar1.png" alt="Card image"></img>
+                                            <div className="card-body">
+                                                <h4 className="card-title">John Doe</h4>
+                                                <p className="card-text">Some example text.</p>
+                                                <a href="#" className="btn btn-primary">See Profile</a>
+                                            </div>
+                                </div>
+                                <div className="card">
+                                                <img className="card-img-top" src="img_avatar1.png" alt="Card image"></img>
+                                                <div className="card-body">
+                                                    <h4 className="card-title">John Doe</h4>
+                                                    <p className="card-text">Some example text.</p>
+                                                    <a href="#" className="btn btn-primary">See Profile</a>
+                                                </div>
+                                </div>
+                                <div className="card" >
+                                            <img className="card-img-top" src="img_avatar1.png" alt="Card image"></img>
+                                            <div className="card-body">
+                                                <h4 className="card-title">John Doe</h4>
+                                                <p className="card-text">Some example text.</p>
+                                                <a href="#" className="btn btn-primary">See Profile</a>
+                                            </div>
+                                </div>
+                                <div className="card">
+                                                <img className="card-img-top" src="img_avatar1.png" alt="Card image"></img>
+                                                <div className="card-body">
+                                                    <h4 className="card-title">John Doe</h4>
+                                                    <p className="card-text">Some example text.</p>
+                                                    <a href="#" className="btn btn-primary">See Profile</a>
+                                                </div>
+                                </div>
+                                <div className="card">
+                                                <img className="card-img-top" src="img_avatar1.png" alt="Card image"></img>
+                                                <div className="card-body">
+                                                    <h4 className="card-title">John Doe</h4>
+                                                    <p className="card-text">Some example text.</p>
+                                                    <a href="#" className="btn btn-primary">See Profile</a>
+                                                </div>
+                                </div>
+                                <div className="card">
+                                                <img className="card-img-top" src="img_avatar1.png" alt="Card image"></img>
+                                                <div className="card-body">
+                                                    <h4 className="card-title">John Doe</h4>
+                                                    <p className="card-text">Some example text.</p>
+                                                    <a href="#" className="btn btn-primary">See Profile</a>
+                                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="item">
+                            <div className="cards">
+                                <div className="card">
+                                            <img className="card-img-top" src="img_avatar1.png" alt="Card image"></img>
+                                            <div className="card-body">
+                                                <h4 className="card-title">John Doe</h4>
+                                                <p className="card-text">Some example text.</p>
+                                                <a href="#" className="btn btn-primary">See Profile</a>
+                                            </div>
+                                </div>
+                                <div className="card" >
+                                            <img className="card-img-top" src="img_avatar1.png" alt="Card image"></img>
+                                            <div className="card-body">
+                                                <h4 className="card-title">John Doe</h4>
+                                                <p className="card-text">Some example text.</p>
+                                                <a href="#" className="btn btn-primary">See Profile</a>
+                                            </div>
+                                </div>
+                                <div className="card">
+                                                <img className="card-img-top" src="img_avatar1.png" alt="Card image"></img>
+                                                <div className="card-body">
+                                                    <h4 className="card-title">John Doe</h4>
+                                                    <p className="card-text">Some example text.</p>
+                                                    <a href="#" className="btn btn-primary">See Profile</a>
+                                                </div>
+                                </div>
+                                <div className="card" >
+                                            <img className="card-img-top" src="img_avatar1.png" alt="Card image"></img>
+                                            <div className="card-body">
+                                                <h4 className="card-title">John Doe</h4>
+                                                <p className="card-text">Some example text.</p>
+                                                <a href="#" className="btn btn-primary">See Profile</a>
+                                            </div>
+                                </div>
+                                <div className="card">
+                                                <img className="card-img-top" src="img_avatar1.png" alt="Card image"></img>
+                                                <div className="card-body">
+                                                    <h4 className="card-title">John Doe</h4>
+                                                    <p className="card-text">Some example text.</p>
+                                                    <a href="#" className="btn btn-primary">See Profile</a>
+                                                </div>
+                                </div>
+                                <div className="card">
+                                                <img className="card-img-top" src="img_avatar1.png" alt="Card image"></img>
+                                                <div className="card-body">
+                                                    <h4 className="card-title">John Doe</h4>
+                                                    <p className="card-text">Some example text.</p>
+                                                    <a href="#" className="btn btn-primary">See Profile</a>
+                                                </div>
+                                </div>
+                                <div className="card">
+                                                <img className="card-img-top" src="img_avatar1.png" alt="Card image"></img>
+                                                <div className="card-body">
+                                                    <h4 className="card-title">John Doe</h4>
+                                                    <p className="card-text">Some example text.</p>
+                                                    <a href="#" className="btn btn-primary">See Profile</a>
+                                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <a className="left carousel-control" href="#theCarousel" data-slide="prev"><i className="glyphicon glyphicon-chevron-left"></i></a>
+                        <a className="right carousel-control" href="#theCarousel" data-slide="next"><i className="glyphicon glyphicon-chevron-right"></i></a>
+                    </div>
+                    </div>
+                </div>
             </div>
+            <br></br>
             <div className="custom-container-1">
                 <Custom_4 />
                 <Featured url="https://images-eu.ssl-images-amazon.com/images/G/31/img19/AmazonPay/Kartik/Jupiter/LearnMore/PC_01.jpg" />
