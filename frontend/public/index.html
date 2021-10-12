@@ -33,71 +33,54 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
     <!-- //zoom image library -->
     <script src="js-image-zoom.js"></script>
     <!-- Or from a CDN -->
     <script src="https://unpkg.com/js-image-zoom/js-image-zoom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-image-zoom/js-image-zoom.min.js"></script>
-
-    <style type="text/css">
-      .multi-item-carousel .carousel-inner > .item {
-        transition: 500ms ease-in-out left;
-      }
-      .multi-item-carousel .carousel-inner .active.left {
-        left: -33%;
-      }
-      .multi-item-carousel .carousel-inner .active.right {
-        left: 33%;
-      }
-      .multi-item-carousel .carousel-inner .next {
-        left: 33%;
-      }
-      .multi-item-carousel .carousel-inner .prev {
-        left: -33%;
-      }
-      @media all and (transform-3d), (-webkit-transform-3d) {
-        .multi-item-carousel .carousel-inner > .item {
-          transition: 500ms ease-in-out left;
-          transition: 500ms ease-in-out all;
-          -webkit-backface-visibility: visible;
-                  backface-visibility: visible;
-          transform: none!important;
-        }
-      }
-      .multi-item-carousel .carouse-control.left,
-      .multi-item-carousel .carouse-control.right {
-        background-image: none;
-      }
-    </style>
   
     <script type="text/javascript">
-      $(".multi-item-carousel").carousel({
-        interval: false
-      });
+      $('#carouselExample').on('slide.bs.carousel', function (e) {
+
   
-      // for every slide in carousel, copy the next slide's item in the slide.
-      // Do the same for the next, next item.
-      $(".multi-item-carousel .item").each(function () {
-        var next = $(this).next();
-        if (!next.length) {
-          next = $(this).siblings(":first");
+        var $e = $(e.relatedTarget);
+        var idx = $e.index();
+        var itemsPerSlide = 4;
+        var totalItems = $('.carousel-item').length;
+
+        if (idx >= totalItems-(itemsPerSlide-1)) {
+            var it = itemsPerSlide - (totalItems - idx);
+            for (var i=0; i<it; i++) {
+                // append slides to end
+                if (e.direction=="left") {
+                    $('.carousel-item').eq(i).appendTo('#img-slider');
+                }
+                else {
+                    $('.carousel-item').eq(0).appendTo('#img-slider');
+                }
+            }
         }
-        next.children(":first-child").clone().appendTo($(this));
-  
-        if (next.next().length > 0) {
-          next.next().children(":first-child").clone().appendTo($(this));
-        } else {
-          $(this)
-            .siblings(":first")
-            .children(":first-child")
-            .clone()
-            .appendTo($(this));
-        }
-      });
+        });
+
+
+        $('#carouselExample').carousel({ 
+                    interval: 2000
+            });
+
+
+        $(document).ready(function() {
+        /* show lightbox when clicking a thumbnail */
+        $('a.thumb').click(function(event){
+          event.preventDefault();
+          var content = $('.modal-body');
+          content.empty();
+            var title = $(this).attr("title");
+            $('.modal-title').html(title);        
+            content.html($(this).html());
+            $(".modal-profile").modal({show:true});
+        });
+
+        });
     </script>
 
     <title>React App</title>
