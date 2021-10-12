@@ -10,7 +10,7 @@ const Custom_4 = () => {
                         <a className="s_a" href="/vegetabels">
                             <Box className="c-main">
                                 <img
-                                    src="https://images-eu.ssl-images-amazon.com/images/G/31/img21/Wireless/Jupiter2021/PC.jpg"
+                                    src= "https://source.unsplash.com/1600x900/?vegetables"
                                     alt="image"
                                 />
                                 <Typography className="t">
@@ -21,11 +21,11 @@ const Custom_4 = () => {
                         <a className="s_a" href="">
                             <Box className="c-main">
                                 <img
-                                    src="https://images-eu.ssl-images-amazon.com/images/G/31/img21/Wireless/Jupiter2021/PC.jpg"
+                                    src="https://source.unsplash.com/1600x900/?fruits"
                                     alt="image"
                                 />
                                 <Typography className="t">
-                                    Vegetables
+                                    Fruits
                                 </Typography>
                             </Box>
                         </a>
@@ -35,22 +35,22 @@ const Custom_4 = () => {
                         <a className="s_a" href="">
                             <Box className="c-main">
                                 <img
-                                    src="https://images-eu.ssl-images-amazon.com/images/G/31/img21/Wireless/Jupiter2021/PC.jpg"
+                                    src="https://images.unsplash.com/photo-1575319026763-726d092c26c0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80"
                                     alt="image"
                                 />
                                 <Typography className="t">
-                                    Vegetables
+                                    Spices
                                 </Typography>
                             </Box>
                         </a>
                         <a className="s_a" href="">
                             <Box className="c-main">
                                 <img
-                                    src="https://images-eu.ssl-images-amazon.com/images/G/31/img21/Wireless/Jupiter2021/PC.jpg"
+                                    src="https://images.unsplash.com/photo-1600190909161-44abaa7d45f8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=387&q=80"
                                     alt="image"
                                 />
                                 <Typography className="t">
-                                    Vegetables
+                                    Pulses
                                 </Typography>
                             </Box>
                         </a>
