@@ -2,13 +2,12 @@ import 'reflect-metadata';
 import { ApolloServer } from 'apollo-server-express';
 const logger = require('morgan');
 const cors = require('cors');
-import * as session from 'express-session';
+const session = require('express-session');
 const MongoStore = require('connect-mongo');
 require('dotenv').config();
 import * as Express from 'express';
 import { buildSchema } from 'type-graphql';
 import { HelloResolver } from './graphql/resolvers';
-
 require('./server');
 //  express setup
 const main = async () => {
@@ -48,8 +47,11 @@ const main = async () => {
     );
 
     await apolloserver.applyMiddleware({ app });
-    app.listen(4000, () => {
+    app.listen(process.env.PORT || 4000, () => {
         console.log('server started on http://localhost:4000/graphql');
     });
+
+
 };
 main();
+
