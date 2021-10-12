@@ -3,9 +3,9 @@ import { ALL_THINGS, FIND_FARMER } from '../graphql/queries';
 import { ALL_POSTS } from '../graphql/queries';
 import { useQuery } from '@apollo/client';
 import Navbar from './Navbar';
-import fimg from './assests/engin-akyurt-Y5n8mCpvlZU-unsplash.jpg';
-import simg from './assests/josephine-baran-g4wzhY8qiMw-unsplash.jpg';
-import timg from './assests/nrd-D6Tu_L3chLE-unsplash.jpg';
+// import fimg from './assests/engin-akyurt-Y5n8mCpvlZU-unsplash.jpg';
+// import simg from './assests/josephine-baran-g4wzhY8qiMw-unsplash.jpg';
+// import timg from './assests/nrd-D6Tu_L3chLE-unsplash.jpg';
 import Footer from './Footer';
 import { Redirect } from 'react-router';
 import { farmer, postArray } from '../../interface';
@@ -237,8 +237,8 @@ const Homepage = () => {
             <br></br>
             <div className="custom-container-1">
                 <Custom_4 />
-                <Featured url="https://images-eu.ssl-images-amazon.com/images/G/31/img19/AmazonPay/Kartik/Jupiter/LearnMore/PC_01.jpg" />
-                <Featured url="https://images-eu.ssl-images-amazon.com/images/G/31/img19/AmazonPay/Kartik/Jupiter/LearnMore/PC_01.jpg" />
+                <Featured url="https://source.unsplash.com/1600x900/?Spices" />
+                <Featured url="https://source.unsplash.com/1600x900/?Pulses,dal" />
                 <Custom_4 />
             </div>
             <Footer />
