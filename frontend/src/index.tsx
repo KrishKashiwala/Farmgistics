@@ -26,7 +26,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 //link kind of middleware
 const link = from([
     errorLink,
-    new HttpLink({ uri: 'https://farmgistics.herokuapp.com/' })
+    new HttpLink({ uri: 'https://farmgistics-backend.herokuapp.com/' })
 ]);
 
 // main interaction with graphqlServer
