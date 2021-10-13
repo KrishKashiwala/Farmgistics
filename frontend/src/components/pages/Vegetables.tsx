@@ -32,7 +32,7 @@ const Fruits = () => {
         loading: fruit_loading
     } = useQuery<postArray>(ALL_THINGS, {
         variables: {
-            cropType: 'fruits'
+            cropType: 'vegetables'
         }
     });
 
@@ -97,15 +97,15 @@ const Fruits = () => {
                         <hr></hr>
                     </div>
                     <div className="titles">
-                      <div className="items">
-                        <h5>Items</h5>
-                      </div>
-                      <div className="price">
-                        <h5>Price</h5>
-                      </div>
-                      <div className="quantity">
-                        <h5>Quantity</h5>
-                      </div>
+                        <div className="items">
+                            <h5>Items</h5>
+                        </div>
+                        <div className="price">
+                            <h5>Price</h5>
+                        </div>
+                        <div className="quantity">
+                            <h5>Quantity</h5>
+                        </div>
                     </div>
                     <div className="spices-cards">
                         {fruit_data?.getAllThings.map((item) => (

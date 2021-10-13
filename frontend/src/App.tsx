@@ -10,8 +10,7 @@ import ContactUs from "./components/pages/ContactUs";
 import UserContext from "./Context/UserContext";
 import Product from "./components/pages/Product";
 import Cart from "./components/pages/Cart";
-import ReLogin from "./components/pages/ReLogin";
-
+import ReLogin from './components/ReLogin'
 const App = () => {
   const [id, setId] = useState(null);
   const [token, setToken] = useState(null);
