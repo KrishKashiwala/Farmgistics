@@ -1,5 +1,6 @@
 import 'reflect-metadata';
 import { ApolloServer } from 'apollo-server-express';
+// import * as http from 'http';
 const logger = require('morgan');
 const cors = require('cors');
 const session = require('express-session');
@@ -11,13 +12,6 @@ import { HelloResolver } from './graphql/resolvers';
 require('./server');
 //  express setup
 const main = async () => {
-    const schema = await buildSchema({
-        resolvers: [HelloResolver]
-    });
-    const apolloserver = new ApolloServer({
-        schema,
-        context: ({ req }) => req
-    });
     const app = Express();
     app.use(
         cors({
@@ -45,12 +39,22 @@ const main = async () => {
             })
         })
     );
-
-    await apolloserver.applyMiddleware({ app });
-    app.listen(process.env.PORT || 4000, () => {
-        console.log('server started on http://localhost:4000/graphql');
+    const schema = await buildSchema({
+        resolvers: [HelloResolver],
+    });
+    const apolloserver = new ApolloServer({
+        schema,
+        context: ({ req }) => req
     });
 
+    await apolloserver.start();
+    apolloserver.applyMiddleware({
+        app,
+        path: '/'
+    });
+    app.listen({ port: process.env.PORT || 4000 }, () => {
+        console.log(`🚀 Server ready at ${process.env.PORT || 4000}`);
+    })
 
 };
 main();
