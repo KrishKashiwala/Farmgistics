@@ -1,7 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans+Condensed:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 .main-container {
     margin: 0;
     padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
 }
 .image-slider {
     margin-top: 1rem;
@@ -64,7 +67,7 @@
     align-content: center;
 } 
 .featured-container {
-    margin: 2em 0;
+    margin: 5em 0;
     display: flex;
     flex-direction: row;
 }
@@ -74,9 +77,10 @@
 }
 
 .custom-container-1 {
-    margin-top: 2em;
+    margin-top: 5em;
     display: flex;
     flex-direction: row;
+    font-family: 'Montserrat', sans-serif;
 }
 #img-slider .carousel-inner .carousel-item .items{
     display: flex;
@@ -89,4 +93,7 @@
 #img-slider .carousel-inner .carousel-item .items .item img{
     height: 20rem;
     width: 100%;
+}
+.item {
+    margin-top : 3em;
 }
