@@ -38,50 +38,6 @@
     <!-- Or from a CDN -->
     <script src="https://unpkg.com/js-image-zoom/js-image-zoom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-image-zoom/js-image-zoom.min.js"></script>
-  
-    <script type="text/javascript">
-      $('#carouselExample').on('slide.bs.carousel', function (e) {
-
-  
-        var $e = $(e.relatedTarget);
-        var idx = $e.index();
-        var itemsPerSlide = 4;
-        var totalItems = $('.carousel-item').length;
-
-        if (idx >= totalItems-(itemsPerSlide-1)) {
-            var it = itemsPerSlide - (totalItems - idx);
-            for (var i=0; i<it; i++) {
-                // append slides to end
-                if (e.direction=="left") {
-                    $('.carousel-item').eq(i).appendTo('#img-slider');
-                }
-                else {
-                    $('.carousel-item').eq(0).appendTo('#img-slider');
-                }
-            }
-        }
-        });
-
-
-        $('#carouselExample').carousel({ 
-                    interval: 2000
-            });
-
-
-        $(document).ready(function() {
-        /* show lightbox when clicking a thumbnail */
-        $('a.thumb').click(function(event){
-          event.preventDefault();
-          var content = $('.modal-body');
-          content.empty();
-            var title = $(this).attr("title");
-            $('.modal-title').html(title);        
-            content.html($(this).html());
-            $(".modal-profile").modal({show:true});
-        });
-
-        });
-    </script>
 
     <title>React App</title>
   </head>

@@ -1,33 +1,33 @@
-.row{
+.cont{
     border-bottom: 1px solid #b9b9b9;
     justify-content: space-between;
     width: 70rem;
     padding: 1rem;
 }
-.row .info a{
+.cont .info a{
     display: flex;
     justify-content: space-around;
     text-decoration: none;
     color: #2e2e2e;
 }
-.row .info a img{
+.cont .info a img{
     width: 10rem;
     height: 10rem;
 } 
-.row .info .crop-details{
+.cont .info .crop-details{
     padding: 1rem;
 }
-.row .quantity{
+.cont .quantity{
     display: flex;
     margin-right: -2rem;
 }
-.row .quantity input{
+.cont .quantity input{
     width: 2.5rem;
     height: 2.5rem;
     margin: 0px 4px;
     text-align: center;
 }
-.row .quantity button{
+.cont .quantity button{
     border-radius: 50%;
     height: 2.5rem;
     width: 2.5rem;

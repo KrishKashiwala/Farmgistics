@@ -24,44 +24,18 @@ const OrderItem = ({ title, des, url, price, city }: any) => {
     if (localStorage.getItem('id') === null)
         return <Redirect to="/not-found" />;
     return (
-        <div>
-            <Card className={classes.cardWidth}>
-                <CardActionArea>
-                    <CardMedia
-                        component="img"
-                        alt="Contemplative Reptile"
-                        height="140"
-                        src={url}
-                    />
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
-                            {title}
-                        </Typography>
-                        <Typography gutterBottom variant="h5" component="h2">
-                            &#8377; {price}
-                        </Typography>
-                        <Typography
-                            variant="body2"
-                            color="textSecondary"
-                            component="p"
-                        >
-                            {des}
-                        </Typography>
-                        <Typography
-                            variant="body2"
-                            color="textSecondary"
-                            component="p"
-                        >
-                            {city}
-                        </Typography>
-                    </CardContent>
-                </CardActionArea>
-                <CardActions>
-                    <Button color="secondary" variant="contained">
-                        Share
-                    </Button>
-                </CardActions>
-            </Card>
+        <div className="order-item">
+            <div className="row">
+                <div className="col">
+                    <img src={url} alt="image"></img>
+                </div>
+                <div className="col details">
+                    <h4>{title}</h4>
+                    <p>{des}</p>
+                    <p>Price : &#8377; {price}</p>
+                    <p>City : {city}</p>
+                </div>
+            </div>
         </div>
     );
 };
