@@ -11,6 +11,7 @@ import UserContext from "./Context/UserContext";
 import Product from "./components/pages/Product";
 import Cart from "./components/pages/Cart";
 import ReLogin from './components/ReLogin'
+import Pulses from "./components/pages/Pulses";
 const App = () => {
   const [id, setId] = useState(null);
   const [token, setToken] = useState(null);
@@ -41,6 +42,7 @@ const App = () => {
             <Route exact path='/fruits' component={Fruits} />
             <Route exact path='/vegetables' component={Vegetables} />
             <Route exact path='/spices' component={Spices} />
+            <Route exact path='/pulses' component={Pulses} />
             <Route exact path='/contactus' component={ContactUs} />
             <Route exact path='/product' component={Product} />
             <Route exact path='/cart' component={Cart} />

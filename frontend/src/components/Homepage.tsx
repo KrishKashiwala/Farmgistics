@@ -1,11 +1,14 @@
+import * as React from 'react';
 import './componentsCss/homepage.css';
 import { ALL_THINGS, FIND_FARMER } from '../graphql/queries';
 import { ALL_POSTS } from '../graphql/queries';
 import { useQuery } from '@apollo/client';
 import Navbar from './Navbar';
-// import fimg from './assests/engin-akyurt-Y5n8mCpvlZU-unsplash.jpg';
-// import simg from './assests/josephine-baran-g4wzhY8qiMw-unsplash.jpg';
-// import timg from './assests/nrd-D6Tu_L3chLE-unsplash.jpg';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Footer from './Footer';
 import { Redirect } from 'react-router';
 import { farmer, postArray } from '../../interface';
@@ -13,7 +16,42 @@ import Featured from './homepageComponents/Featured';
 import { cropTypes } from './data/FakeData';
 import Custom_4 from './Custom_4';
 
+function TabPanel(props) {
+    const { children, value, index, ...other } = props;
+  
+    return (
+      <div
+        role="tabpanel"
+        hidden={value !== index}
+        id={`simple-tabpanel-${index}`}
+        aria-labelledby={`simple-tab-${index}`}
+        {...other}
+      >
+        {value === index && (
+          <Box sx={{ p: 3 }}>
+            <Typography>{children}</Typography>
+          </Box>
+        )}
+      </div>
+    );
+  }
+
+  function a11yProps(index) {
+    return {
+      id: `simple-tab-${index}`,
+      'aria-controls': `simple-tabpanel-${index}`,
+    };
+  }
+
+
 const Homepage = () => {
+
+    const [value, setValue] = React.useState(0);
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
+
     // backend graphql code starts
     const {
         data: data_id,
@@ -80,17 +118,191 @@ const Homepage = () => {
 
                 </div>
             </div>
-            <div className="featured-container">
-                {f_data?.getAllThings.map((item) => (
-                    <Featured
-                        url={item.url}
-                        cropType={item.cropType}
-                        title={item.title}
-                        des={item.des}
-                    />
-                ))}
+            <br></br>
+            <div className="latest-arrivals">
+                <h3>Latest Arrivals</h3>
+                <hr></hr>
             </div>
             <br></br>
+            <Box sx={{ width: '100%' }}>
+            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" centered>
+                <Tab label="Vegetables" {...a11yProps(0)} />
+                <Tab label="Fruits" {...a11yProps(1)} />
+                <Tab label="Spices" {...a11yProps(2)} />
+                <Tab label="Pulses" {...a11yProps(3)} />
+                </Tabs>
+            </Box>
+            <TabPanel value={value} index={0} className="tb-panel">
+                <div className="vege-items">
+                    <div className="vege-item">
+                        <img src="https://source.unsplash.com/1600x900/?vegetables" alt="img"></img>
+                        <div className="details">
+                            <h5>Tomato</h5>
+                            <p>From : Raju</p>
+                            <p>Price : &#8377; 100</p>
+                            <Button variant="contained" disableElevation>Buy Now</Button>
+                        </div>
+                    </div>
+                    <div className="vege-item">
+                        <img src="https://source.unsplash.com/1600x900/?vegetables" alt="img"></img>
+                        <div className="details">
+                            <h5>Tomato</h5>
+                            <p>From : Raju</p>
+                            <p>Price : &#8377; 100</p>
+                            <Button variant="contained" disableElevation>Buy Now</Button>
+                        </div>
+                    </div>
+                    <div className="vege-item">
+                        <img src="https://source.unsplash.com/1600x900/?vegetables" alt="img"></img>
+                        <div className="details">
+                            <h5>Tomato</h5>
+                            <p>From : Raju</p>
+                            <p>Price : &#8377; 100</p>
+                            <Button variant="contained" disableElevation>Buy Now</Button>
+                        </div>
+                    </div>
+                    <div className="vege-item">
+                        <img src="https://source.unsplash.com/1600x900/?vegetables" alt="img"></img>
+                        <div className="details">
+                            <h5>Tomato</h5>
+                            <p>From : Raju</p>
+                            <p>Price : &#8377; 100</p>
+                            <Button variant="contained" disableElevation>Buy Now</Button>
+                        </div>
+                    </div>
+                    <div className="vege-item">
+                        <img src="https://source.unsplash.com/1600x900/?vegetables" alt="img"></img>
+                        <div className="details">
+                            <h5>Tomato</h5>
+                            <p>From : Raju</p>
+                            <p>Price : &#8377; 100</p>
+                            <Button variant="contained" disableElevation>Buy Now</Button>
+                        </div>
+                    </div>
+                </div>
+            </TabPanel>
+            <TabPanel value={value} index={1} className="tb-panel">
+                <div className="vege-items">
+                        <div className="vege-item">
+                            <img src="https://source.unsplash.com/1600x900/?vegetables" alt="img"></img>
+                            <div className="details">
+                                <h5>Banana</h5>
+                                <p>From : Raju</p>
+                                <p>Price : &#8377; 100</p>
+                                <Button variant="contained" disableElevation>Buy Now</Button>
+                            </div>
+                        </div>
+                        <div className="vege-item">
+                            <img src="https://source.unsplash.com/1600x900/?vegetables" alt="img"></img>
+                            <div className="details">
+                                <h5>Banana</h5>
+                                <p>From : Raju</p>
+                                <p>Price : &#8377; 100</p>
+                                <Button variant="contained" disableElevation>Buy Now</Button>
+                            </div>
+                        </div>
+                        <div className="vege-item">
+                            <img src="https://source.unsplash.com/1600x900/?vegetables" alt="img"></img>
+                            <div className="details">
+                                <h5>Banana</h5>
+                                <p>From : Raju</p>
+                                <p>Price : &#8377; 100</p>
+                                <Button variant="contained" disableElevation>Buy Now</Button>
+                            </div>
+                        </div>
+                        <div className="vege-item">
+                            <img src="https://source.unsplash.com/1600x900/?vegetables" alt="img"></img>
+                            <div className="details">
+                                <h5>Banana</h5>
+                                <p>From : Raju</p>
+                                <p>Price : &#8377; 100</p>
+                                <Button variant="contained" disableElevation>Buy Now</Button>
+                            </div>
+                        </div>
+                        <div className="vege-item">
+                            <img src="https://source.unsplash.com/1600x900/?vegetables" alt="img"></img>
+                            <div className="details">
+                                <h5>Banana</h5>
+                                <p>From : Raju</p>
+                                <p>Price : &#8377; 100</p>
+                                <Button variant="contained" disableElevation>Buy Now</Button>
+                            </div>
+                        </div><div className="vege-item">
+                            <img src="https://source.unsplash.com/1600x900/?vegetables" alt="img"></img>
+                            <div className="details">
+                                <h5>Banana</h5>
+                                <p>From : Raju</p>
+                                <p>Price : &#8377; 100</p>
+                                <Button variant="contained" disableElevation>Buy Now</Button>
+                            </div>
+                        </div>
+                </div>
+            </TabPanel>
+            <TabPanel value={value} index={2} className="tb-panel">
+                <div className="vege-items">
+                        <div className="vege-item">
+                            <img src="https://source.unsplash.com/1600x900/?vegetables" alt="img"></img>
+                            <div className="details">
+                                <h5>Black Pepper</h5>
+                                <p>From : Raju</p>
+                                <p>Price : &#8377; 100</p>
+                                <Button variant="contained" disableElevation>Buy Now</Button>
+                            </div>
+                            
+                        </div>
+                        <div className="vege-item">
+                            <img src="https://source.unsplash.com/1600x900/?vegetables" alt="img"></img>
+                            <div className="details">
+                                <h5>Black Pepper</h5>
+                                <p>From : Raju</p>
+                                <p>Price : &#8377; 100</p>
+                                <Button variant="contained" disableElevation>Buy Now</Button>
+                            </div>
+                        </div>
+                        <div className="vege-item">
+                            <img src="https://source.unsplash.com/1600x900/?vegetables" alt="img"></img>
+                            <div className="details">
+                                <h5>Black Pepper</h5>
+                                <p>From : Raju</p>
+                                <p>Price : &#8377; 100</p>
+                                <Button variant="contained" disableElevation>Buy Now</Button>
+                            </div>
+                        </div>
+                        <div className="vege-item">
+                            <img src="https://source.unsplash.com/1600x900/?vegetables" alt="img"></img>
+                            <div className="details">
+                                <h5>Black Pepper</h5>
+                                <p>From : Raju</p>
+                                <p>Price : &#8377; 100</p>
+                                <Button variant="contained" disableElevation>Buy Now</Button>
+                            </div>
+                        </div>
+                </div>
+            </TabPanel>
+            <TabPanel value={value} index={3} className="tb-panel">
+                <div className="vege-items">
+                        <div className="vege-item">
+                            <img src="https://source.unsplash.com/1600x900/?vegetables" alt="img"></img>
+                            <div className="details">
+                                <h5>Muang Dal</h5>
+                                <p>From : Raju</p>
+                                <p>Price : &#8377; 100</p>
+                                <Button variant="contained" disableElevation>Buy Now</Button>
+                            </div>
+                        </div>
+                        <div className="vege-item">
+                            <img src="https://source.unsplash.com/1600x900/?vegetables" alt="img"></img>
+                            <div className="details">
+                                <h5>Muang Dal</h5>
+                                <p>From : Raju</p>
+                                <p>Price : &#8377; 100</p>
+                                <Button variant="contained" disableElevation>Buy Now</Button>
+                            </div>
+                        </div>
+                </div>
+            </TabPanel>
+            </Box>
             <div className="container-fluid">
                 <div id="img-slider" className="carousel slide" data-ride="carousel">
                     <div className="carousel-inner">
@@ -161,7 +373,6 @@ const Homepage = () => {
                     <a className="carousel-control-next" href="#img-slider" data-slide="next">
                         <span className="carousel-control-next-icon"></span>
                     </a>
-
                 </div>
             </div>
             <div className="custom-container-1">

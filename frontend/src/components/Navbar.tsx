@@ -117,6 +117,9 @@ const Navbar = () => {
                     <li>
                         <Link to="/fruits">Fruits</Link>
                     </li>
+                    <li>
+                        <Link to="/pulses">Pulses</Link>
+                    </li>
                 </ul>
             </div>
         </div>
