@@ -1,10 +1,10 @@
 import { Box, Typography } from '@mui/material';
 import './componentsCss/custom_4.css';
-const Custom_4 = () => {
+const Custom_4 = ({head}) => {
     return (
         <Box className="c-container">
             <Box className="c-s-container">
-                <Typography id="head">Vegetables</Typography>
+                <Typography id="head">{head}</Typography>
                 <Box className="c-s-1-container">
                     <Box className="c-s-s-1-container">
                         <a className="s_a" href="/vegetabels">

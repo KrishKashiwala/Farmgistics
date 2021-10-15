@@ -8,13 +8,24 @@ export interface post {
     url?: string;
     cropType?: string;
 }
+export interface farmerByFarmerId {
+    getFarmerByFarmerId?: {
 
+        name?: string;
+        city?: string;
+        email?: string;
+        phone?: string;
+        id?: string;
+        image?: string;
+    }
+}
 export interface postArray {
     getPostByFarmer?: [post];
     getAllPosts?: [post];
     getAllThings?: [post];
 }
 export interface farmer {
+
     getByIdFarmers: {
         name?: string;
         city?: string;

@@ -58,4 +58,13 @@ const ALL_THINGS = gql`
         }
     }
 `;
-export { ALL_POSTS, ALL_THINGS, FIND_FARMER, FIND_FARMER_POST, POST_BY_FARMER };
+
+
+const GET_FARMER_BY_FARMERID = gql`
+    query getFarmerByFarmerId($farmerId : String){
+        getFarmerByFarmerId(farmerId : $farmerId){
+            name
+        }
+    }
+`
+export { ALL_POSTS, ALL_THINGS, FIND_FARMER, FIND_FARMER_POST, POST_BY_FARMER, GET_FARMER_BY_FARMERID};

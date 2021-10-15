@@ -38,6 +38,11 @@ class HelloResolver {
     async getPostByFarmer(@Args() { farmerId }: simpleId): Promise<Post[]> {
         return await Posts.find({ farmerId: farmerId });
     }
+
+    @Query(() => Farmer)
+    async getFarmerByFarmerId(@Args() { farmerId }: simpleId): Promise<Farmer> {
+        return await Farmers.find({ _id: farmerId });
+    }
     @Query(() => [Post])
     async getAllThings(@Args() { cropType }: postTypes): Promise<Post[]> {
         return await Posts.find({ cropType: cropType });
@@ -124,7 +129,7 @@ class HelloResolver {
             console.log(newFarmer);
             console.log(
                 'this is password check' +
-                    (await bcrypt.compare(confirmPassword, hashedPassword))
+                (await bcrypt.compare(confirmPassword, hashedPassword))
             );
             return {
                 name,
