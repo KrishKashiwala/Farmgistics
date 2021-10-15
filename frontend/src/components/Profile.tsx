@@ -12,7 +12,6 @@ import { FIND_FARMER, POST_BY_FARMER } from '../graphql/queries';
 import Navbar from './Navbar';
 import OrderItem from './OrderItem';
 import React, { useState, useContext } from 'react';
-import UserContext from '../Context/UserContext';
 import Registerpost from './Registerpost';
 import AddIcon from '@material-ui/icons/Add';
 import { farmer, allOrders, postArray } from '../../interface';
@@ -118,6 +117,7 @@ const Profile = () => {
             <Registerpost
                 val={localStorage.getItem('id')}
                 postBool={postBool}
+                setPostBool={setPostBool}
             />
         </div>
     );

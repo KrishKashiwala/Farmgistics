@@ -10,7 +10,7 @@ const Custom_4 = () => {
                         <a className="s_a" href="/vegetabels">
                             <Box className="c-main">
                                 <img
-                                    src= "https://source.unsplash.com/1600x900/?vegetables"
+                                    src="https://source.unsplash.com/1600x900/?vegetables"
                                     alt="image"
                                 />
                                 <Typography className="t">
@@ -56,7 +56,7 @@ const Custom_4 = () => {
                         </a>
                     </Box>
                 </Box>
-                <a href="/fruits">See all deals</a>
+                <a href="/fruits" className="seedeals">See all deals</a>
             </Box>
         </Box>
     );

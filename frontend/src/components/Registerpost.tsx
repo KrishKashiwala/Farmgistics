@@ -11,7 +11,7 @@ import './componentsCss/registerpost.css';
 import { Redirect, useHistory } from 'react-router-dom';
 import { cities, cropTypes } from './data/FakeData';
 
-const Registerpost = ({ postBool, val }: any) => {
+const Registerpost = ({ postBool, val, setPostBool }: any) => {
     const history = useHistory();
 
     const [title, setTitle] = useState<String>();
@@ -159,6 +159,7 @@ const Registerpost = ({ postBool, val }: any) => {
                             type="submit"
                             variant="contained"
                             color="primary"
+                            onClick={() => setPostBool(false)}
                         >
                             Submit
                         </Button>

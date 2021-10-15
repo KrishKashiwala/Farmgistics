@@ -3,7 +3,6 @@ import { Redirect } from 'react-router-dom';
 import './componentsCss/landing.css';
 import Login from './Login';
 import SignUp from './SignUp';
-// import SignUp from './SignUp';
 
 const Landing = () => {
     const [modalBool, setModalBool] = useState(false);

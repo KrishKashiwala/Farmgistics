@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import Homepage from "./components/Homepage";
 import Landing from "./components/Landing";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
@@ -7,34 +6,16 @@ import Spices from "./components/pages/Spices";
 import Vegetables from "./components/pages/Vegetables";
 import Fruits from "./components/pages/Fruits";
 import ContactUs from "./components/pages/ContactUs";
-import UserContext from "./Context/UserContext";
 import Product from "./components/pages/Product";
 import Cart from "./components/pages/Cart";
 import ReLogin from './components/ReLogin'
 import Pulses from "./components/pages/Pulses";
 const App = () => {
-  const [id, setId] = useState(null);
-  const [token, setToken] = useState(null);
 
-  const Value = (I: string, T: string) => {
-    setId(I);
-    setToken(T);
-  };
-
-  useEffect(() => {
-    if (
-      id !== localStorage.getItem("id") &&
-      token !== localStorage.getItem("jwt-token")
-    ) {
-      Value(localStorage.getItem("id"), localStorage.getItem("jwt-token"));
-    }
-    console.log("Context Updated");
-  }, []);
 
   return (
     <div>
       <BrowserRouter>
-        <UserContext.Provider value={{ Id: id, Token: token, setValue: Value }}>
           <Switch>
             <Route exact path='/home/' component={Homepage} />
             <Route exact path='/profile' component={Profile} />
@@ -48,7 +29,6 @@ const App = () => {
             <Route exact path='/cart' component={Cart} />
             <Route path='/not-found' render={ReLogin} />
           </Switch>
-        </UserContext.Provider>
       </BrowserRouter>
     </div>
   );

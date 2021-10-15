@@ -1,5 +1,4 @@
-import { useState } from 'react';
-// import UserContext from '../Context/UserContext';
+import { useState, useEffect } from 'react';
 import { FIND_FARMER } from '../graphql/queries';
 import { useQuery } from '@apollo/client';
 import { farmer } from '../../interface';
@@ -60,7 +59,6 @@ const Navbar = () => {
             }
         }
     };
-
     if (localStorage.getItem('id') === null)
         return <Redirect to="/not-found" />;
     return (
@@ -74,7 +72,7 @@ const Navbar = () => {
                     <div className="input-group">
                         <input
                             type="text"
-                            placeholder="Search"
+                            placeholder="Ex : spices , vegetables , fruits , pulses"
                             onChange={(
                                 e: React.ChangeEvent<HTMLInputElement>
                             ) => {

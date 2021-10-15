@@ -14,12 +14,17 @@ import Cards from '../Cards';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import { postArray } from '../../../interface';
-
+import { makeStyles } from '@material-ui/core/styles';
 function valuetext(value) {
     return `${value}`;
 }
 
 const Fruits = () => {
+    const useStyles = makeStyles({
+        slider: {
+            color: "#17c717",
+        },
+    })
     const [price, setPrice] = useState(100);
 
     const handleChange = (event, newValue) => {
@@ -35,7 +40,7 @@ const Fruits = () => {
             cropType: 'spices'
         }
     });
-
+    const classes = useStyles()
     if (localStorage.getItem('id') === null)
         return <Redirect to="/not-found" />;
     return (
@@ -53,27 +58,31 @@ const Fruits = () => {
                             valueLabelDisplay="auto"
                             aria-labelledby="range-slider"
                             getAriaValueText={valuetext}
-                            className="slider"
+                            className={classes.slider}
                         />
                         <Input
                             id="standard-adornment-amount"
                             value={price}
                             onChange={(e) => handleChange(e, e.target.value)}
                             startAdornment={
-                                <InputAdornment position="start">$</InputAdornment>
+                                <InputAdornment position="start"
+                                >$</InputAdornment>
                             }
                         />
                     </section>
                     <hr></hr>
                     <section className="spices">
                         <h5>FRUITS</h5>
-                        <FormControl>
-                            <FormGroup>
+                        <FormControl
+                        >
+                            <FormGroup
+                            >
                                 <FormControlLabel
                                     value="end"
                                     control={<Checkbox color="primary" />}
                                     label="Turmaric"
                                     labelPlacement="end"
+
                                 />
                                 <FormControlLabel
                                     value="end"
@@ -115,6 +124,7 @@ const Fruits = () => {
                                 url={item.url}
                                 price={item.price}
                                 city={item.city}
+                                farmerId={item.farmerId}
                             />
                         ))}
                     </div>

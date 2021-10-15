@@ -18,6 +18,9 @@ aside>.price>input{
     text-align: center;
     margin-top: 3rem;
 }
+.spices-heading h4{
+     text-align: center;
+}
 .spices-data .spices-heading>hr{
     width: 7rem;
     background-color: orange;

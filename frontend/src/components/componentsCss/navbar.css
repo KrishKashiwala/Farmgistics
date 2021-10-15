@@ -1,11 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans+Condensed:wght@300&display=swap');
 .Top-bar {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-top: 1rem;
     margin-bottom: 2rem;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
 }
 .Top-bar>.logo{
     margin-top: -0.5rem;
@@ -66,6 +68,7 @@
     padding-top: 0.7rem;
     padding-bottom: 0.7rem;
     box-shadow: 0px 0px 5px 6px rgba(0, 0, 255, 0.2);
+    font-family: 'Montserrat', sans-serif;
 }
 .Nav-links > ul {
     display: flex;

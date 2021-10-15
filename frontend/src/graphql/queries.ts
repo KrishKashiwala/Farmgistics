@@ -54,6 +54,7 @@ const ALL_THINGS = gql`
             url
             city
             cropType
+            farmerId
         }
     }
 `;

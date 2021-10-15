@@ -14,12 +14,18 @@ import Cards from '../Cards';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import { postArray } from '../../../interface';
+import { makeStyles } from '@material-ui/core/styles';
 
 function valuetext(value) {
     return `${value}`;
 }
 
 const Fruits = () => {
+    const useStyles = makeStyles({
+        slider: {
+            color: "#17c717",
+        },
+    })
     const [price, setPrice] = useState(100);
 
     const handleChange = (event, newValue) => {
@@ -35,7 +41,7 @@ const Fruits = () => {
             cropType: 'fruits'
         }
     });
-
+    const classes = useStyles()
     if (localStorage.getItem('id') === null)
         return <Redirect to="/not-found" />;
     return (
@@ -53,7 +59,7 @@ const Fruits = () => {
                             valueLabelDisplay="auto"
                             aria-labelledby="range-slider"
                             getAriaValueText={valuetext}
-                            className="slider"
+                            className={classes.slider}
                         />
                         <Input
                             id="standard-adornment-amount"
@@ -97,15 +103,15 @@ const Fruits = () => {
                         <hr></hr>
                     </div>
                     <div className="titles">
-                      <div className="items">
-                        <h5>Items</h5>
-                      </div>
-                      <div className="price">
-                        <h5>Price</h5>
-                      </div>
-                      <div className="quantity">
-                        <h5>Quantity</h5>
-                      </div>
+                        <div className="items">
+                            <h5>Items</h5>
+                        </div>
+                        <div className="price">
+                            <h5>Price</h5>
+                        </div>
+                        <div className="quantity">
+                            <h5>Quantity</h5>
+                        </div>
                     </div>
                     <div className="spices-cards">
                         {fruit_data?.getAllThings.map((item) => (
@@ -115,6 +121,7 @@ const Fruits = () => {
                                 url={item.url}
                                 price={item.price}
                                 city={item.city}
+                                farmerId={item.farmerId}
                             />
                         ))}
                     </div>
