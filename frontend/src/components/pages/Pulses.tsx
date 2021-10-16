@@ -33,7 +33,7 @@ const Pulses = () => {
         loading: fruit_loading
     } = useQuery<postArray>(ALL_THINGS, {
         variables: {
-            cropType: 'fruits'
+            cropType: 'pulses'
         }
     });
 

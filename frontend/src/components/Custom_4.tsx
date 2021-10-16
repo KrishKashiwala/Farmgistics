@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material';
 import './componentsCss/custom_4.css';
-const Custom_4 = ({head}) => {
+const Custom_4 = ({ head }) => {
     return (
         <Box className="c-container">
             <Box className="c-s-container">

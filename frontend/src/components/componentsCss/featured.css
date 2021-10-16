@@ -13,7 +13,7 @@ body {
     flex-direction: column;
     justify-content: center;
     background-color: #ffffff;
-    height: 33em;
+    height: 25em;
     width: 21.7em;
 }
 .s-s-1-container {
@@ -23,15 +23,14 @@ body {
 }
 .s-s-1-container img {
     margin-top: 1em;
-    width: 20em;
-    height: 20em;
+    width: 18em;
+    height: 16em;
     background-size: contain;
     align-items: center;
 }
 #typo {
     text-align: center;
     font-size: 30px;
-    margin-bottom: 1em;
 }
 
 #a {

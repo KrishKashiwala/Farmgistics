@@ -9,13 +9,12 @@
     display: flex;
     flex-direction: column;
     background-color: #ffffff;
-    height: 33em;
+    height: 25em;
     width: 21.7em;
 }
 #head {
     text-align: center;
     font-size: 30px;
-    margin-bottom: 1em;
 }
 .c-s-1-container {
     display: flex;
@@ -26,14 +25,15 @@
 .c-s-s-1-container {
     display: flex;
     flex-direction: row;
+    margin-bottom : 2.5em;
 }
 .c-s-s-1-container img {
     width: 90%;
-    height: 9em;
+    height: 7em;
 }
 .c-main {
     width: 10em;
-    height: 10em;
+    height: 2em;
 }
 
 .t {
@@ -56,7 +56,8 @@
     color: #17c717;
 }
 .seedeals{
-    margin-top : 2em;
+    margin-top : 5em;
+    margin-left : 2em;
 }
 .seedeals:hover{
     color: #17c717;
