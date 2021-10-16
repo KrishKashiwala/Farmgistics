@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import '../componentsCss/featured.css';
-const Featured = ({ cropType, title, des, url }: any) => {
+const Featured = ({ cropType, url }: any) => {
     return (
         <Box className="f-container">
             <Box className="s-container">

@@ -10,7 +10,6 @@ export interface post {
 }
 export interface farmerByFarmerId {
     getFarmerByFarmerId?: {
-
         name?: string;
         city?: string;
         email?: string;
@@ -25,8 +24,15 @@ export interface postArray {
     getAllThings?: [post];
 }
 export interface farmer {
-
-    getByIdFarmers: {
+    getRandomFarmer?: {
+        name?: string;
+        city?: string;
+        email?: string;
+        phone?: string;
+        id?: string;
+        image?: string;
+    };
+    getByIdFarmers?: {
         name?: string;
         city?: string;
         email?: string;
@@ -37,18 +43,23 @@ export interface farmer {
 }
 
 export interface order {
-    title?: string;
-    des?: string;
-    url?: string;
-    price?: string;
-    city?: string;
-    allFarmers: {
+    allFarmers?: {
         title?: string;
         des?: string;
         url?: string;
         price?: string;
         city?: string;
     };
+    getRandomPost?: {
+        title?: string;
+        des?: string;
+        city?: string;
+        price?: string;
+        farmerId?: string;
+        id?: string;
+        url?: string;
+        cropType?: string;
+    }
 }
 export interface allOrders {
     getAllFarmers: [order];

@@ -38,7 +38,6 @@ class HelloResolver {
     async getPostByFarmer(@Args() { farmerId }: simpleId): Promise<Post[]> {
         return await Posts.find({ farmerId: farmerId });
     }
-
     @Query(() => Farmer)
     async getFarmerByFarmerId(@Args() { farmerId }: simpleId): Promise<Farmer> {
         return await Farmers.find({ _id: farmerId });
@@ -47,7 +46,10 @@ class HelloResolver {
     async getAllThings(@Args() { cropType }: postTypes): Promise<Post[]> {
         return await Posts.find({ cropType: cropType });
     }
-
+    @Query(() => Post)
+    async getRandomPost(): Promise<Post> {
+        return await Posts.findOne({ $near: [Math.random(), 0] })
+    }
     @Query(() => Farmer)
     async getByIdFarmers(
         @Arg('id', { nullable: true }) id: String

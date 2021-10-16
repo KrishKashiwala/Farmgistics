@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './componentsCss/homepage.css';
-import { ALL_THINGS, FIND_FARMER, POST_BY_FARMER, GET_FARMER_BY_FARMERID } from '../graphql/queries';
+import { ALL_THINGS, FIND_FARMER, POST_BY_FARMER, GET_FARMER_BY_FARMERID, GET_RANDOM_POST } from '../graphql/queries';
 import { ALL_POSTS } from '../graphql/queries';
 import { useQuery } from '@apollo/client';
 import Navbar from './Navbar';
@@ -11,7 +11,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Footer from './Footer';
 import { Redirect } from 'react-router';
-import { farmer, postArray, farmerByFarmerId } from '../../interface';
+import { farmer, postArray, farmerByFarmerId, order } from '../../interface';
 import Featured from './homepageComponents/Featured';
 import { cropTypes } from './data/FakeData';
 import Custom_4 from './Custom_4';
@@ -140,6 +140,12 @@ const Homepage = () => {
     });
     if (!f_data || f_error || f_loading) console.log(f_error);
 
+    const {
+        data: r_data,
+        error: r_error,
+        loading: r_loading
+    } = useQuery<order>(GET_RANDOM_POST);
+    if (!r_data || r_error || r_loading) console.log(r_error);
     // backend graphql code ends
     if (localStorage.getItem('id') === null)
         return <Redirect to="/not-found" />;
@@ -325,7 +331,10 @@ const Homepage = () => {
             <br></br>
             <div className="custom-container-1">
                 <Custom_4 head="Upto 20% discount" />
-                <Featured url="https://source.unsplash.com/1600x900/?Spices" />
+                <Featured
+                    cropType={r_data?.getRandomPost.cropType}
+                    url={r_data?.getRandomPost.url}
+                />
                 <Featured url="https://source.unsplash.com/1600x900/?Pulses,dal" />
                 <Custom_4 head="Upto 80% discount" />
             </div>

@@ -8,6 +8,14 @@ const ALL_POSTS = gql`
         }
     }
 `;
+const GET_RANDOM_POST = gql`
+    query getRandomPost{
+        getRandomPost{
+            cropType
+            url
+        }
+    }
+`
 const POST_BY_FARMER = gql`
     query getPostByFarmer($farmerId: String) {
         getPostByFarmer(farmerId: $farmerId) {
@@ -67,4 +75,4 @@ const GET_FARMER_BY_FARMERID = gql`
         }
     }
 `
-export { ALL_POSTS, ALL_THINGS, FIND_FARMER, FIND_FARMER_POST, POST_BY_FARMER, GET_FARMER_BY_FARMERID};
+export { ALL_POSTS, ALL_THINGS, FIND_FARMER, FIND_FARMER_POST, POST_BY_FARMER, GET_FARMER_BY_FARMERID, GET_RANDOM_POST };
