@@ -1,16 +1,10 @@
-import { useState, useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Redirect } from 'react-router';
 import { useQuery } from '@apollo/client';
 import { ALL_THINGS } from '../../graphql/queries';
 import '../componentsCss/spices.css';
-import Slider from '@material-ui/core/Slider';
-import Input from '@material-ui/core/Input';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import Checkbox from '@material-ui/core/Checkbox';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import Cards from '../Cards';
+import Filter from '../Filter';
+import Cards from '../Items';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import { postArray } from '../../../interface';
@@ -21,17 +15,7 @@ function valuetext(value) {
 }
 
 const Fruits = () => {
-    const useStyles = makeStyles({
-        slider: {
-            color: "#17c717",
-        },
-    })
-    const [price, setPrice] = useState(100);
-
-    const handleChange = (event, newValue) => {
-        setPrice(newValue);
-    };
-
+    
     const {
         data: fruit_data,
         error: fruit_error,
@@ -41,79 +25,36 @@ const Fruits = () => {
             cropType: 'vegetables'
         }
     });
-    const classes = useStyles()
+
     if (localStorage.getItem('id') === null)
         return <Redirect to="/not-found" />;
     return (
-        <div>
+        <div className="container-fluid">
             <Navbar />
-            <div className="spices-cont">
-                <aside>
-                    <h5>Filters</h5>
-                    <hr></hr>
-                    <section className="price">
-                        <h5>PRICE</h5>
-                        <Slider
-                            value={price}
-                            onChange={handleChange}
-                            valueLabelDisplay="auto"
-                            aria-labelledby="range-slider"
-                            getAriaValueText={valuetext}
-                            className={classes.slider}
-                        />
-                        <Input
-                            id="standard-adornment-amount"
-                            value={price}
-                            onChange={(e) => handleChange(e, e.target.value)}
-                            startAdornment={
-                                <InputAdornment position="start">$</InputAdornment>
-                            }
-                        />
-                    </section>
-                    <hr></hr>
-                    <section className="spices">
-                        <h5>FRUITS</h5>
-                        <FormControl>
-                            <FormGroup>
-                                <FormControlLabel
-                                    value="end"
-                                    control={<Checkbox color="primary" />}
-                                    label="Cauliflower"
-                                    labelPlacement="end"
-                                />
-                                <FormControlLabel
-                                    value="end"
-                                    control={<Checkbox color="primary" />}
-                                    label="Potato"
-                                    labelPlacement="end"
-                                />
-                                <FormControlLabel
-                                    value="end"
-                                    control={<Checkbox color="primary" />}
-                                    label="Spinach"
-                                    labelPlacement="end"
-                                />
-                            </FormGroup>
-                        </FormControl>
-                    </section>
-                </aside>
-                <div className="spices-data">
-                    <div className="spices-heading">
-                        <h4>Vegetables We Offer</h4>
-                        <hr></hr>
-                    </div>
-                    <div className="titles">
-                        <div className="items">
-                            <h5>Items</h5>
+            <div className="row">
+                <div className="col-3">
+                    <Filter/>
+                </div>
+                <div className="col-9">
+                        <div className="spices-heading">
+                            <h4>Vegetable We Offer</h4>
+                            <hr></hr>
                         </div>
-                        <div className="price">
-                            <h5>Price</h5>
+                        <div className="row">
+                            <div className="col">
+                                <h5>Items</h5>
+                            </div>
+                            <div className="col">
+                                <h5>Details</h5>
+                            </div>
+                            <div className="col">
+                                <h5>Price</h5>
+                            </div>
+                            <div className="col">
+                                <h5>Quantity</h5>
+                            </div>
                         </div>
-                        <div className="quantity">
-                            <h5>Quantity</h5>
-                        </div>
-                    </div>
-                    <div className="spices-cards">
+                        <div className="spices-Items">
                         {fruit_data?.getAllThings.map((item) => (
                             <Cards
                                 title={item.title}
@@ -124,7 +65,7 @@ const Fruits = () => {
                                 farmerId={item.farmerId}
                             />
                         ))}
-                    </div>
+                        </div>
                 </div>
             </div>
             <Footer />

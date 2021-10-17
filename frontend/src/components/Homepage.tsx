@@ -4,6 +4,7 @@ import { ALL_THINGS, FIND_FARMER, POST_BY_FARMER, GET_FARMER_BY_FARMERID, GET_RA
 import { ALL_POSTS } from '../graphql/queries';
 import { useQuery } from '@apollo/client';
 import Navbar from './Navbar';
+import DisplayCard from './DisplayCard';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
@@ -196,55 +197,37 @@ const Homepage = () => {
                 </Box>
                 <TabPanel value={value} index={0} className="tb-panel">
                     <div className="vege-items">
-                        <div className="vege-item">
-                            <img src="" alt="img"></img>
-                            <div className="details">
-                                <h5>title</h5>
-                                <p>From : Raju</p>
-                                <p>Price : &#8377;</p>
-                                <Button variant="contained" disableElevation>Buy Now</Button>
-                            </div>
-                        </div>
+                        <DisplayCard/>
+                        <DisplayCard/>
+                        <DisplayCard/>
+                        <DisplayCard/>
                     </div>
                 </TabPanel>
                 <TabPanel value={value} index={1} className="tb-panel">
                     <div className="vege-items">
-                        <div className="vege-item">
-                            <img src="" alt="img"></img>
-                            <div className="details">
-                                <h5>title</h5>
-                                <p>From : Raju</p>
-                                <p>Price : &#8377;</p>
-                                <Button variant="contained" disableElevation>Buy Now</Button>
-                            </div>
-                        </div>
+                    <DisplayCard/>
+                    <DisplayCard/>
+                    <DisplayCard/>
+                    <DisplayCard/>
+                    <DisplayCard/>
+                    <DisplayCard/>
                     </div>
                 </TabPanel>
                 <TabPanel value={value} index={2} className="tb-panel">
                     <div className="vege-items">
-                        <div className="vege-item">
-                            <img src="" alt="img"></img>
-                            <div className="details">
-                                <h5>title</h5>
-                                <p>From : Raju</p>
-                                <p>Price : &#8377;</p>
-                                <Button variant="contained" disableElevation>Buy Now</Button>
-                            </div>
-                        </div>
+                    <DisplayCard/>
+                    <DisplayCard/>
+                    <DisplayCard/>
+                    <DisplayCard/>
+                    <DisplayCard/>
                     </div>
                 </TabPanel>
 
                 <TabPanel value={value} index={3} className="tb-panel">
                     <div className="vege-items">
-                        <div className="vege-item">
-                            <img src="" alt="img"></img>
-                            <div className="details">
-                                <h5>title</h5>
-                                <p>From : Raju</p>
-                                <p>Price : &#8377;</p>
-                                <Button variant="contained" disableElevation>Buy Now</Button>
-                            </div>
-                        </div>
+                    <DisplayCard/>
+                    <DisplayCard/>
+                    <DisplayCard/>
                     </div>
                 </TabPanel>
 

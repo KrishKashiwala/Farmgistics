@@ -6,43 +6,25 @@ aside{
     width: 20rem;
     margin-top: 2rem;
     margin-left: 1rem;
-    margin-right: 1rem;
     box-shadow: 0px 0px 1px 2px #eeeeee;
-    padding: 1rem 1rem;
 }
 aside>.price>input{
     width: 5rem;
     margin-left: 6rem;
 }
-.spices-data .spices-heading{
+.spices-heading{
     text-align: center;
     margin-top: 3rem;
 }
-.spices-heading h4{
+.spices-heading{
      text-align: center;
 }
-.spices-data .spices-heading>hr{
+.spices-heading>hr{
     width: 7rem;
     background-color: orange;
     border: 1.5px solid orange;
     margin-left: 31rem;
 }
-.spices-data .titles{
-    margin-top: 2rem;
-    display: flex;
-    justify-content: space-between;
-}
-.spices-data .titles .price{
-    margin-left: 19rem;
-}
-.spices-data .spices-cards{
-    display: inline-block;
-    margin-top: 2rem;
-}
-#line{
-    height: 2px;
-    width: 70rem;
-    background-color: #d6d6d6;
-    margin-left: 22rem;
-    box-shadow: 1px 1px 4px 1px #f0f0f0;
+.spices-Items{
+    margin-top: 1rem;
 }
