@@ -7,7 +7,7 @@ import {
     Ctx,
     Mutation
 } from 'type-graphql';
-import { Farmer, Post, User } from './queries';
+import { Farmer, Post, Simple, User } from './queries';
 import { farmerArgs, loginArgs, postTypes, simpleId } from './argsTypes';
 import { farmer } from '../serverInterface';
 import { MyContext } from 'src/types/MyContext';
@@ -22,6 +22,8 @@ export const MiddlewareFun: MiddlewareFn = async ({ context }: any, next) => {
     console.log(context);
     return next();
 };
+type simple = any;
+
 @Resolver()
 class HelloResolver {
     // queries
@@ -48,7 +50,7 @@ class HelloResolver {
     }
     @Query(() => Post)
     async getRandomPost(): Promise<Post> {
-        return await Posts.findOne({ $near: [Math.random(), 0] })
+        return await Posts.find().limit(1)
     }
     @Query(() => Farmer)
     async getByIdFarmers(
@@ -79,6 +81,14 @@ class HelloResolver {
             throw new Error(e);
         }
     }
+
+    // delete queries
+    @Query(() => Simple)
+    async removeCart(@Arg('id', { nullable: true }) id: simple): Promise<any> {
+        await Posts.findById(id).remove()
+    }
+
+
     // mutations
 
     @Mutation(() => User)
@@ -213,7 +223,6 @@ class HelloResolver {
         return { farmerId, cropType, url, title, des, price, city };
     }
 }
-
 const errors = {
     error: 'farmer not found'
 };

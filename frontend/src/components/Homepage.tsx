@@ -129,7 +129,6 @@ const Homepage = () => {
 
     if (!posts_d || posts_error || posts_loading) console.log(posts_error);
     if (error_id || !data_id || loading_id) console.log(error_id);
-    let cropSend = cropTypes[Math.floor(Math.random() * cropTypes.length)];
     const {
         data: f_data,
         error: f_error,
@@ -141,12 +140,12 @@ const Homepage = () => {
     });
     if (!f_data || f_error || f_loading) console.log(f_error);
 
-    const {
-        data: r_data,
-        error: r_error,
-        loading: r_loading
-    } = useQuery<order>(GET_RANDOM_POST);
-    if (!r_data || r_error || r_loading) console.log(r_error);
+    // const {
+    //     data: r_data,
+    //     error: r_error,
+    //     loading: r_loading
+    // } = useQuery<order>(GET_RANDOM_POST);
+    // if (!r_data || r_error || r_loading) console.log(r_error);
     // backend graphql code ends
     if (localStorage.getItem('id') === null)
         return <Redirect to="/not-found" />;
@@ -197,37 +196,33 @@ const Homepage = () => {
                 </Box>
                 <TabPanel value={value} index={0} className="tb-panel">
                     <div className="vege-items">
-                        <DisplayCard/>
-                        <DisplayCard/>
-                        <DisplayCard/>
-                        <DisplayCard/>
+                        {vegetables_data?.getAllThings.map((item) => (
+                            <DisplayCard url={item.url} />
+                        ))}
                     </div>
                 </TabPanel>
                 <TabPanel value={value} index={1} className="tb-panel">
                     <div className="vege-items">
-                    <DisplayCard/>
-                    <DisplayCard/>
-                    <DisplayCard/>
-                    <DisplayCard/>
-                    <DisplayCard/>
-                    <DisplayCard/>
+                        {fruits_data?.getAllThings.map((item) => (
+                            <DisplayCard url={item.url} />
+                        ))}
                     </div>
                 </TabPanel>
                 <TabPanel value={value} index={2} className="tb-panel">
                     <div className="vege-items">
-                    <DisplayCard/>
-                    <DisplayCard/>
-                    <DisplayCard/>
-                    <DisplayCard/>
-                    <DisplayCard/>
+                        {spices_data?.getAllThings.map((item) => (
+                            <DisplayCard url={item.url} />
+                        ))}
                     </div>
                 </TabPanel>
 
                 <TabPanel value={value} index={3} className="tb-panel">
                     <div className="vege-items">
-                    <DisplayCard/>
-                    <DisplayCard/>
-                    <DisplayCard/>
+
+                        {pulses_data?.getAllThings.map((item) => (
+                            <DisplayCard url={item.url} />
+                        ))}
+
                     </div>
                 </TabPanel>
 
@@ -314,10 +309,10 @@ const Homepage = () => {
             <br></br>
             <div className="custom-container-1">
                 <Custom_4 head="Upto 20% discount" />
-                <Featured
+                {/* <Featured
                     cropType={r_data?.getRandomPost.cropType}
                     url={r_data?.getRandomPost.url}
-                />
+                /> */}
                 <Featured url="https://source.unsplash.com/1600x900/?Pulses,dal" />
                 <Custom_4 head="Upto 80% discount" />
             </div>

@@ -105,4 +105,17 @@ class User extends Post {
   redirect: String;
   image: String;
 }
-export { Farmer, Post, User };
+
+
+@InterfaceType()
+abstract class simpleTerms {
+  @Field(() => String, { nullable: true })
+  id: String
+}
+
+@ObjectType({ implements: simpleTerms })
+class Simple extends simpleTerms {
+  id: String
+}
+
+export { Farmer, Post, User, Simple };
