@@ -1,45 +1,58 @@
-import { Redirect } from "react-router";
-import { useLocation } from "react-router";
+import { Redirect, useLocation } from "react-router";
+import { useState } from "react";
 import "../componentsCss/product.css";
 import vege from "../assests/vegetable.jpg";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
+import FormControl from '@mui/material/FormControl';
+import Input from '@mui/material/Input';
+import InputAdornment from '@mui/material/InputAdornment';
 
 // import ImageZoom from "js-image-zoom";
 
 const Product = () => {
-  // const context = useContext(UserContext);
-
-  // if (context.Id === null) {
-  //   return <Redirect to='/not-found' />;
-  // }
   const location = useLocation()
-  const quantity = location.state
+  const data = location.state
 
-  console.log(quantity);
+  console.log(data);
+
+  const [weight, setWeight] = useState(0);
+
+  const handleChange = (e) =>{
+    setWeight(e.target.value);
+  }
   
   if (localStorage.getItem("id") === null) return <Redirect to='/not-found' />;
   return (
-    <div>
+    <div className="container-fluid">
       <Navbar />
-      <div className='product-info'>
-        <div className='product-img'>
-          <img id='myimage' src={vege} width='300' height='240' alt='Girl' />
-          <div id='myresult' className='img-zoom-result'></div>
+      <div className='row product-info'>
+        <div className='col-4 product-img'>
+          <img src={vege} alt='Girl' />
         </div>
-        <div className='product-details'>
+        <div className='col product-details'>
           <h4>Tomato</h4>
           <hr></hr>
           <p>Farmer : Rakesh</p>
           <p>
             Address : Lorem ipsum dolor sit amet consectetur adipisicing elit.
           </p>
+          <p>
+            Details : Lorem ipsum dolor sit amet, consectetur
+          </p>
           <hr></hr>
-          <h4>$75/Kg</h4>
+          <h5>Rate :  &#x20B9; 75/Kg</h5>
           <hr></hr>
           <div className='quantity-selector'>
             <p>Quantity</p>
-            <input type='text'/>
+            <FormControl variant="standard" sx={{ width: '10ch' }}>
+            <Input
+              id="standard-adornment-weight"
+              value={weight}
+              onChange={(e) => handleChange(e)}
+              endAdornment={<InputAdornment position="end">kg</InputAdornment>}
+            />
+          </FormControl>
           </div>
           <hr></hr>
           <button>Add to Cart</button>

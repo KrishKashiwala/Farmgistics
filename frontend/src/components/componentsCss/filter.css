@@ -1,6 +1,27 @@
 .MuiInput-underline:after{
     border-bottom: 2px solid #17c717;
 }
-.MuiCheckbox-colorPrimary.Mui-checked{
+.MuiFormGroup-root .MuiFormControlLabel-root .MuiCheckbox-colorPrimary.Mui-checked{
     color: #17c717;
+}
+.rating-cont{
+    margin-bottom: 1.5rem;
+}
+.rating-cont h5{
+    margin-bottom: 1rem;
+}
+.rating{
+    display: flex;
+}
+.price{
+    margin-bottom: 1.5rem;
+}
+.name{
+    margin-bottom: 1.5rem;
+}
+.city{
+    margin-bottom: 1.5rem;
+}
+.available{
+    margin-bottom: 1.5rem;
 }

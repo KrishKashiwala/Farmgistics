@@ -1,30 +1,13 @@
 import { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import './componentsCss/items.css';
-import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { useQuery } from '@apollo/client';
 import { FIND_FARMER } from '../graphql/queries';
 import { farmer } from '../../interface';
-const useStyles = makeStyles({
-    root: {
-        maxWidth: 300,
-        marginRight: 10,
-        marginTop: 10,
-        marginBottom: 10
-    },
-    media: {
-        height: 150
-    },
-    large: {
-        width: 50,
-        height: 50
-    }
-});
 
 const Items = ({ des, title, price, url, city, farmerId }: any) => {
-    const classes = useStyles();
 
     const [qty, setQty] = useState(0);
 
@@ -37,6 +20,16 @@ const Items = ({ des, title, price, url, city, farmerId }: any) => {
             id: farmerId
         }
     });
+
+    let itemData: {[k: string]: any} = {};
+    itemData.description = des;
+    itemData.name = title;
+    itemData.rate = price;
+    itemData.photo = url;
+    itemData.city = city;
+    itemData.farmer = farmerId;
+    itemData.quantity = qty;
+
     if (localStorage.getItem('id') === null)
         return <Redirect to="/not-found" />;
     return (
@@ -44,7 +37,7 @@ const Items = ({ des, title, price, url, city, farmerId }: any) => {
             <div className="col info">
                 <Link to={{
                     pathname: '/product',
-                    state: { quantity: qty },
+                    state: { info: itemData },
                 }}>
                 <img src={url} alt="Image" />
                 </Link>

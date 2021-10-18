@@ -1,35 +1,26 @@
 .product-info{
-    display: flex;
     margin-bottom: 20rem;
 }
 .product-info>.product-img{
     margin: 0;
     padding: 0;
-    width: 50%;
     margin-top: 2rem;
     margin-left: 5rem;
 }
 .product-info>.product-img>img{
-    width: 10rem;
-    height: 15rem;
-    box-shadow: 0px 0px 0.5px 0.5px;
-}
-.product-info>.product-img>img:hover{
-    transform: scale(1.5);
+    width: 32rem;
+    height: 100%;
 }
 .product-info>.product-details{
-    width: 100%;
     margin-top: 2rem;
     margin-left: 2rem;
 }
 .product-info>.product-details>.quantity-selector{
     display: flex;
+    align-content: center;
 }
-.product-info>.product-details>.quantity-selector>input{
-    margin-left: 3rem;
-    width: 5rem;
-    height: 2rem;
-    outline: none;
+.product-info>.product-details>.quantity-selector>.MuiFormControl-root{
+    margin-left: 2rem;
 }
 .product-info>.product-details>button{
     border: none;
@@ -42,4 +33,4 @@
 .product-info>.product-details>button:hover{
     background-color: #3bb123;
     padding: 0.6rem 1.1rem;
-}
+} 
