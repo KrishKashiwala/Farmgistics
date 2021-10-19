@@ -72,3 +72,17 @@ export interface logged {
         token?: string;
     };
 }
+
+export interface infoState {
+    info?: {
+        city?: String
+        name?: String
+        address?: String
+        description?: String
+        photo?: string
+        farmer?: String
+        quantity?: Number
+        farmerName?: String
+        rate?: Number
+    }
+}

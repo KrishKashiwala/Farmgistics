@@ -5,7 +5,7 @@ import {
     Arg,
     MiddlewareFn,
     Ctx,
-    Mutation
+    Mutation,
 } from 'type-graphql';
 import { Farmer, Post, Simple, User } from './queries';
 import { farmerArgs, loginArgs, postTypes, simpleId } from './argsTypes';
@@ -22,7 +22,7 @@ export const MiddlewareFun: MiddlewareFn = async ({ context }: any, next) => {
     console.log(context);
     return next();
 };
-type simple = any;
+
 
 @Resolver()
 class HelloResolver {
@@ -50,7 +50,7 @@ class HelloResolver {
     }
     @Query(() => Post)
     async getRandomPost(): Promise<Post> {
-        return await Posts.find().limit(1)
+        return await Posts.find().limit(1).lean()
     }
     @Query(() => Farmer)
     async getByIdFarmers(
@@ -84,7 +84,7 @@ class HelloResolver {
 
     // delete queries
     @Query(() => Simple)
-    async removeCart(@Arg('id', { nullable: true }) id: simple): Promise<any> {
+    async removeCart(@Arg('id', { nullable: true }) id: String): Promise<any> {
         await Posts.findById(id).remove()
     }
 

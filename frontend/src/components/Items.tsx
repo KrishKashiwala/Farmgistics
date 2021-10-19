@@ -21,13 +21,13 @@ const Items = ({ des, title, price, url, city, farmerId }: any) => {
         }
     });
 
-    let itemData: {[k: string]: any} = {};
+    let itemData: { [k: string]: any } = {};
     itemData.description = des;
     itemData.name = title;
     itemData.rate = price;
     itemData.photo = url;
     itemData.city = city;
-    itemData.farmer = farmerId;
+    itemData.farmerName = data_id?.getByIdFarmers.name
     itemData.quantity = qty;
 
     if (localStorage.getItem('id') === null)
@@ -39,7 +39,7 @@ const Items = ({ des, title, price, url, city, farmerId }: any) => {
                     pathname: '/product',
                     state: { info: itemData },
                 }}>
-                <img src={url} alt="Image" />
+                    <img src={url} alt="Image" />
                 </Link>
             </div>
             <div className="col crop-details">

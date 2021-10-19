@@ -28,7 +28,7 @@ const link = from([
     errorLink,
     new HttpLink({ uri: 'https://farmgistics-backend.herokuapp.com/' })
 ]);
-
+// 'https://farmgistics-backend.herokuapp.com/'
 // main interaction with graphqlServer
 const client = new ApolloClient({
     cache: new InMemoryCache(),

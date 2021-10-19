@@ -140,12 +140,16 @@ const Homepage = () => {
     });
     if (!f_data || f_error || f_loading) console.log(f_error);
 
-    // const {
-    //     data: r_data,
-    //     error: r_error,
-    //     loading: r_loading
-    // } = useQuery<order>(GET_RANDOM_POST);
-    // if (!r_data || r_error || r_loading) console.log(r_error);
+    const {
+        data: r_data,
+        error: r_error,
+        loading: r_loading
+    } = useQuery<order>(GET_RANDOM_POST);
+
+
+    console.log(r_data)
+
+    if (!r_data || r_error || r_loading) console.log(r_error);
     // backend graphql code ends
     if (localStorage.getItem('id') === null)
         return <Redirect to="/not-found" />;
@@ -309,10 +313,10 @@ const Homepage = () => {
             <br></br>
             <div className="custom-container-1">
                 <Custom_4 head="Upto 20% discount" />
-                {/* <Featured
+                <Featured
                     cropType={r_data?.getRandomPost.cropType}
                     url={r_data?.getRandomPost.url}
-                /> */}
+                />
                 <Featured url="https://source.unsplash.com/1600x900/?Pulses,dal" />
                 <Custom_4 head="Upto 80% discount" />
             </div>
