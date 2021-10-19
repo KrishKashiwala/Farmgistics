@@ -11,12 +11,13 @@ import { useQuery } from '@apollo/client';
 import { FIND_FARMER, POST_BY_FARMER } from '../graphql/queries';
 import Navbar from './Navbar';
 import OrderItem from './OrderItem';
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import Registerpost from './Registerpost';
 import AddIcon from '@material-ui/icons/Add';
-import { farmer, allOrders, postArray } from '../../interface';
+import { farmer, postArray } from '../../interface';
 import { Redirect, useHistory } from 'react-router';
 import LogoutIcon from '@mui/icons-material/Logout';
+
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         small: {
@@ -80,20 +81,27 @@ const Profile = () => {
     if (localStorage.getItem('id') === null)
         return <Redirect to="/not-found" />;
     return (
-        <div>
+        <div className="container-fluid">
             <Navbar />
             <div className="root">
-                <br />
                 <div className="lower-container">
-                    {data_post?.getPostByFarmer.map((item) => (
-                        <OrderItem
-                            title={item.title}
-                            des={item.des}
-                            url={item.url}
-                            price={item.price}
-                            city={item.city}
-                        />
-                    ))}
+                    <br/>
+                    <div className="heading">
+                        <h3>My Products</h3>
+                        <hr></hr>
+                    </div>
+                    <br/>
+                    <div className="cards-cont">
+                        {data_post?.getPostByFarmer.map((item) => (
+                            <OrderItem
+                                title={item.title}
+                                des={item.des}
+                                url={item.url}
+                                price={item.price}
+                                city={item.city}
+                            />
+                        ))}
+                    </div>
                 </div>
             </div>
             <Tooltip title="Logout">

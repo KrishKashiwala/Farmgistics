@@ -1,42 +1,19 @@
-import {
-    Card,
-    Typography,
-    makeStyles,
-    CardActionArea,
-    CardMedia,
-    CardContent,
-    Button,
-    Theme,
-    createStyles,
-    CardActions
-} from '@material-ui/core';
 import { Redirect } from 'react-router-dom';
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        cardWidth: {
-            maxWidth: 345
-        }
-    })
-);
+
 const OrderItem = ({ title, des, url, price, city }: any) => {
-    const classes = useStyles();
-    console.log(url);
+
     if (localStorage.getItem('id') === null)
         return <Redirect to="/not-found" />;
     return (
-        <div className="order-item">
-            <div className="row">
-                <div className="col">
-                    <img src={url} alt="image"></img>
-                </div>
-                <div className="col details">
-                    <h4>{title}</h4>
-                    <p>{des}</p>
-                    <p>Price : &#8377; {price}</p>
-                    <p>City : {city}</p>
-                </div>
+        <div className="card">
+            <img className="card-img-top" src={url} alt="Card image"></img>
+            <div className="card-body">
+            <h4 className="card-title">{title}</h4>
+            <p className="card-text">Description : {des}</p>
+            <p className="card-text">Price : &#8377; {price}</p>
+            <p className="card-text">City : {city}</p>
             </div>
         </div>
-    );
+    ); 
 };
 export default OrderItem;

@@ -87,7 +87,7 @@ const Registerpost = ({ postBool, val, setPostBool }: any) => {
     if (localStorage.getItem('id') === null)
         return <Redirect to="/not-found" />;
     return (
-        <div className="modal">
+        <div id="register" className="modal">
             <div className="modal-content">
                 <div className="modal-body">
                     <h3>Add a Product</h3>
@@ -101,7 +101,7 @@ const Registerpost = ({ postBool, val, setPostBool }: any) => {
                         />
                         <TextField
                             id="outlined-basic"
-                            label="Photo"
+                            label=""
                             variant="outlined"
                             type="file"
                             name="photo"
@@ -169,4 +169,5 @@ const Registerpost = ({ postBool, val, setPostBool }: any) => {
         </div>
     );
 };
+
 export default Registerpost;

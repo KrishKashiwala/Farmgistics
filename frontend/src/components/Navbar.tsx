@@ -63,13 +63,13 @@ const Navbar = () => {
         return <Redirect to="/not-found" />;
     return (
         <div>
-            <div className="Top-bar">
-                <div className="logo">
+            <div className="row Top-bar">
+                <div className="col-4 logo">
                     <img src={data_id?.getByIdFarmers.image} alt="img"></img>
                     <p>Welcome, {`${data_id?.getByIdFarmers.name}`}</p>
                 </div>
-                <div className="Search-bar">
-                    <div className="input-group">
+                <div className="col-auto Search-bar">
+                    <div className="input-grp">
                         <input
                             type="text"
                             placeholder="Ex : spices , vegetables , fruits , pulses"
@@ -82,7 +82,7 @@ const Navbar = () => {
                         <button onClick={searcher}>Search</button>
                     </div>
                 </div>
-                <div className="Profile">
+                <div className="col Profile">
                     <Link to="/profile">
                         <img
                             style={{

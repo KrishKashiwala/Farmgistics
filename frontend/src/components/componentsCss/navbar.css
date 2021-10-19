@@ -1,9 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans+Condensed:wght@300&display=swap');
 .Top-bar {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     margin-top: 1rem;
     margin-bottom: 2rem;
     font-weight: bold;
@@ -12,7 +9,6 @@
 .Top-bar>.logo{
     margin-top: -0.5rem;
     display: flex;
-    justify-content: center;
 }
 .Top-bar > .logo > p {
     margin-top: 1.5rem;
@@ -26,14 +22,15 @@
     box-shadow: 0px 0px 3px 3px #d8d8d8;
     margin-left: 10px;
 }
-.Top-bar>.Search-bar{
-    justify-content: center;
+.Top-bar > .Search-bar{
+    justify-items: center;
 }
-.Top-bar > .Search-bar > .input-group {
+.Top-bar > .Search-bar > .input-grp {
     border: 1px solid lightgrey;
     border-radius: 5rem;
+    width: 32.7rem;
 }
-.Top-bar > .Search-bar > .input-group > input {
+.Top-bar > .Search-bar > .input-grp > input {
     height: 3rem;
     width: 25rem;
     border-radius: 5rem;
@@ -42,7 +39,7 @@
     outline: none;
     background-color: #eaeded;
 }
-.Top-bar > .Search-bar > .input-group > button {
+.Top-bar > .Search-bar > .input-grp > button {
     height: 3.1rem;
     border-radius: 0rem 5rem 5rem 0rem;
     border: none;
@@ -54,7 +51,7 @@
     margin-top: 0.5rem;
     margin-right: 2rem;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
 }
 .Profile > a {
     color: black;
@@ -74,12 +71,10 @@
     display: flex;
     list-style: none;
     margin-bottom: 0;
+    justify-content: center;
 }
 .Nav-links > ul > li {
     margin-right: 0rem;
-}
-.Nav-links > ul > li:first-child {
-    margin-left: 12rem;
 }
 .Nav-links > ul > li > a {
     padding: 0.9rem 5rem;

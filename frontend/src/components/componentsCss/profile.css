@@ -1,4 +1,24 @@
 .root {
-    margin: 0 1rem;
+    margin: 1rem 1rem;
     font-family: 'Helvetica Neue', Helvetica, Arial;
+}
+.root .lower-container .heading{
+    text-align: center;
+}
+.root .lower-container .heading hr{
+    width: 7rem;
+    background-color: orange;
+    border: 1.5px solid orange;
+}
+.root .lower-container .cards-cont .card {
+    width: 20rem;
+}
+.root .lower-container .cards-cont .card .card-img-top{
+    height: 20rem;
+}
+.root .lower-container .cards-cont{
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 3rem;
+    row-gap: 2rem;
 }

@@ -7,7 +7,7 @@ import '../componentsCss/cart.css';
 const Cart = () => {
   if (localStorage.getItem("id") === null) return <Redirect to='/not-found' />;
   return (
-    <div>
+    <div className="container-fluid">
       <Navbar/>
 
       <div className="row cart-cont">
