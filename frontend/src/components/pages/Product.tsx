@@ -8,7 +8,9 @@ import FormControl from '@mui/material/FormControl';
 import Input from '@mui/material/Input';
 import InputAdornment from '@mui/material/InputAdornment';
 import { infoState } from "../../../interface";
-// import ImageZoom from "js-image-zoom";
+import { Link } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+import { CART_POST } from '../../graphql/mutations'
 
 const Product = () => {
   const location = useLocation()
@@ -22,6 +24,30 @@ const Product = () => {
     setWeight(e.target.value);
   }
 
+  let itemData: { [k: string]: any } = {};
+  itemData.description = data?.info.description;
+  itemData.name = data?.info.name;
+  itemData.rate = data?.info.rate;
+  itemData.photo = data?.info.photo;
+  itemData.city = data?.info.city;
+  itemData.farmerName = data?.info.farmerName
+  itemData.quantity = data?.info.quantity;
+
+  const [cartItems] = useMutation(CART_POST)
+
+  const sendCartData = () => {
+    cartItems({
+      variables: {
+        description: data?.info.description,
+        name: data?.info.name,
+        rate: data?.info.rate,
+        photo: data?.info.photo,
+        city: data?.info.city,
+        farmerName: data?.info.farmerName,
+        quantity: data?.info.quantity
+      }
+    })
+  }
   if (localStorage.getItem("id") === null) return <Redirect to='/not-found' />;
   return (
     <div className="container-fluid">
@@ -55,7 +81,7 @@ const Product = () => {
             </FormControl>
           </div>
           <hr></hr>
-          <button>Add to Cart</button>
+          <button onClick={sendCartData}>Add to Cart</button>
           <button>Buy Now</button>
         </div>
       </div>
@@ -65,3 +91,5 @@ const Product = () => {
 };
 
 export default Product;
+
+

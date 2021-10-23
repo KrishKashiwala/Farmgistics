@@ -57,6 +57,35 @@ class postTypes {
   @MaxLength(1000)
   url: string;
 }
+
+@ArgsType()
+class cartTypes {
+  @Field({ nullable: true })
+  @MaxLength(30)
+  id: String;
+  @Field({ nullable: true })
+  @MaxLength(30)
+  farmerName: String
+  @Field({ nullable: true })
+  @MaxLength(30)
+  name: String
+  @Field({ nullable: true })
+  @MaxLength(30)
+  title: String
+  @Field({ nullable: true })
+  @MaxLength(30)
+  rate: String
+  @Field({ nullable: true })
+  @MaxLength(30)
+  city: String
+  @Field({ nullable: true })
+  @MaxLength(30)
+  description: String
+  @Field({ nullable: true })
+  @MaxLength(1000)
+  photo: String
+}
+
 @ArgsType()
 class simpleId {
   @Field({ nullable: true })
@@ -66,4 +95,4 @@ class simpleId {
   @MaxLength(30)
   id: String;
 }
-export { farmerArgs, loginArgs, postTypes, simpleId };
+export { farmerArgs, loginArgs, postTypes, simpleId, cartTypes };

@@ -1,3 +1,4 @@
+import { ReportHandler } from 'web-vitals';
 import { gql } from '@apollo/client';
 const CREATE_FARMER = gql`
     mutation createFarmer(
@@ -30,16 +31,43 @@ const CREATE_FARMER = gql`
     }
 `;
 const LOGIN_FARMER = gql`
-    mutation login($email: String, $password: String) ave the
---allow-empty-message commandline argument, including
+    mutation login($email: String, $password: String){ 
             name
             city
             id
-        }
+        
     }
 `;
-const USER_POST = gql`ave the
---allow-empty-message commandline argument, including
+const CART_POST = gql`
+    mutation cartItems(
+        $city : String 
+        $description :String
+        $name : String
+        $photo : String
+        $rate : String
+        $title : String
+        $farmerName : String
+    ){
+        cartItems(
+            name : $name
+            city : $city
+            description : $description
+            photo : $photo
+            rate : $rate
+            title : $title
+            farmerName : $farmerName
+        ){
+            name
+            description
+            city
+            rate
+            title
+            farmerName
+            photo
+        }
+    }
+`
+const USER_POST = gql`
     mutation UserPost(
         $farmerId: String
         $title: String
@@ -69,4 +97,4 @@ const USER_POST = gql`ave the
     }
 `;
 
-export { CREATE_FARMER, LOGIN_FARMER, USER_POST };
+export { CREATE_FARMER, CART_POST, LOGIN_FARMER, USER_POST };

@@ -18,6 +18,20 @@ export interface farmerByFarmerId {
         image?: string;
     }
 }
+export interface cartitems {
+    quantity: any;
+    id?: String;
+    farmerId?: String
+    name?: String
+    title?: String
+    rate?: String
+    city?: String
+    description?: String
+    photo?: String
+}
+export interface cartArray {
+    getCartItems: [cartitems]
+}
 export interface postArray {
     getPostByFarmer?: [post];
     getAllPosts?: [post];

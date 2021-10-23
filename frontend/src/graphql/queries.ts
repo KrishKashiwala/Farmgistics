@@ -66,8 +66,19 @@ const ALL_THINGS = gql`
         }
     }
 `;
-
-
+const CART_ITEMS = gql`
+    query getCartItems($farmerId : String){
+        getCartItems(farmerId : $farmerId){
+            title
+            name
+            rate
+            quantity
+            city
+            description
+            photo
+        }
+    }
+`
 const GET_FARMER_BY_FARMERID = gql`
     query getFarmerByFarmerId($farmerId : String){
         getFarmerByFarmerId(farmerId : $farmerId){
@@ -75,4 +86,4 @@ const GET_FARMER_BY_FARMERID = gql`
         }
     }
 `
-export { ALL_POSTS, ALL_THINGS, FIND_FARMER, FIND_FARMER_POST, POST_BY_FARMER, GET_FARMER_BY_FARMERID, GET_RANDOM_POST };
+export { ALL_POSTS, ALL_THINGS, CART_ITEMS, FIND_FARMER, FIND_FARMER_POST, POST_BY_FARMER, GET_FARMER_BY_FARMERID, GET_RANDOM_POST };

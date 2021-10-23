@@ -37,7 +37,38 @@ class Farmer implements farmer {
   redirect: string;
   image: string;
 }
+//cart
+@InterfaceType()
+abstract class cart {
+  @Field(() => String, { nullable: true })
+  id: String;
+  @Field(() => String, { nullable: true })
+  name: String;
+  @Field(() => String, { nullable: true })
+  title: String;
+  @Field(() => String, { nullable: true })
+  rate: String;
+  @Field(() => String, { nullable: true })
+  city: String;
+  @Field(() => String, { nullable: true })
+  description: String;
+  @Field(() => String, { nullable: true })
+  photo: String;
+  @Field(() => String, { nullable: true })
+  farmerName: String;
 
+}
+@ObjectType({ implements: cart })
+class Cart implements cart {
+  id: String;
+  farmerName: String
+  name: String
+  title: String
+  rate: String
+  city: String
+  description: String
+  photo: String
+}
 // posts
 @InterfaceType()
 abstract class post {
@@ -118,4 +149,4 @@ class Simple extends simpleTerms {
   id: String
 }
 
-export { Farmer, Post, User, Simple };
+export { Farmer, Post, User, Simple, Cart };
