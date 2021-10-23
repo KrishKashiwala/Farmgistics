@@ -30,17 +30,16 @@ const CREATE_FARMER = gql`
     }
 `;
 const LOGIN_FARMER = gql`
-    mutation login($email: String, $password: String) {
-        login(email: $email, password: $password) {
-            email
-            token
+    mutation login($email: String, $password: String) ave the
+--allow-empty-message commandline argument, including
             name
             city
             id
         }
     }
 `;
-const USER_POST = gql`
+const USER_POST = gql`ave the
+--allow-empty-message commandline argument, including
     mutation UserPost(
         $farmerId: String
         $title: String
@@ -69,4 +68,5 @@ const USER_POST = gql`
         }
     }
 `;
+
 export { CREATE_FARMER, LOGIN_FARMER, USER_POST };
