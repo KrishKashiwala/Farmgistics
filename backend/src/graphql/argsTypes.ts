@@ -90,9 +90,12 @@ class cartTypes {
 class simpleId {
   @Field({ nullable: true })
   @MaxLength(30)
-  farmerId: String;
+  farmerId?: String;
   @Field({ nullable: true })
   @MaxLength(30)
-  id: String;
+  id?: String;
+  @Field({ nullable: true })
+  @MaxLength(30)
+  farmerName?: String;
 }
 export { farmerArgs, loginArgs, postTypes, simpleId, cartTypes };

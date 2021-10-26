@@ -10,7 +10,7 @@ import Filter from '../Filter';
 import { postArray } from '../../../interface';
 
 const Fruits = () => {
-    
+
     const {
         data: fruit_data,
         error: fruit_error,
@@ -27,39 +27,39 @@ const Fruits = () => {
             <Navbar />
             <div className="row">
                 <div className="col-3">
-                    <Filter/>
+                    <Filter />
                 </div>
                 <div className="col-9">
-                        <div className="spices-heading">
-                            <h4>Spices We Offer</h4>
-                            <hr></hr>
+                    <div className="spices-heading">
+                        <h4>Spices We Offer</h4>
+                        <hr></hr>
+                    </div>
+                    <div className="row">
+                        <div className="col">
+                            <h5>Items</h5>
                         </div>
-                        <div className="row">
-                            <div className="col">
-                                <h5>Items</h5>
-                            </div>
-                            <div className="col">
-                                <h5>Details</h5>
-                            </div>
-                            <div className="col">
-                                <h5>Price</h5>
-                            </div>
-                            <div className="col">
-                                <h5>Quantity</h5>
-                            </div>
+                        <div className="col">
+                            <h5>Details</h5>
                         </div>
-                        <div className="spices-Items">
-                            {fruit_data?.getAllThings.map((item) => (
-                                <Items
-                                    title={item.title}
-                                    des={item.des}
-                                    url={item.url}
-                                    price={item.price}
-                                    city={item.city}
-                                    farmerId={item.farmerId}
-                                />
-                            ))}
+                        <div className="col">
+                            <h5>Price</h5>
                         </div>
+                        <div className="col">
+                            <h5>Quantity</h5>
+                        </div>
+                    </div>
+                    <div className="spices-Items">
+                        {fruit_data?.getAllThings.map((item) => (
+                            <Items
+                                title={item.title}
+                                des={item.des}
+                                url={item.url}
+                                price={item.price}
+                                city={item.city}
+                                farmerId={item.farmerId}
+                            />
+                        ))}
+                    </div>
                 </div>
             </div>
             <Footer />

@@ -34,8 +34,8 @@ class HelloResolver {
         return Farmers.find({});
     }
     @Query(() => [Cart])
-    async getCartItems(@Args() { farmerId }: simpleId): Promise<[Cart]> {
-        return Carts.find({ farmerId: farmerId });
+    async getCartItems(@Args() { farmerName }: simpleId): Promise<[Cart]> {
+        return Carts.find({ farmerName: farmerName });
     }
     @Query(() => [Post])
     async getAllPosts(): Promise<Post[]> {

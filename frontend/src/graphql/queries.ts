@@ -67,10 +67,10 @@ const ALL_THINGS = gql`
     }
 `;
 const CART_ITEMS = gql`
-    query getCartItems($farmerId : String){
-        getCartItems(farmerId : $farmerId){
-            title
+    query getCartItems($farmerName : String!){
+        getCartItems(farmerName : $farmerName){
             name
+            farmerName
             rate
             quantity
             city
