@@ -82,7 +82,6 @@ const SignUp = ({ show }: any) => {
             }
         });
 
-        localStorage.setItem('farmer-id', `${data.getByIdFarmers.id}`);
 
         console.log(photo);
     };

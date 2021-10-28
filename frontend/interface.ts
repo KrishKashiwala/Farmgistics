@@ -80,10 +80,10 @@ export interface allOrders {
 }
 export interface logged {
     login: {
-        name: string;
-        id: string;
-        email: string;
-        token?: string;
+        email?: string
+        password?: string
+        id?: string
+        token?: string
     };
 }
 

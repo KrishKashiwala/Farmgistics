@@ -31,8 +31,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const Login = ({ show }: any) => {
-    const [login, { data, error }] = useMutation<logged>(LOGIN_FARMER);
-
+    const [login, { data, error }] = useMutation<logged>(LOGIN_FARMER)
     const [email, setEmail] = useState<String>();
     const [password, setPassword] = useState<String>();
     const classes = useStyles();
@@ -45,19 +44,16 @@ const Login = ({ show }: any) => {
                 email: email,
                 password: password
             }
-        });
-    };
+        })
+    }
 
     if (error || !data) {
         console.log(error);
     }
-    // context.setValue(data?.login.id, data?.login.token);
 
     localStorage.setItem('jwt-token', `${data?.login.token}` as string);
     localStorage.setItem('id', `${data?.login.id}` as string);
     console.log(data?.login.id, data?.login.token);
-    // sessionStorage.setItem('logged-in', 'true');
-    // if (localStorage.getItem('id') === null) <Redirect to="/home" />;
     return (
         <div className="login-modal">
             <div className="login-modal-content">

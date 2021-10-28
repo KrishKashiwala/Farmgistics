@@ -31,11 +31,14 @@ const CREATE_FARMER = gql`
     }
 `;
 const LOGIN_FARMER = gql`
-    mutation login($email: String, $password: String){ 
+    mutation login($email: String, $password: String) {
+        login(email: $email, password: $password) {
+            email
+            token
             name
             city
             id
-        
+        }
     }
 `;
 const CART_POST = gql`
