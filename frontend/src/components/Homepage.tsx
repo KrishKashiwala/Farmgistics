@@ -152,7 +152,7 @@ const Homepage = () => {
     if (!r_data || r_error || r_loading) console.log(r_error);
     // backend graphql code ends
     if (localStorage.getItem('id') === null)
-        return <Redirect to="/not-found" />;
+        return <Redirect to="/not-found" />
     return (
         <div className="main-container">
             <Navbar />

@@ -16,19 +16,19 @@ const App = () => {
   return (
     <div>
       <BrowserRouter>
-          <Switch>
-            <Route exact path='/home/' component={Homepage} />
-            <Route exact path='/profile' component={Profile} />
-            <Route exact path='/' component={Landing} />
-            <Route exact path='/fruits' component={Fruits} />
-            <Route exact path='/vegetables' component={Vegetables} />
-            <Route exact path='/spices' component={Spices} />
-            <Route exact path='/pulses' component={Pulses} />
-            <Route exact path='/contactus' component={ContactUs} />
-            <Route exact path='/product' component={Product} />
-            <Route exact path='/cart' component={Cart} />
-            <Route path='/not-found' render={ReLogin} />
-          </Switch>
+        <Switch>
+          <Route exact path='/home/' component={Homepage} />
+          <Route exact path='/profile' component={Profile} />
+          <Route exact path='/' component={Landing} />
+          <Route exact path='/fruits' component={Fruits} />
+          <Route exact path='/vegetables' component={Vegetables} />
+          <Route exact path='/spices' component={Spices} />
+          <Route exact path='/pulses' component={Pulses} />
+          <Route exact path='/contactus' component={ContactUs} />
+          <Route exact path='/product' component={Product} />
+          <Route exact path='/cart' component={Cart} />
+          <Route path='/not-found' render={ReLogin} />
+        </Switch>
       </BrowserRouter>
     </div>
   );
