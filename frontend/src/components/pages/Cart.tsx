@@ -44,7 +44,6 @@ const Cart = () => {
           <h5>Quantity</h5>
         </div>
       </div>
-      <div>
       {cart_data?.getCartItems?.map(item => (
         <CartItem
           name={item?.name}
@@ -55,7 +54,6 @@ const Cart = () => {
           city={item?.city}
         />
       ))}
-      </div>
       <br></br>
       <Footer />
     </div>
