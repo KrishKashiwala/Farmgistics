@@ -6,6 +6,6 @@ const cartSchema = new mong.Schema({
 	city: String,
 	description: String,
 	photo: String,
-	farmerName: String
+	farmerId: String
 });
 module.exports = mong.model("cartData", cartSchema);

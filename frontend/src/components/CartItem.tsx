@@ -2,6 +2,9 @@ import './componentsCss/cartitem.css';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 const CartItem = ({ name, rate, description, city, photo, quantity }) => {
+    
+    console.log(name);
+
     return (
         <div className="row carti-cont">
             <div className="col-3 img">

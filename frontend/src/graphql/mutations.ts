@@ -49,7 +49,7 @@ const CART_POST = gql`
         $photo : String
         $rate : String
         $title : String
-        $farmerName : String
+        $farmerId : String
     ){
         cartItems(
             name : $name
@@ -58,14 +58,14 @@ const CART_POST = gql`
             photo : $photo
             rate : $rate
             title : $title
-            farmerName : $farmerName
+            farmerId : $farmerId
         ){
             name
             description
             city
             rate
             title
-            farmerName
+            farmerId
             photo
         }
     }

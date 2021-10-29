@@ -62,28 +62,31 @@ class postTypes {
 class cartTypes {
   @Field({ nullable: true })
   @MaxLength(30)
-  id: String;
+  id?: String;
   @Field({ nullable: true })
   @MaxLength(30)
-  farmerName: String
+  farmerId?: String
   @Field({ nullable: true })
   @MaxLength(30)
-  name: String
+  name?: String
   @Field({ nullable: true })
   @MaxLength(30)
-  title: String
+  title?: String
   @Field({ nullable: true })
   @MaxLength(30)
-  rate: String
+  rate?: String
   @Field({ nullable: true })
   @MaxLength(30)
-  city: String
+  city?: String
   @Field({ nullable: true })
   @MaxLength(30)
-  description: String
+  description?: String
   @Field({ nullable: true })
   @MaxLength(1000)
-  photo: String
+  photo?: String
+  @Field({ nullable: true })
+  @MaxLength(30)
+  quantity?: Number
 }
 
 @ArgsType()

@@ -7,14 +7,15 @@ import {
     Ctx,
     Mutation,
 } from 'type-graphql';
-import { Farmer, Post, Simple, User } from './queries';
-import { farmerArgs, loginArgs, postTypes, simpleId } from './argsTypes';
+import { Farmer, Post, Simple, User, Cart } from './queries';
+import { farmerArgs, loginArgs, postTypes, simpleId, cartTypes } from './argsTypes';
 import { farmer } from '../serverInterface';
 import { MyContext } from 'src/types/MyContext';
 // import {Auth} from '../utils/checkAuth'
 const bcrypt = require('bcrypt');
 const Farmers = require('../Models/farmer');
 const Posts = require('../Models/post');
+const Carts = require('../Models/cart');
 const jwt = require('jsonwebtoken');
 const { UserInputError } = require('apollo-server-express');
 export const MiddlewareFun: MiddlewareFn = async ({ context }: any, next) => {
@@ -27,6 +28,11 @@ export const MiddlewareFun: MiddlewareFn = async ({ context }: any, next) => {
 @Resolver()
 class HelloResolver {
     // queries
+
+    @Query(() => [Cart])
+    async getCartItems(@Args() {farmerId} : simpleId): Promise<[Cart]> {
+        return Carts.find({farmerId: farmerId});
+    }
 
     @Query(() => [User])
     async getAllFarmers(): Promise<[User]> {
@@ -221,6 +227,23 @@ class HelloResolver {
         newPost.save();
         console.log(newPost);
         return { farmerId, cropType, url, title, des, price, city };
+    }
+
+    @Mutation(() => Cart)
+    async cartItems(
+        @Args() { description, name, rate, photo, city, farmerId, quantity } : cartTypes
+    ) : Promise<Cart | {}> {
+        const newCart = new Carts({
+            description: description,
+            name: name,
+            rate: rate,
+            photo: photo,
+            city: city,
+            farmerId: farmerId,
+            quantity: quantity,
+        });
+        newCart.save();
+        return { description, name, rate, photo, city, farmerId, quantity }
     }
 }
 const errors = {

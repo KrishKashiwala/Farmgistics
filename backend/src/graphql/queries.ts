@@ -55,19 +55,22 @@ abstract class cart {
   @Field(() => String, { nullable: true })
   photo: String;
   @Field(() => String, { nullable: true })
-  farmerName: String;
+  farmerId: String;
+  @Field(() => Number, { nullable: true })
+  quantity: Number;
 
 }
 @ObjectType({ implements: cart })
 class Cart implements cart {
   id: String;
-  farmerName: String
+  farmerId: String
   name: String
   title: String
   rate: String
   city: String
   description: String
   photo: String
+  quantity: Number
 }
 // posts
 @InterfaceType()

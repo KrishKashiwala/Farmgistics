@@ -43,7 +43,7 @@ const Product = () => {
         rate: data?.info.rate,
         photo: data?.info.photo,
         city: data?.info.city,
-        farmerName: data?.info.farmerName,
+        farmerId: localStorage.getItem('id'),
         quantity: data?.info.quantity
       }
     })
