@@ -156,6 +156,7 @@ const Homepage = () => {
     return (
         <div className="main-container">
             <Navbar />
+            <p>{data_id?.getByIdFarmers.name}</p>
             <div className="container-fluid">
                 <div id="demo" className="carousel slide" data-ride="carousel">
                     <ul className="carousel-indicators">
