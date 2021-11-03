@@ -80,25 +80,28 @@ abstract class post {
   @Field(() => String, { nullable: true })
   cropType?: String;
   @Field(() => String, { nullable: true })
-  title: String;
+  title?: String;
   @Field(() => String, { nullable: true })
-  des: String;
-  @Field(() => String, { nullable: true })
-  price: String;
+  price?: String;
   @Field(() => String, { nullable: true })
   city?: String;
   @Field(() => String, { nullable: true })
   url?: String;
+  @Field(() => String, { nullable: true })
+  id?: String;
+  @Field(() => String, { nullable: true })
+  des?: String;
 }
 
 @ObjectType({ implements: post, description: "nothing here" })
 class Post implements post {
-  title: String;
+  title?: String;
   farmerId?: String;
   cropType?: String;
-  des: String;
-  price: String;
+  des?: String;
+  price?: String;
   city?: String;
+  id?: String
   url?: String;
 }
 

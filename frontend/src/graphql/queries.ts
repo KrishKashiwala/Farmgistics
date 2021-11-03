@@ -29,7 +29,7 @@ const POST_BY_FARMER = gql`
     }
 `;
 const FIND_FARMER = gql`
-    query getByIdFarmers($id: String!) {
+    query getByIdFarmers($id: String) {
         getByIdFarmers(id: $id) {
             name
             id
@@ -62,6 +62,7 @@ const ALL_THINGS = gql`
             url
             city
             cropType
+            id
             farmerId
         }
     }
@@ -73,6 +74,7 @@ const CART_ITEMS = gql`
             farmerId
             rate
             quantity
+            id
             city
             description
             photo
@@ -86,4 +88,29 @@ const GET_FARMER_BY_FARMERID = gql`
         }
     }
 `
-export { ALL_POSTS, ALL_THINGS, CART_ITEMS, FIND_FARMER, FIND_FARMER_POST, POST_BY_FARMER, GET_FARMER_BY_FARMERID, GET_RANDOM_POST };
+const GET_POST = gql`
+    query getPostById($id:String){
+        getPostById(id:$id){
+            city
+            title
+            price
+            url
+            des
+            id
+            farmerId
+        }
+    }
+`
+
+// delete queries
+const DELETE_CART_ITEM = gql`
+    query deleteCartItem($id : String){
+        deleteCartItem(id:$id){
+            id
+        }
+        
+    }
+`
+
+
+export { ALL_POSTS, DELETE_CART_ITEM, ALL_THINGS, GET_POST, CART_ITEMS, FIND_FARMER, FIND_FARMER_POST, POST_BY_FARMER, GET_FARMER_BY_FARMERID, GET_RANDOM_POST };

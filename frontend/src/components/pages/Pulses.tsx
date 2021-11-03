@@ -57,7 +57,10 @@ const Pulses = () => {
                                 des={item.des}
                                 url={item.url}
                                 price={item.price}
+                                cropType='pulses'
+                                id={item.id}
                                 city={item.city}
+                                farmerId={item.farmerId}
                             />
                         ))}
                         </div>

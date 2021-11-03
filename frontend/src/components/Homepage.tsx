@@ -73,16 +73,6 @@ const Homepage = () => {
         }
     });
 
-    // farmer based on farmerId query
-    // const {
-    //     data: fdata_id,
-    //     error: ferror_id,
-    //     loading: floading_id
-    // } = useQuery<farmer>(POST_BY_FARMER,{
-    //     variables:{
-    //         farmerId : farmerId
-    //     }
-    // });
 
 
     // latest   vegetables query
@@ -201,21 +191,21 @@ const Homepage = () => {
                 <TabPanel value={value} index={0} className="tb-panel">
                     <div className="vege-items">
                         {vegetables_data?.getAllThings.map((item) => (
-                            <DisplayCard url={item.url} />
+                            <DisplayCard id={item.id} farmerId={item.farmerId} />
                         ))}
                     </div>
                 </TabPanel>
                 <TabPanel value={value} index={1} className="tb-panel">
                     <div className="vege-items">
                         {fruits_data?.getAllThings.map((item) => (
-                            <DisplayCard url={item.url} />
+                            <DisplayCard id={item.id} farmerId={item.farmerId} />
                         ))}
                     </div>
                 </TabPanel>
                 <TabPanel value={value} index={2} className="tb-panel">
                     <div className="vege-items">
                         {spices_data?.getAllThings.map((item) => (
-                            <DisplayCard url={item.url} />
+                            <DisplayCard id={item.id} farmerId={item.farmerId} />
                         ))}
                     </div>
                 </TabPanel>
@@ -224,7 +214,7 @@ const Homepage = () => {
                     <div className="vege-items">
 
                         {pulses_data?.getAllThings.map((item) => (
-                            <DisplayCard url={item.url} />
+                            <DisplayCard id={item.id} farmerId={item.farmerId} />
                         ))}
 
                     </div>

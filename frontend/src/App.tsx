@@ -27,6 +27,7 @@ const App = () => {
           <Route exact path='/contactus' component={ContactUs} />
           <Route exact path='/product' component={Product} />
           <Route exact path='/cart' component={Cart} />
+          <Route exact path='/product/:cropType/:id' component={Product} />
           <Route path='/not-found' render={ReLogin} />
         </Switch>
       </BrowserRouter>

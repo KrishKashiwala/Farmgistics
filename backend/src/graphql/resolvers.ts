@@ -30,8 +30,8 @@ class HelloResolver {
     // queries
 
     @Query(() => [Cart])
-    async getCartItems(@Args() {farmerId} : simpleId): Promise<[Cart]> {
-        return Carts.find({farmerId: farmerId});
+    async getCartItems(@Args() { farmerId }: simpleId): Promise<[Cart]> {
+        return Carts.find({ farmerId: farmerId });
     }
 
     @Query(() => [User])
@@ -57,6 +57,10 @@ class HelloResolver {
     @Query(() => Post)
     async getRandomPost(): Promise<Post> {
         return await Posts.find().limit(1).lean()
+    }
+    @Query(() => Post)
+    async getPostById(@Args() { id }: simpleId): Promise<Post> {
+        return await Posts.findById(id)
     }
     @Query(() => Farmer)
     async getByIdFarmers(
@@ -90,8 +94,10 @@ class HelloResolver {
 
     // delete queries
     @Query(() => Simple)
-    async removeCart(@Arg('id', { nullable: true }) id: String): Promise<any> {
-        await Posts.findById(id).remove()
+    async deleteCartItem(@Arg('id', { nullable: true }) id: String): Promise<any> {
+        console.log('here')
+        await Carts.deleteOne({ _id: id })
+        return { id }
     }
 
 
@@ -231,8 +237,8 @@ class HelloResolver {
 
     @Mutation(() => Cart)
     async cartItems(
-        @Args() { description, name, rate, photo, city, farmerId, quantity } : cartTypes
-    ) : Promise<Cart | {}> {
+        @Args() { description, name, rate, photo, city, farmerId, quantity }: cartTypes
+    ): Promise<Cart | {}> {
         const newCart = new Carts({
             description: description,
             name: name,

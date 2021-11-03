@@ -7,10 +7,10 @@ import { useQuery } from '@apollo/client';
 import { FIND_FARMER } from '../graphql/queries';
 import { farmer } from '../../interface';
 
-const Items = ({ des, title, price, url, city, farmerId }: any) => {
+const Items = ({ des, title, price, url, id, cropType, city, farmerId }: any) => {
 
     const [qty, setQty] = useState(0);
-
+    console.log(farmerId)
     const {
         data: data_id,
         error: error_id,
@@ -20,14 +20,14 @@ const Items = ({ des, title, price, url, city, farmerId }: any) => {
             id: farmerId
         }
     });
-
+    if (!data_id || error_id || loading_id) console.log(error_id)
     let itemData: { [k: string]: any } = {};
     itemData.description = des;
     itemData.name = title;
     itemData.rate = price;
     itemData.photo = url;
     itemData.city = city;
-    itemData.farmerName = data_id?.getByIdFarmers.name
+    itemData.farmerName = data_id?.getByIdFarmers?.name
     itemData.quantity = qty;
 
     if (localStorage.getItem('id') === null)
@@ -36,7 +36,7 @@ const Items = ({ des, title, price, url, city, farmerId }: any) => {
         <div className="row cont">
             <div className="col info">
                 <Link to={{
-                    pathname: '/product',
+                    pathname: `/product/${cropType}/${id}`,
                     state: { info: itemData },
                 }}>
                     <img src={url} alt="Image" />
@@ -46,7 +46,7 @@ const Items = ({ des, title, price, url, city, farmerId }: any) => {
                 <h5>{title}</h5>
                 <p>City : {city}</p>
                 <p>Description : {des}</p>
-                <p>Farmer Name : {data_id?.getByIdFarmers.name}</p>
+                <p>Farmer Name : {data_id?.getByIdFarmers?.name}</p>
                 <p>Location : <i className="fa fa-map-marker"></i> {city}</p>
             </div>
             <div className="col">

@@ -7,7 +7,6 @@ const connection = mongoose
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true,
-        useUnifiedTopolgy : true
     })
     .then(() => console.log('Database connected!'));
 mongoose.connection.on('error', (err: any) => console.log(err));

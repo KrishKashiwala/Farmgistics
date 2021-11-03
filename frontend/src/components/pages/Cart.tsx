@@ -1,4 +1,4 @@
-import { Redirect, useLocation } from "react-router-dom";
+import { Redirect, useHistory, useLocation } from "react-router-dom";
 import Footer from "../Footer";
 import Navbar from "../Navbar";
 import CartItem from "../CartItem";
@@ -6,6 +6,7 @@ import '../componentsCss/cart.css';
 import { cartArray, infoState, farmer } from "../../../interface";
 import { CART_ITEMS, FIND_FARMER } from "../../graphql/queries";
 import { useQuery } from "@apollo/client";
+import { useEffect } from "react";
 
 const Cart = () => {
   const location = useLocation()
@@ -52,6 +53,7 @@ const Cart = () => {
           photo={item?.photo}
           quantity={item?.quantity}
           city={item?.city}
+          id={item?.id}
         />
       ))}
       <br></br>

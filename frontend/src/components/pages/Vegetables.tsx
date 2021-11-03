@@ -15,7 +15,7 @@ function valuetext(value) {
 }
 
 const Fruits = () => {
-    
+
     const {
         data: fruit_data,
         error: fruit_error,
@@ -33,39 +33,41 @@ const Fruits = () => {
             <Navbar />
             <div className="row">
                 <div className="col-3">
-                    <Filter/>
+                    <Filter />
                 </div>
                 <div className="col-9">
-                        <div className="spices-heading">
-                            <h4>Vegetable We Offer</h4>
-                            <hr></hr>
+                    <div className="spices-heading">
+                        <h4>Vegetable We Offer</h4>
+                        <hr></hr>
+                    </div>
+                    <div className="row">
+                        <div className="col">
+                            <h5>Items</h5>
                         </div>
-                        <div className="row">
-                            <div className="col">
-                                <h5>Items</h5>
-                            </div>
-                            <div className="col">
-                                <h5>Details</h5>
-                            </div>
-                            <div className="col">
-                                <h5>Price</h5>
-                            </div>
-                            <div className="col">
-                                <h5>Quantity</h5>
-                            </div>
+                        <div className="col">
+                            <h5>Details</h5>
                         </div>
-                        <div className="spices-Items">
+                        <div className="col">
+                            <h5>Price</h5>
+                        </div>
+                        <div className="col">
+                            <h5>Quantity</h5>
+                        </div>
+                    </div>
+                    <div className="spices-Items">
                         {fruit_data?.getAllThings.map((item) => (
                             <Cards
                                 title={item.title}
                                 des={item.des}
                                 url={item.url}
                                 price={item.price}
+                                cropType='vegetables'
+                                id={item.id}
                                 city={item.city}
                                 farmerId={item.farmerId}
                             />
                         ))}
-                        </div>
+                    </div>
                 </div>
             </div>
             <Footer />

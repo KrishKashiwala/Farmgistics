@@ -55,6 +55,8 @@ const Fruits = () => {
                                 des={item.des}
                                 url={item.url}
                                 price={item.price}
+                                cropType='spices'
+                                id={item.id}
                                 city={item.city}
                                 farmerId={item.farmerId}
                             />

@@ -1,10 +1,18 @@
 import './componentsCss/cartitem.css';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
-const CartItem = ({ name, rate, description, city, photo, quantity }) => {
-    
-    console.log(name);
-
+import { useLazyQuery, useQuery } from '@apollo/client';
+import { DELETE_CART_ITEM } from '../graphql/queries';
+const CartItem = ({ name, rate, id, description, city, photo, quantity }) => {
+    const [deleteCartItems, { error, loading }] = useLazyQuery(DELETE_CART_ITEM)
+    const deleteCartItem = () => {
+        deleteCartItems({
+            variables: {
+                id: id
+            }
+        })
+    }
+    if (error || loading) console.log(error)
     return (
         <div className="row carti-cont">
             <div className="col-3 img">
@@ -24,7 +32,7 @@ const CartItem = ({ name, rate, description, city, photo, quantity }) => {
             </div>
             <div className="del">
                 <IconButton aria-label="delete" size="large">
-                    <DeleteIcon fontSize="inherit" />
+                    <DeleteIcon onClick={() => deleteCartItem()} fontSize="inherit" />
                 </IconButton>
             </div>
         </div>
