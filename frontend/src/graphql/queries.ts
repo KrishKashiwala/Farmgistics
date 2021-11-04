@@ -96,6 +96,7 @@ const GET_POST = gql`
             title
             price
             url
+            cropType
             des
             id
             farmerId

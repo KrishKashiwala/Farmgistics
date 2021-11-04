@@ -1,8 +1,8 @@
 import './componentsCss/cartitem.css';
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
 import { useLazyQuery, useQuery } from '@apollo/client';
 import { DELETE_CART_ITEM } from '../graphql/queries';
+import { useState } from 'react';
+import DeleteModal from './DeleteModal';
 const CartItem = ({ name, rate, id, description, city, photo, quantity }) => {
     const [deleteCartItems, { error, loading }] = useLazyQuery(DELETE_CART_ITEM)
     const deleteCartItem = () => {
@@ -13,6 +13,7 @@ const CartItem = ({ name, rate, id, description, city, photo, quantity }) => {
         })
     }
     if (error || loading) console.log(error)
+    const [postBool, setPostBool] = useState(false)
     return (
         <div className="row carti-cont">
             <div className="col-3 img">
@@ -29,11 +30,14 @@ const CartItem = ({ name, rate, id, description, city, photo, quantity }) => {
             <div className="col-1 qty">
                 <p>{quantity}</p>
             </div>
-            <div className="del">
-                <IconButton aria-label="delete" size="large">
-                    <DeleteIcon onClick={() => deleteCartItem()} fontSize="inherit" />
-                </IconButton>
+            <div className="deleteButtonDiv">
+                <a href="#myModal" className="deleteButtonCart" onClick={() => setPostBool(true)} role="button" data-bs-toggle="modal"><i className="fas fa-trash-alt"></i></a>
             </div>
+            {postBool && <DeleteModal
+                id={id}
+                title={name}
+                setPostBool={setPostBool}
+            />}
         </div>
     )
 }

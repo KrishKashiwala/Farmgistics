@@ -13,19 +13,19 @@ import {
 import { onError } from '@apollo/client/link/error';
 
 // error handling
-const errorLink = onError(({ graphQLErrors, networkError }) => {
-    if (graphQLErrors) {
-        graphQLErrors.map(({ message, path, locations }) =>
-            alert(
-                `Graphql errors ${message}, location is ${locations} and path is ${path}`
-            )
-        );
-    }
-});
+// const errorLink = onError(({ graphQLErrors, networkError }) => {
+//     if (graphQLErrors) {
+//         graphQLErrors.map(({ message, path, locations }) =>
+//             alert(
+//                 `Graphql errors ${message}, location is ${locations} and path is ${path}`
+//             )
+//         );
+//     }
+// });
 
 //link kind of middleware
 const link = from([
-    errorLink,
+    // errorLink,
     new HttpLink({ uri: 'http://localhost:4000/' })
 ]);
 // 'https://farmgistics-backend.herokuapp.com/'

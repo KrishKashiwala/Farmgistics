@@ -7,7 +7,6 @@ import FormControl from '@mui/material/FormControl';
 import Input from '@mui/material/Input';
 import InputAdornment from '@mui/material/InputAdornment';
 import { farmer, infoState, postById } from "../../../interface";
-import { Link } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/client";
 import { CART_POST } from '../../graphql/mutations'
 import { FIND_FARMER, GET_POST } from "../../graphql/queries";
@@ -29,16 +28,11 @@ const Product = ({ match }: any) => {
   if (post_error || !post_id || post_loading) console.log(post_error)
 
 
-  const {
-    data: data_id,
-    error: error_id,
-    loading: loading_id
-  } = useQuery<farmer>(FIND_FARMER, {
+  const { data: data_id, error: error_id, loading: loading_id } = useQuery<farmer>(FIND_FARMER, {
     variables: {
       id: post_id?.getPostById.farmerId
     }
-  });
-  if (!data_id || error_id || loading_id) console.log(error_id)
+  })
 
   const sendCartData = () => {
     cartItems({
