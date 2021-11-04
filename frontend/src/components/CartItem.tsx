@@ -22,7 +22,6 @@ const CartItem = ({ name, rate, id, description, city, photo, quantity }) => {
                 <h6>{name}</h6>
                 <p>City : {city}</p>
                 <p>Description : {description}</p>
-                {/* <p>Farmer Name : {farmerName}</p> */}
             </div>
             <div className="col-2 price">
                 <p>&#x20B9; {rate}</p>

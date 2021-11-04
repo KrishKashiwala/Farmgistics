@@ -9,12 +9,10 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Footer from './Footer';
 import { Redirect } from 'react-router';
 import { farmer, postArray, farmerByFarmerId, order } from '../../interface';
 import Featured from './homepageComponents/Featured';
-import { cropTypes } from './data/FakeData';
 import Custom_4 from './Custom_4';
 
 function TabPanel(props) {

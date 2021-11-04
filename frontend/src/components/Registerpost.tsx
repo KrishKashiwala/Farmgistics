@@ -60,8 +60,7 @@ const Registerpost = ({ postBool, val, setPostBool }: any) => {
             console.log(err);
         }
     };
-    const register = (e) => {
-        e.preventDefault();
+    const register = () => {
 
         UserPost({
             variables: {
@@ -76,7 +75,7 @@ const Registerpost = ({ postBool, val, setPostBool }: any) => {
         });
 
         console.log(url);
-
+        setPostBool(false)
         history.push('/profile');
     };
 
@@ -159,7 +158,7 @@ const Registerpost = ({ postBool, val, setPostBool }: any) => {
                             type="submit"
                             variant="contained"
                             color="primary"
-                            onClick={() => setPostBool(false)}
+                            onClick={() => register}
                         >
                             Submit
                         </Button>

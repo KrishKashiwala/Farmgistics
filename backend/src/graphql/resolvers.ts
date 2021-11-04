@@ -60,7 +60,7 @@ class HelloResolver {
     }
     @Query(() => Post)
     async getPostById(@Args() { id }: simpleId): Promise<Post> {
-        return await Posts.findById(id)
+        return await Posts.findById( id )
     }
     @Query(() => Farmer)
     async getByIdFarmers(
@@ -95,8 +95,13 @@ class HelloResolver {
     // delete queries
     @Query(() => Simple)
     async deleteCartItem(@Arg('id', { nullable: true }) id: String): Promise<any> {
-        console.log('here')
         await Carts.deleteOne({ _id: id })
+        return { id }
+    }
+    @Query(() => Simple)
+    async deletePostItem(@Arg('id', { nullable: true }) id: String): Promise<any> {
+        console.log('here')
+        await Posts.deleteOne({ _id: id })
         return { id }
     }
 

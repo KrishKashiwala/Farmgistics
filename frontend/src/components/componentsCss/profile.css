@@ -9,6 +9,7 @@
     width: 7rem;
     background-color: orange;
     border: 1.5px solid orange;
+    margin-left : 42em;
 }
 .root .lower-container .cards-cont .card {
     width: 20rem;

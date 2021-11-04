@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import './componentsCss/filter.css'
 import Slider from '@material-ui/core/Slider';
@@ -9,6 +9,7 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Rating from '@mui/material/Rating';
+import { SettingsAccessibility } from '@mui/icons-material';
 
 function valuetext(value) {
     return `${value}`;
@@ -22,7 +23,7 @@ const Filter = () => {
         },
     })
     const [price, setPrice] = useState(100);
-
+    const [city, setCity] = useState<string>('')
     const handleChange = (event, newValue) => {
         setPrice(newValue);
     };
@@ -37,19 +38,19 @@ const Filter = () => {
                 <section className="rating-cont">
                     <h5>Rating</h5>
                     <div className="rating">
-                        <Rating name="read-only" value={4} readOnly/>
+                        <Rating name="read-only" value={4} readOnly />
                         <p>&#38; Up</p>
                     </div>
                     <div className="rating">
-                        <Rating name="read-only" value={3} readOnly/>
+                        <Rating name="read-only" value={3} readOnly />
                         <p>&#38; Up</p>
                     </div>
                     <div className="rating">
-                        <Rating name="read-only" value={2} readOnly/>
+                        <Rating name="read-only" value={2} readOnly />
                         <p>&#38; Up</p>
                     </div>
                     <div className="rating">
-                        <Rating name="read-only" value={1} readOnly/>
+                        <Rating name="read-only" value={1} readOnly />
                         <p>&#38; Up</p>
                     </div>
                 </section>
@@ -107,29 +108,30 @@ const Filter = () => {
                 <section className="city">
                     <h5>City</h5>
                     <FormControl
+                    >
+                        <FormGroup
                         >
-                            <FormGroup
-                            >
-                                <FormControlLabel
-                                    value="end"
-                                    control={<Checkbox color="primary" />}
-                                    label="Surat"
-                                    labelPlacement="end"
+                            <FormControlLabel
+                                value="end"
+                                control={<Checkbox color="primary" />}
+                                label="Surat"
+                                labelPlacement="end"
+                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setCity(e.target.value)}
 
-                                />
-                                <FormControlLabel
-                                    value="end"
-                                    control={<Checkbox color="primary" />}
-                                    label="Jamnagar"
-                                    labelPlacement="end"
-                                />
-                                <FormControlLabel
-                                    value="end"
-                                    control={<Checkbox color="primary" />}
-                                    label="Kutch"
-                                    labelPlacement="end"
-                                />
-                            </FormGroup>
+                            />
+                            <FormControlLabel
+                                value="end"
+                                control={<Checkbox color="primary" />}
+                                label="Jamnagar"
+                                labelPlacement="end"
+                            />
+                            <FormControlLabel
+                                value="end"
+                                control={<Checkbox color="primary" />}
+                                label="Kutch"
+                                labelPlacement="end"
+                            />
+                        </FormGroup>
                     </FormControl>
                 </section>
                 <hr></hr>
@@ -155,7 +157,7 @@ const Filter = () => {
                         </FormGroup>
                     </FormControl>
                 </section>
-        </aside>
+            </aside>
         </div>
     )
 }

@@ -1,5 +1,4 @@
 import './componentsCss/profile.css';
-import './componentsCss/orderItem.css';
 import {
     makeStyles,
     createStyles,
@@ -45,7 +44,6 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 const Profile = () => {
     const history = useHistory();
-    // const context = useContext(UserContext);
     const [postBool, setPostBool] = useState<Boolean>(false);
     const classes = useStyles();
 
@@ -80,25 +78,22 @@ const Profile = () => {
     };
     if (localStorage.getItem('id') === null)
         return <Redirect to="/not-found" />;
+
     return (
         <div className="container-fluid">
             <Navbar />
             <div className="root">
                 <div className="lower-container">
-                    <br/>
+                    <br />
                     <div className="heading">
                         <h3>My Products</h3>
                         <hr></hr>
                     </div>
-                    <br/>
+                    <br />
                     <div className="cards-cont">
-                        {data_post?.getPostByFarmer.map((item) => (
+                        {data_post?.getPostByFarmer?.map((item) => (
                             <OrderItem
-                                title={item.title}
-                                des={item.des}
-                                url={item.url}
-                                price={item.price}
-                                city={item.city}
+                                id={item?.id}
                             />
                         ))}
                     </div>

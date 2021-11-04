@@ -24,6 +24,7 @@ const POST_BY_FARMER = gql`
             price
             cropType
             city
+            id
             url
         }
     }
@@ -111,6 +112,14 @@ const DELETE_CART_ITEM = gql`
         
     }
 `
+const DELETE_POST_ITEM = gql`
+    query deletePostItem($id : String){
+        deletePostItem(id:$id){
+            id
+        }
+        
+    }
+`
 
 
-export { ALL_POSTS, DELETE_CART_ITEM, ALL_THINGS, GET_POST, CART_ITEMS, FIND_FARMER, FIND_FARMER_POST, POST_BY_FARMER, GET_FARMER_BY_FARMERID, GET_RANDOM_POST };
+export { ALL_POSTS, DELETE_POST_ITEM, DELETE_CART_ITEM, ALL_THINGS, GET_POST, CART_ITEMS, FIND_FARMER, FIND_FARMER_POST, POST_BY_FARMER, GET_FARMER_BY_FARMERID, GET_RANDOM_POST };
