@@ -3,10 +3,7 @@
 }
 aside{
     float: left;
-    width: 20rem;
-    margin-top: 2rem;
     margin-left: 1rem;
-    box-shadow: 0px 0px 1px 2px #eeeeee;
 }
 aside>.price>input{
     width: 5rem;

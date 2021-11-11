@@ -142,7 +142,7 @@ const Homepage = () => {
     if (localStorage.getItem('id') === null)
         return <Redirect to="/not-found" />;
     return (
-        <div className="main-container">
+        <div className="container-fluid main-container">
             <Navbar />
             <div className="container-fluid">
                 <div id="demo" className="carousel slide" data-ride="carousel">

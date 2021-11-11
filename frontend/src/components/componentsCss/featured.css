@@ -3,7 +3,7 @@ body {
 }
 .f-container {
     margin-left: 1em;
-    margin-right: 1em;
+    margin-right: 0.7rem;
     max-width: 100%;
     background-size: contain;
 }

@@ -31,29 +31,9 @@ const Filter = () => {
     const classes = useStyles()
 
     return (
-        <div className="row">
+        <div className="row filter">
             <aside>
                 <h5>Filters</h5>
-                <hr></hr>
-                <section className="rating-cont">
-                    <h5>Rating</h5>
-                    <div className="rating">
-                        <Rating name="read-only" value={4} readOnly />
-                        <p>&#38; Up</p>
-                    </div>
-                    <div className="rating">
-                        <Rating name="read-only" value={3} readOnly />
-                        <p>&#38; Up</p>
-                    </div>
-                    <div className="rating">
-                        <Rating name="read-only" value={2} readOnly />
-                        <p>&#38; Up</p>
-                    </div>
-                    <div className="rating">
-                        <Rating name="read-only" value={1} readOnly />
-                        <p>&#38; Up</p>
-                    </div>
-                </section>
                 <hr></hr>
                 <section className="price">
                     <h5>Price</h5>
@@ -74,35 +54,6 @@ const Filter = () => {
                             >$</InputAdornment>
                         }
                     />
-                </section>
-                <hr></hr>
-                <section className="name">
-                    <h5>Name of Item</h5>
-                    <FormControl
-                    >
-                        <FormGroup
-                        >
-                            <FormControlLabel
-                                value="end"
-                                control={<Checkbox color="primary" />}
-                                label="Turmaric"
-                                labelPlacement="end"
-
-                            />
-                            <FormControlLabel
-                                value="end"
-                                control={<Checkbox color="primary" />}
-                                label="Clove"
-                                labelPlacement="end"
-                            />
-                            <FormControlLabel
-                                value="end"
-                                control={<Checkbox color="primary" />}
-                                label="Chilli Powder"
-                                labelPlacement="end"
-                            />
-                        </FormGroup>
-                    </FormControl>
                 </section>
                 <hr></hr>
                 <section className="city">
@@ -129,29 +80,6 @@ const Filter = () => {
                                 value="end"
                                 control={<Checkbox color="primary" />}
                                 label="Kutch"
-                                labelPlacement="end"
-                            />
-                        </FormGroup>
-                    </FormControl>
-                </section>
-                <hr></hr>
-                <section className="available">
-                    <h5>Availability</h5>
-                    <FormControl
-                    >
-                        <FormGroup
-                        >
-                            <FormControlLabel
-                                value="end"
-                                control={<Checkbox color="primary" />}
-                                label="Available"
-                                labelPlacement="end"
-
-                            />
-                            <FormControlLabel
-                                value="end"
-                                control={<Checkbox color="primary" />}
-                                label="Not Available"
                                 labelPlacement="end"
                             />
                         </FormGroup>
