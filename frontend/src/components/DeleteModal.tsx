@@ -1,9 +1,7 @@
 import { useLazyQuery } from "@apollo/client"
-import { useHistory } from "react-router"
 import { DELETE_POST_ITEM } from "../graphql/queries"
 
 const DeleteModal = ({ id, title, setPostBool }) => {
-	const history = useHistory()
 	const [deletePostItem, { error, loading }] = useLazyQuery(DELETE_POST_ITEM)
 	const deletePostItems = () => {
 		deletePostItem({
@@ -12,6 +10,7 @@ const DeleteModal = ({ id, title, setPostBool }) => {
 			}
 		})
 	}
+	console.log(id)
 	if (error || loading) console.log(error)
 	return (
 
@@ -27,7 +26,7 @@ const DeleteModal = ({ id, title, setPostBool }) => {
 					</div>
 					<div className="modal-footer">
 						<button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-						<button type="button" onClick={() => deletePostItems()} className="btn btn-danger">Delete {title} post</button>
+						<button type="button" onClick={() => deletePostItems} className="btn btn-danger">Delete {title} post</button>
 					</div>
 				</div>
 			</div>

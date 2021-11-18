@@ -9,6 +9,8 @@ import Footer from '../Footer';
 import Filter from '../Filter';
 import { postArray } from '../../../interface';
 
+import { useContext } from 'react';
+import { FilterValue } from '../Context';
 const Fruits = () => {
 
     const {
@@ -20,6 +22,9 @@ const Fruits = () => {
             cropType: 'spices'
         }
     });
+    const value = useContext(FilterValue)
+
+    console.log(value.price, value.city)
     if (localStorage.getItem('id') === null)
         return <Redirect to="/not-found" />;
     return (

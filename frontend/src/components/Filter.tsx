@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import './componentsCss/filter.css'
 import Slider from '@material-ui/core/Slider';
@@ -10,6 +10,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Rating from '@mui/material/Rating';
 import { SettingsAccessibility } from '@mui/icons-material';
+import { FilterValue } from '../components/Context'
 
 function valuetext(value) {
     return `${value}`;
@@ -17,18 +18,25 @@ function valuetext(value) {
 
 const Filter = () => {
 
+    const value = useContext(FilterValue)
     const useStyles = makeStyles({
         slider: {
             color: "#17c717",
         },
     })
-    const [price, setPrice] = useState(100);
-    const [city, setCity] = useState<string>('')
-    const handleChange = (event, newValue) => {
+    const [price, setPrice] = useState(0);
+    const [city, setCity] = useState('')
+    const handleCity = (event, newValue) => {
+        setCity(newValue);
+        value.changeValue({ city, price })
+    };
+    const handlePrice = (event, newValue) => {
         setPrice(newValue);
+        value.changeValue({ city, price })
     };
 
     const classes = useStyles()
+
 
     return (
         <div className="row filter">
@@ -39,7 +47,7 @@ const Filter = () => {
                     <h5>Price</h5>
                     <Slider
                         value={price}
-                        onChange={handleChange}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => handlePrice(e, e.target.value)}
                         valueLabelDisplay="auto"
                         aria-labelledby="range-slider"
                         getAriaValueText={valuetext}
@@ -48,7 +56,7 @@ const Filter = () => {
                     <Input
                         id="standard-adornment-amount"
                         value={price}
-                        onChange={(e) => handleChange(e, e.target.value)}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => handlePrice(e, e.target.value)}
                         startAdornment={
                             <InputAdornment position="start"
                             >$</InputAdornment>
@@ -63,24 +71,40 @@ const Filter = () => {
                         <FormGroup
                         >
                             <FormControlLabel
-                                value="end"
+                                value="Surat"
                                 control={<Checkbox color="primary" />}
                                 label="Surat"
                                 labelPlacement="end"
-                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setCity(e.target.value)}
+                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleCity(e, e.target.value)}
 
                             />
                             <FormControlLabel
-                                value="end"
+                                value="Ahemdabad"
                                 control={<Checkbox color="primary" />}
-                                label="Jamnagar"
+                                label="Ahemdabad"
                                 labelPlacement="end"
+                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleCity(e, e.target.value)}
                             />
                             <FormControlLabel
-                                value="end"
+                                value="Vadodara"
                                 control={<Checkbox color="primary" />}
-                                label="Kutch"
+                                label="Vadodara"
                                 labelPlacement="end"
+                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleCity(e, e.target.value)}
+                            />
+                            <FormControlLabel
+                                value="Nadiad"
+                                control={<Checkbox color="primary" />}
+                                label="Nadiad"
+                                labelPlacement="end"
+                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleCity(e, e.target.value)}
+                            />
+                            <FormControlLabel
+                                value="Kheda"
+                                control={<Checkbox color="primary" />}
+                                label="Kheda"
+                                labelPlacement="end"
+                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleCity(e, e.target.value)}
                             />
                         </FormGroup>
                     </FormControl>

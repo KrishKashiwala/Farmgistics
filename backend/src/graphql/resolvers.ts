@@ -60,7 +60,7 @@ class HelloResolver {
     }
     @Query(() => Post)
     async getPostById(@Args() { id }: simpleId): Promise<Post> {
-        return await Posts.findById( id )
+        return await Posts.findById(id)
     }
     @Query(() => Farmer)
     async getByIdFarmers(

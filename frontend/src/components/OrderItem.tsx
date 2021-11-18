@@ -30,13 +30,13 @@ const OrderItem = ({ id }: any) => {
                     <div className="deleteButtonDiv">
                         <a href="#myModal" className="deleteButton" onClick={() => setPostBool(true)} role="button" data-bs-toggle="modal"><i className="fas fa-trash-alt"></i></a>
                     </div>
-                    {postBool && <DeleteModal
-                        id={post_data?.getPostById.id}
-                        title={post_data?.getPostById.title}
-                        setPostBool={setPostBool}
-                    />}
                 </div>
             </Link>
+            {postBool && <DeleteModal
+                id={post_data?.getPostById.id}
+                title={post_data?.getPostById.title}
+                setPostBool={setPostBool}
+            />}
         </div>
     );
 };

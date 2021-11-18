@@ -114,7 +114,7 @@ const DELETE_CART_ITEM = gql`
     }
 `
 const DELETE_POST_ITEM = gql`
-    query deletePostItem($id : String){
+    query deletePostItem($id : String!){
         deletePostItem(id:$id){
             id
         }

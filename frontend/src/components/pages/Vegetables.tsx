@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 import { Redirect } from 'react-router';
 import { useQuery } from '@apollo/client';
 import { ALL_THINGS } from '../../graphql/queries';
@@ -9,7 +9,8 @@ import Navbar from '../Navbar';
 import Footer from '../Footer';
 import { postArray } from '../../../interface';
 
-import { makeStyles } from '@material-ui/core/styles';
+import { FilterValue } from '../Context'
+
 function valuetext(value) {
     return `${value}`;
 }
@@ -25,6 +26,12 @@ const Fruits = () => {
             cropType: 'vegetables'
         }
     });
+
+
+    const value = useContext(FilterValue)
+
+    console.log(value.price, value.city)
+
 
     if (localStorage.getItem('id') === null)
         return <Redirect to="/not-found" />;

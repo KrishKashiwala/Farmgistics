@@ -11,6 +11,7 @@ const CartItem = ({ name, rate, id, description, city, photo, quantity }) => {
                 id: id
             }
         })
+        setPostBool(false)
     }
     if (error || loading) console.log(error)
     const [postBool, setPostBool] = useState(false)
@@ -31,13 +32,15 @@ const CartItem = ({ name, rate, id, description, city, photo, quantity }) => {
                 <p>{quantity}</p>
             </div>
             <div className="deleteButtonDiv">
-                <a href="#myModal" className="deleteButtonCart" onClick={() => setPostBool(true)} role="button" data-bs-toggle="modal"><i className="fas fa-trash-alt"></i></a>
+                <a href="#myModal" className="deleteButtonCart" onClick={() => (
+                    setPostBool(true)
+                )} role="button" data-bs-toggle="modal"><i className="fas fa-trash-alt"></i></a>
             </div>
-            {postBool && <DeleteModal
+            {/* {postBool && <DeleteModal
                 id={id}
                 title={name}
                 setPostBool={setPostBool}
-            />}
+            />} */}
         </div>
     )
 }

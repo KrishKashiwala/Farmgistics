@@ -14,7 +14,7 @@ import { FIND_FARMER, GET_POST } from "../../graphql/queries";
 const Product = ({ match }: any) => {
 
   const location = useLocation();
-  const { info }: infoState = location.state
+  // const { info }: infoState = location.state
 
   const [weight, setWeight] = useState(0);
 
@@ -78,7 +78,7 @@ const Product = ({ match }: any) => {
                 id="standard-adornment-weight"
                 onChange={(e) => handleChange(e)}
                 endAdornment={<InputAdornment position="end">kg</InputAdornment>}
-                defaultValue={info.quantity}
+              // defaultValue={info.quantity}
               />
             </FormControl>
           </div>
