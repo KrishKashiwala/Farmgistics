@@ -118,7 +118,6 @@ const Profile = () => {
                 </Fab>
             </Tooltip>
             <Registerpost
-                val={localStorage.getItem('id')}
                 postBool={postBool}
                 setPostBool={setPostBool}
             />

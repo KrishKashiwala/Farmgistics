@@ -28,7 +28,7 @@ const OrderItem = ({ id }: any) => {
                         <p className="card-text">City : {post_data?.getPostById.city}</p>
                     </div>
                     <div className="deleteButtonDiv">
-                        <a href="#myModal" className="deleteButton" onClick={() => setPostBool(true)} role="button" data-bs-toggle="modal"><i className="fas fa-trash-alt"></i></a>
+                        <a href="#myModal" className="deleteButton" role="button" data-bs-toggle="modal"><i onClick={() => setPostBool(true)} className="fas fa-trash-alt"></i></a>
                     </div>
                 </div>
             </Link>

@@ -106,7 +106,7 @@ const GET_POST = gql`
 
 // delete queries
 const DELETE_CART_ITEM = gql`
-    query deleteCartItem($id : String){
+    mutation deleteCartItem($id : String){
         deleteCartItem(id:$id){
             id
         }
@@ -114,7 +114,7 @@ const DELETE_CART_ITEM = gql`
     }
 `
 const DELETE_POST_ITEM = gql`
-    query deletePostItem($id : String!){
+    mutation deletePostItem($id : String!){
         deletePostItem(id:$id){
             id
         }

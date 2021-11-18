@@ -11,7 +11,7 @@ import './componentsCss/registerpost.css';
 import { Redirect, useHistory } from 'react-router-dom';
 import { cities, cropTypes } from './data/FakeData';
 
-const Registerpost = ({ postBool, val, setPostBool }: any) => {
+const Registerpost = ({ postBool, setPostBool }: any) => {
     const history = useHistory();
 
     const [title, setTitle] = useState<String>();
@@ -23,11 +23,6 @@ const Registerpost = ({ postBool, val, setPostBool }: any) => {
     const [progress, setProgress] = useState(0);
     const [
         UserPost,
-        {
-            data: data_userPost,
-            error: error_userPost,
-            loading: loading_userPost
-        }
     ] = useMutation<postArray>(USER_POST);
 
     const handleChange = (e) => {
@@ -64,7 +59,7 @@ const Registerpost = ({ postBool, val, setPostBool }: any) => {
 
         UserPost({
             variables: {
-                farmerId: val,
+                farmerId: localStorage.getItem('id'),
                 title: title,
                 des: des,
                 price: price,
@@ -74,7 +69,7 @@ const Registerpost = ({ postBool, val, setPostBool }: any) => {
             }
         });
 
-        console.log(url);
+        // console.log(url);
         setPostBool(false)
         history.push('/profile');
     };
@@ -158,7 +153,7 @@ const Registerpost = ({ postBool, val, setPostBool }: any) => {
                             type="submit"
                             variant="contained"
                             color="primary"
-                            onClick={() => register}
+                            onClick={register}
                         >
                             Submit
                         </Button>

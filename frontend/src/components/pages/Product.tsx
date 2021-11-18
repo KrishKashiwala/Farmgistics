@@ -14,16 +14,17 @@ import { FIND_FARMER, GET_POST } from "../../graphql/queries";
 const Product = ({ match }: any) => {
 
   const location = useLocation();
-  // const { info }: infoState = location.state
-
+  const { info }: infoState = location.state
+  console.log(info)
   const [weight, setWeight] = useState(0);
 
   const handleChange = (e) => {
     setWeight(e.target.value);
   }
 
-  const [cartItems] = useMutation(CART_POST)
-
+  const [cartItems, { data, error, loading }] = useMutation(CART_POST)
+  if (loading || !data) console.log(error)
+  console.log(data)
   const { data: post_id, error: post_error, loading: post_loading } = useQuery<postById>(GET_POST, {
     variables: {
       id: match.params.id
@@ -46,7 +47,8 @@ const Product = ({ match }: any) => {
         description: post_id?.getPostById.des,
         photo: post_id?.getPostById.url,
         rate: post_id?.getPostById.price,
-        farmerId: post_id?.getPostById.farmerId
+        quantity: weight,
+        farmerId: localStorage.getItem('id')
       }
     })
   }
@@ -78,7 +80,7 @@ const Product = ({ match }: any) => {
                 id="standard-adornment-weight"
                 onChange={(e) => handleChange(e)}
                 endAdornment={<InputAdornment position="end">kg</InputAdornment>}
-              // defaultValue={info.quantity}
+                defaultValue={info?.quantity}
               />
             </FormControl>
           </div>

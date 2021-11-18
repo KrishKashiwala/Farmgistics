@@ -93,12 +93,12 @@ class HelloResolver {
     }
 
     // delete queries
-    @Query(() => Simple)
+    @Mutation(() => Simple)
     async deleteCartItem(@Arg('id', { nullable: true }) id: String): Promise<any> {
         await Carts.deleteOne({ _id: id })
         return { id }
     }
-    @Query(() => Simple)
+    @Mutation(() => Simple)
     async deletePostItem(@Arg('id', { nullable: true }) id: String): Promise<any> {
         console.log('here')
         await Posts.deleteOne({ _id: id })

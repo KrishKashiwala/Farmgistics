@@ -31,7 +31,7 @@ export interface postById {
     }
 }
 export interface cartitems {
-    quantity: any;
+    quantity?: any;
     id?: String;
     farmerId?: String
     name?: String
@@ -106,8 +106,8 @@ export interface infoState {
         address?: String
         description?: String
         photo?: string
-        farmer?: String
-        quantity?: Number
+        farmer?: String,
+        quantity?: Number,
         farmerName?: String
         rate?: Number
     }

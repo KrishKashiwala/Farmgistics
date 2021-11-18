@@ -9,12 +9,12 @@
 .carti-cont .del{
     margin-left: 6rem;
 }
+.deleteButtonDiv{
+    margin-left : 0;
+}
 .deleteButtonCart{
 	padding: 0!important;
     list-style-type: none!important;
-    right : 0;
-    top : 19em;
-    position:absolute;
     color: red;
     background-color: #b4b4b4;
     border-color: #232529;

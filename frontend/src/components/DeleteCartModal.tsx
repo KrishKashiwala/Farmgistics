@@ -1,12 +1,12 @@
 import { useMutation } from "@apollo/client"
 import { useHistory } from "react-router"
-import { DELETE_POST_ITEM } from "../graphql/queries"
+import { DELETE_CART_ITEM, DELETE_POST_ITEM } from "../graphql/queries"
 
-const DeleteModal = ({ id, title, setPostBool }) => {
+const DeleteCartModal = ({ id, title, setPostBool }) => {
 	const history = useHistory()
-	const [deletePostItem, { error, loading }] = useMutation(DELETE_POST_ITEM)
+	const [deleteCartItem, { error, loading }] = useMutation(DELETE_CART_ITEM)
 	const deletePost = () => {
-		deletePostItem({
+		deleteCartItem({
 			variables: {
 				id: id
 			}
@@ -37,4 +37,4 @@ const DeleteModal = ({ id, title, setPostBool }) => {
 		</div>
 	)
 }
-export default DeleteModal;
+export default DeleteCartModal;

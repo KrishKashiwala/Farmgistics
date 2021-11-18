@@ -66,6 +66,7 @@ const CART_POST = gql`
             rate
             title
             farmerId
+            quantity
             photo
         }
     }

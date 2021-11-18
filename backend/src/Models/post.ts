@@ -7,6 +7,6 @@ const postSchema = new mongo.Schema({
   city: String,
   des: String,
   url: String,
-  priority: Number
+  priority: Number,
 });
 module.exports = mongo.model("postData", postSchema);

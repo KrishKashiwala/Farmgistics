@@ -6,11 +6,10 @@ import '../componentsCss/cart.css';
 import { cartArray, infoState, farmer } from "../../../interface";
 import { CART_ITEMS, FIND_FARMER } from "../../graphql/queries";
 import { useQuery } from "@apollo/client";
-import { useEffect } from "react";
 
 const Cart = () => {
   const location = useLocation()
-  const data: infoState = location.state
+  // const { info }: infoState = location.state
   const {
     data: data_id,
     error: error_id,
@@ -26,6 +25,7 @@ const Cart = () => {
       farmerId: localStorage.getItem('id')
     }
   })
+  console.log(cart_data)
   if (!cart_data || cart_error || cart_loading) console.log(cart_error)
   if (localStorage.getItem("id") === null) return <Redirect to='/not-found' />;
   return (
